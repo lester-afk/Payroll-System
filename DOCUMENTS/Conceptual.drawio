@@ -1,0 +1,47 @@
+<mxfile host="Electron" modified="2024-10-21T18:12:55.751Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/24.4.0 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="eKmzDYCd-jdVMSsdcaS1" version="24.4.0" type="device">
+  <diagram name="Page-1" id="qnnSwm27_NMlHlBrGQYv">
+    <mxGraphModel dx="640" dy="382" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="L8-4j9LzazdEuddyYzl3-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="L8-4j9LzazdEuddyYzl3-9" target="L8-4j9LzazdEuddyYzl3-10">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-9" value="EMPLOYEES INFORMATION DETAILS, EMPLOYEE JOB DETAILS, EMPLOYEE SCHEDULES DETAILS, EMPLOYEE RFID, EMPLOYEE CASH ADVANCE DETAILS&lt;span style=&quot;color: rgba(0, 0, 0, 0); font-family: monospace; font-size: 0px; text-align: start; text-wrap: nowrap;&quot;&gt;%3CmxGraphModel%3E%3Croot%3E%3CmxCell%20id%3D%220%22%2F%3E%3CmxCell%20id%3D%221%22%20parent%3D%220%22%2F%3E%3CmxCell%20id%3D%222%22%20value%3D%22%26lt%3Bfont%20style%3D%26quot%3Bfont-size%3A%2016px%3B%26quot%3B%26gt%3BPrinted%20Payroll%20Report%26lt%3B%2Ffont%26gt%3B%22%20style%3D%22text%3Bhtml%3D1%3Balign%3Dcenter%3BverticalAlign%3Dmiddle%3BwhiteSpace%3Dwrap%3Brounded%3D0%3BfontColor%3D%23000000%3B%22%20vertex%3D%221%22%20parent%3D%221%22%3E%3CmxGeometry%20x%3D%22-194%22%20y%3D%22718%22%20width%3D%2272%22%20height%3D%22122%22%20as%3D%22geometry%22%2F%3E%3C%2FmxCell%3E%3C%2Froot%3E%3C%2FmxGraphModel%&lt;/span&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="60" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="L8-4j9LzazdEuddyYzl3-10" target="L8-4j9LzazdEuddyYzl3-11">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-10" value="&lt;font style=&quot;font-size: 17px;&quot;&gt;PAYROLL&amp;nbsp;SYSTEM&amp;nbsp;&lt;br&gt;with&amp;nbsp;&lt;br&gt;RFID&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="320" width="280" height="160" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-11" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;ATTENDANCE DETAILS,&lt;/font&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;PAYSLIP AND&lt;/font&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px;&quot;&gt;&lt;font style=&quot;font-size: 14px;&quot;&gt;PAYROLL REPORTS&lt;/font&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="275" y="600" width="280" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.25;exitDx=0;exitDy=0;" edge="1" parent="1" source="L8-4j9LzazdEuddyYzl3-10" target="L8-4j9LzazdEuddyYzl3-10">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="250" y="470" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="275" y="362" />
+              <mxPoint x="170" y="362" />
+              <mxPoint x="170" y="448" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-16" value="INPUT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="90" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-17" value="PROCESS" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="370" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-18" value="OUTPUT" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="650" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="L8-4j9LzazdEuddyYzl3-19" value="Store and retrieve Time In and Out,&lt;div style=&quot;font-size: 13px;&quot;&gt;Compute Salary,&lt;/div&gt;&lt;div style=&quot;font-size: 13px;&quot;&gt;Generate Payroll Report&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="70" y="350" width="90" height="110" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

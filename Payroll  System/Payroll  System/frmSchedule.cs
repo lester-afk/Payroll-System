@@ -200,6 +200,7 @@ namespace Payroll__System
         // Filter DataGridViewSchedule
         private void SelectedEmployee()
         {
+           
             string searchValue = txtEmpID.Text.Trim();
 
             if (string.IsNullOrEmpty(searchValue))

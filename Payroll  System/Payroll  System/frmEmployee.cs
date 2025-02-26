@@ -800,6 +800,10 @@ namespace Payroll__System
             txtPerHour.Enabled = false;
             dtpDate.Enabled = false;
             btnAddPerHour.Enabled = false;
+
+            ckboSSS.Enabled = false;
+            ckboPagibig.Enabled = false;
+            ckboPhilhealth.Enabled = false;
         }
 
         private void UnlockSalary()
@@ -811,6 +815,10 @@ namespace Payroll__System
             txtPerHour.Enabled = true;
             dtpDate.Enabled = true;
             btnAddPerHour.Enabled = true;
+
+            ckboSSS.Enabled = true;
+            ckboPagibig.Enabled = true;
+            ckboPhilhealth.Enabled = true;
         }
 
         private void InitializeDateTimePicker()
@@ -867,10 +875,14 @@ namespace Payroll__System
                              "job.job_title AS 'Job Title', " +
                              "job.job_salary AS 'Basic Salary', " +
                              "job.job_hourly_rate AS 'Hourly Rate', " +
-                             "job.job_date_hired AS 'Date Hired' " +
-                             "contribution.c_type AS 'Date Hired' " +
+                             "job.job_date_hired AS 'Date Hired', " +
+                             "job.job_hourly_rate AS 'Hourly Rate', " +
+                             "contribution.sss AS 'SSS', " +
+                             "contribution.pagibig AS 'Pag Ibig', " +
+                             "contribution.philhealth AS 'PhilHealth' " +
                              "FROM employee " +
-                            "LEFT JOIN job ON employee.employee_id = job.employee_id";//Use left join instead of inner join to display the employee info
+                             "LEFT JOIN job ON employee.employee_id = job.employee_id " +
+                             "LEFT JOIN contribution ON employee.employee_id = contribution.employee_id";//Use left join instead of inner join to display the employee info
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, opencon.connection);
                     DataTable dt = new DataTable();
@@ -922,7 +934,7 @@ namespace Payroll__System
         {
             ClearSalary ();
             LockSalary();
-            btnAdd2.Text = "    Add Job Details";
+            btnAdd2.Text = "    Add Details";
             btnAdd2.Image = Properties.Resources.add_30;
             btnEdit2.Text = "Edit";
             btnEdit2.Image = Properties.Resources.icons8_edit_30;
@@ -932,6 +944,7 @@ namespace Payroll__System
             btnAdd2.Enabled = false;
             btnClear2.Enabled = false;
         }
+
 
         bool isAdd = true;
         private void btnAdd2_Click(object sender, EventArgs e)
@@ -957,13 +970,18 @@ namespace Payroll__System
                 if (opencon.OpenConnection())
                 {
 
-                    string salaryQuery = @"INSERT INTO job 
+                    try
+                    {
+                        string salaryQuery = @"INSERT INTO job 
                             (employee_id, job_status, job_department, job_title, job_salary, job_hourly_rate, job_date_hired) 
                             VALUES 
                             (@EmployeeID, @Status, @Department, @Title, @Salary, @HourlyRate, @DateHired)";
 
-                    try
-                    {
+                        string contributionQuery = @"INSERT INTO contribution 
+                                (employee_id, pr_id, sss, pagibig,philhealth) 
+                                VALUES 
+                                (@EmployeeID, @PRID, @SSS, @Pagibig, @PhilHealth)";
+
                         // Validate required fields
                         if (string.IsNullOrWhiteSpace(cboStatus.Text))
                         {
@@ -1053,7 +1071,40 @@ namespace Payroll__System
 
                                 // Execute the command
                                 cmd.ExecuteNonQuery();
+                            }
 
+                            using (MySqlCommand cmdCon = new MySqlCommand(contributionQuery, opencon.connection))
+                            {
+                                cmdCon.Parameters.AddWithValue("@EmployeeID", txtEmpID2.Text.Trim());
+                                cmdCon.Parameters.AddWithValue("@PRID", DBNull.Value);
+
+                                if (!string.IsNullOrWhiteSpace(txtSSS.Text))
+                                {
+                                    cmdCon.Parameters.AddWithValue("@SSS", txtSSS.Text.Trim());
+                                }
+                                else
+                                {
+                                    cmdCon.Parameters.AddWithValue("@SSS", DBNull.Value);
+                                }
+
+                                if (!string.IsNullOrWhiteSpace(txtPagIbig.Text))
+                                {
+                                    cmdCon.Parameters.AddWithValue("@PagIbig", txtPagIbig.Text.Trim());
+                                }
+                                else
+                                {
+                                    cmdCon.Parameters.AddWithValue("@PagIbig", DBNull.Value);
+                                }
+                                if (!string.IsNullOrWhiteSpace(txtPhilHealth.Text))
+                                {
+                                    cmdCon.Parameters.AddWithValue("@PhilHealth", txtPhilHealth.Text.Trim());
+                                }
+                                else
+                                {
+                                    cmdCon.Parameters.AddWithValue("@PhilHealth", DBNull.Value);
+                                }
+
+                                cmdCon.ExecuteNonQuery();
                             }
 
                             // Confirmation message
@@ -1063,7 +1114,7 @@ namespace Payroll__System
                             opencon.CloseConnection();
                             ClearSalary();
                             btnAdd2.Image = Properties.Resources.add_30;
-                            btnAdd2.Text = "    Add Job Details";
+                            btnAdd2.Text = "    Add Details";
                             isAdd = true; // Switch back
                             LoadSalary();
                             LockSalary();
@@ -1180,6 +1231,10 @@ namespace Payroll__System
                                    job_hourly_rate = @HourlyRate,   
                                    job_date_hired = @DateHired
                                    WHERE employee_id = @EmployeeID";
+
+                    string contributionQuery = @"UPDATE contribution SET
+                                employee_id = @EmployeeID, sss = @SSS, pagibig = @Pagibig, philhealth = @PhilHealth
+                                WHERE employee_id = @EmployeeID AND pr_id = null";
                     try
                     {
                         // Validate required fields
@@ -1270,6 +1325,40 @@ namespace Payroll__System
                             
                         }
 
+                        using (MySqlCommand cmdCon = new MySqlCommand(contributionQuery, opencon.connection))
+                        {
+                            cmdCon.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text.Trim());
+                            cmdCon.Parameters.AddWithValue("@PRID", DBNull.Value);
+
+                            if (!string.IsNullOrWhiteSpace(txtSSS.Text))
+                            {
+                                cmdCon.Parameters.AddWithValue("@SSS", txtSSS.Text.Trim());
+                            }
+                            else
+                            {
+                                cmdCon.Parameters.AddWithValue("@SSS", DBNull.Value);
+                            }
+
+                            if (!string.IsNullOrWhiteSpace(txtPagIbig.Text))
+                            {
+                                cmdCon.Parameters.AddWithValue("@PagIbig", txtPagIbig.Text.Trim());
+                            }
+                            else
+                            {
+                                cmdCon.Parameters.AddWithValue("@PagIbig", DBNull.Value);
+                            }
+                            if (!string.IsNullOrWhiteSpace(txtPhilHealth.Text))
+                            {
+                                cmdCon.Parameters.AddWithValue("@PhilHealth", txtPhilHealth.Text.Trim());
+                            }
+                            else
+                            {
+                                cmdCon.Parameters.AddWithValue("@PhilHealth", DBNull.Value);
+                            }
+
+                            cmdCon.ExecuteNonQuery();
+                        }
+
                         MessageBox.Show("Record has been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         ClearSalary();
                         btnEdit2.Image = Properties.Resources.icons8_edit_30;
@@ -1344,10 +1433,37 @@ namespace Payroll__System
                 if (string.IsNullOrWhiteSpace(cboStatus.Text = selectedRow.Cells["Job Status"].Value.ToString()) &&
                     string.IsNullOrWhiteSpace(txtDepartment.Text = selectedRow.Cells["Department"].Value.ToString()) &&
                     string.IsNullOrWhiteSpace(txtTitle.Text = selectedRow.Cells["Job Title"].Value.ToString()))
+                    
                 {
                     cboStatus.SelectedIndex = -1;
                     txtDepartment.SelectedIndex = -1;
                     txtTitle.SelectedIndex = -1;
+                    btnAdd2.Enabled = true;
+                    btnEdit2.Enabled = false;
+                    LockSalary();
+                    btnEdit2.Text = "Edit";
+                    btnAdd2.Show();
+                    btnEdit2.Hide();
+                    isAdd = true;
+                    btnEdit2.Image = Properties.Resources.icons8_edit_30;
+
+                }
+                else
+                {
+                    btnEdit2.Enabled = true;
+                    btnAdd2.Enabled = false;
+                    btnAdd2.Text = "    Add Details";
+                    btnAdd2.Image = Properties.Resources.add_30;
+                    btnAdd2.Hide();
+                    btnEdit2.Show();
+                    isEdit = true;
+
+                }
+
+                if (string.IsNullOrWhiteSpace(txtSSS.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()) &&
+                    string.IsNullOrWhiteSpace(txtPagIbig.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()) &&
+                    string.IsNullOrWhiteSpace(txtPhilHealth.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()))
+                {
                     btnAdd2.Enabled = true;
                     btnEdit2.Enabled = false;
                     LockSalary();
@@ -1361,7 +1477,7 @@ namespace Payroll__System
                 {
                     btnEdit2.Enabled = true;
                     btnAdd2.Enabled = false;
-                    btnAdd2.Text = "    Add Job Details";
+                    btnAdd2.Text = "    Add Details";
                     btnAdd2.Image = Properties.Resources.add_30;
                     btnAdd2.Hide();
                     btnEdit2.Show();
@@ -1369,13 +1485,6 @@ namespace Payroll__System
 
                 }
 
-                /*if (string.IsNullOrWhiteSpace(txtSSS.Text = selectedRow.Cells["SSS"].Value.ToString()) &&
-                    string.IsNullOrWhiteSpace(txtPagIbig.Text = selectedRow.Cells["PagIbig"].Value.ToString()) &&
-                    string.IsNullOrWhiteSpace(txtPhilHealth.Text = selectedRow.Cells["PhilHealth"].Value.ToString())))
-                {
-
-                }*/
-                
             }
         }
 

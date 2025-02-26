@@ -16,7 +16,7 @@ namespace Payroll__System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-             // Application.Run(new frmReports());
+            //Application.Run(new frmPayroll());
 
             var logIn = new LogIn();
             logIn.Show();

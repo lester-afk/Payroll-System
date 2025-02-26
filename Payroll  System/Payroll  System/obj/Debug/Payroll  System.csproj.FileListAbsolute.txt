@@ -67,3 +67,4 @@ C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\P
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.CopyComplete
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.exe
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.pdb
+C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmPayroll.resources

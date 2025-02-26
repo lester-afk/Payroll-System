@@ -29,47 +29,47 @@ namespace Payroll__System
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEmployee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.dtpDate = new System.Windows.Forms.DateTimePicker();
-            this.label19 = new System.Windows.Forms.Label();
-            this.btnClear2 = new System.Windows.Forms.Button();
-            this.btnEdit2 = new System.Windows.Forms.Button();
-            this.btnAdd2 = new System.Windows.Forms.Button();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel10 = new System.Windows.Forms.Panel();
-            this.txtEmpID2 = new System.Windows.Forms.TextBox();
-            this.label18 = new System.Windows.Forms.Label();
+            this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.txtFullName = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.lblHR = new System.Windows.Forms.Label();
+            this.lblPerHour = new System.Windows.Forms.Label();
+            this.txtPerHour = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
             this.txtSearch2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.dataGridViewSalary = new System.Windows.Forms.DataGridView();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.txtPhilHealth = new System.Windows.Forms.TextBox();
+            this.txtPagIbig = new System.Windows.Forms.TextBox();
+            this.txtSSS = new System.Windows.Forms.TextBox();
             this.ckboPhilhealth = new System.Windows.Forms.CheckBox();
             this.ckboPagibig = new System.Windows.Forms.CheckBox();
             this.ckboSSS = new System.Windows.Forms.CheckBox();
-            this.label17 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtDepartment = new System.Windows.Forms.ComboBox();
             this.txtTitle = new System.Windows.Forms.ComboBox();
-            this.lblHR = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.btnAddPerHour = new System.Windows.Forms.Button();
             this.txtSalary = new System.Windows.Forms.TextBox();
-            this.txtPerHour = new System.Windows.Forms.TextBox();
             this.lblSalary = new System.Windows.Forms.Label();
-            this.lblPerHour = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.txtEmpID2 = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -78,21 +78,17 @@ namespace Payroll__System
             this.label6 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAddRfid = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClear = new System.Windows.Forms.Button();
             this.txtMname = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnUpload = new System.Windows.Forms.Button();
-            this.employeePicture = new System.Windows.Forms.PictureBox();
             this.txtFname = new System.Windows.Forms.TextBox();
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -103,16 +99,23 @@ namespace Payroll__System
             this.txtContact = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
+            this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
+            this.btnAddRfid = new System.Windows.Forms.Button();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.btnClear = new System.Windows.Forms.Button();
+            this.employeePicture = new System.Windows.Forms.PictureBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.label20 = new System.Windows.Forms.Label();
-            this.txtSSS = new System.Windows.Forms.TextBox();
-            this.txtPagIbig = new System.Windows.Forms.TextBox();
-            this.txtPhilHealth = new System.Windows.Forms.TextBox();
+            this.btnAddPerHour = new System.Windows.Forms.Button();
+            this.btnClear2 = new System.Windows.Forms.Button();
+            this.btnEdit2 = new System.Windows.Forms.Button();
+            this.btnAdd2 = new System.Windows.Forms.Button();
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.btnCustom = new System.Windows.Forms.Button();
+            this.btnDefault = new System.Windows.Forms.Button();
             this.tabPage2.SuspendLayout();
             this.panel10.SuspendLayout();
+            this.panel12.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalary)).BeginInit();
             this.panel4.SuspendLayout();
@@ -123,9 +126,8 @@ namespace Payroll__System
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).BeginInit();
-            this.panel12.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).BeginInit();
             this.SuspendLayout();
             // 
             // tabPage2
@@ -134,6 +136,7 @@ namespace Payroll__System
             this.tabPage2.Controls.Add(this.panel10);
             this.tabPage2.Controls.Add(this.panel12);
             this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.btnClear2);
             this.tabPage2.Controls.Add(this.btnEdit2);
             this.tabPage2.Controls.Add(this.btnAdd2);
             this.tabPage2.Controls.Add(this.panel8);
@@ -150,77 +153,15 @@ namespace Payroll__System
             this.tabPage2.Text = "Employee Salary";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // dtpDate
+            // label20
             // 
-            this.dtpDate.CustomFormat = "MM/dd/yyyy";
-            this.dtpDate.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpDate.Location = new System.Drawing.Point(88, 73);
-            this.dtpDate.Name = "dtpDate";
-            this.dtpDate.Size = new System.Drawing.Size(285, 23);
-            this.dtpDate.TabIndex = 34;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label19.Location = new System.Drawing.Point(11, 77);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(76, 17);
-            this.label19.TabIndex = 32;
-            this.label19.Text = "Date Hired:";
-            // 
-            // btnClear2
-            // 
-            this.btnClear2.BackColor = System.Drawing.Color.Transparent;
-            this.btnClear2.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_clear_30;
-            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnClear2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.btnClear2.FlatAppearance.BorderSize = 0;
-            this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear2.Location = new System.Drawing.Point(712, 6);
-            this.btnClear2.Name = "btnClear2";
-            this.btnClear2.Size = new System.Drawing.Size(39, 34);
-            this.btnClear2.TabIndex = 52;
-            this.btnClear2.UseVisualStyleBackColor = false;
-            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
-            // 
-            // btnEdit2
-            // 
-            this.btnEdit2.BackColor = System.Drawing.Color.Transparent;
-            this.btnEdit2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnEdit2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.btnEdit2.FlatAppearance.BorderSize = 0;
-            this.btnEdit2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEdit2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit2.Image = global::Payroll__System.Properties.Resources.icons8_edit_30;
-            this.btnEdit2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit2.Location = new System.Drawing.Point(820, 206);
-            this.btnEdit2.Name = "btnEdit2";
-            this.btnEdit2.Size = new System.Drawing.Size(111, 34);
-            this.btnEdit2.TabIndex = 50;
-            this.btnEdit2.Text = "Edit";
-            this.btnEdit2.UseVisualStyleBackColor = false;
-            this.btnEdit2.Click += new System.EventHandler(this.btnEdit2_Click);
-            // 
-            // btnAdd2
-            // 
-            this.btnAdd2.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdd2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnAdd2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.btnAdd2.FlatAppearance.BorderSize = 0;
-            this.btnAdd2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd2.Image = global::Payroll__System.Properties.Resources.add_30;
-            this.btnAdd2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd2.Location = new System.Drawing.Point(820, 206);
-            this.btnAdd2.Name = "btnAdd2";
-            this.btnAdd2.Size = new System.Drawing.Size(159, 34);
-            this.btnAdd2.TabIndex = 49;
-            this.btnAdd2.Text = "    Add Job Details";
-            this.btnAdd2.UseVisualStyleBackColor = false;
-            this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label20.Location = new System.Drawing.Point(30, 21);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(108, 17);
+            this.label20.TabIndex = 55;
+            this.label20.Text = "Job Information:";
             // 
             // panel10
             // 
@@ -235,26 +176,15 @@ namespace Payroll__System
             this.panel10.Size = new System.Drawing.Size(386, 121);
             this.panel10.TabIndex = 48;
             // 
-            // txtEmpID2
+            // dtpDate
             // 
-            this.txtEmpID2.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmpID2.Location = new System.Drawing.Point(142, 116);
-            this.txtEmpID2.Multiline = true;
-            this.txtEmpID2.Name = "txtEmpID2";
-            this.txtEmpID2.Size = new System.Drawing.Size(247, 22);
-            this.txtEmpID2.TabIndex = 33;
-            this.txtEmpID2.Visible = false;
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label18.Location = new System.Drawing.Point(56, 119);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(87, 17);
-            this.label18.TabIndex = 32;
-            this.label18.Text = "Employee ID:";
-            this.label18.Visible = false;
+            this.dtpDate.CustomFormat = "MM/dd/yyyy";
+            this.dtpDate.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDate.Location = new System.Drawing.Point(88, 73);
+            this.dtpDate.Name = "dtpDate";
+            this.dtpDate.Size = new System.Drawing.Size(285, 23);
+            this.dtpDate.TabIndex = 34;
             // 
             // txtFullName
             // 
@@ -265,6 +195,16 @@ namespace Payroll__System
             this.txtFullName.Size = new System.Drawing.Size(285, 22);
             this.txtFullName.TabIndex = 31;
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label19.Location = new System.Drawing.Point(11, 77);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(76, 17);
+            this.label19.TabIndex = 32;
+            this.label19.Text = "Date Hired:";
+            // 
             // label16
             // 
             this.label16.AutoSize = true;
@@ -274,6 +214,62 @@ namespace Payroll__System
             this.label16.Size = new System.Drawing.Size(71, 17);
             this.label16.TabIndex = 30;
             this.label16.Text = "Full Name:";
+            // 
+            // panel12
+            // 
+            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
+            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel12.Controls.Add(this.lblHR);
+            this.panel12.Controls.Add(this.btnAddPerHour);
+            this.panel12.Controls.Add(this.lblPerHour);
+            this.panel12.Controls.Add(this.txtPerHour);
+            this.panel12.Location = new System.Drawing.Point(1030, 41);
+            this.panel12.Name = "panel12";
+            this.panel12.Size = new System.Drawing.Size(226, 121);
+            this.panel12.TabIndex = 54;
+            // 
+            // lblHR
+            // 
+            this.lblHR.AutoSize = true;
+            this.lblHR.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHR.Location = new System.Drawing.Point(13, 23);
+            this.lblHR.Name = "lblHR";
+            this.lblHR.Size = new System.Drawing.Size(103, 15);
+            this.lblHR.TabIndex = 42;
+            this.lblHR.Text = "Add Hourly Salary";
+            // 
+            // lblPerHour
+            // 
+            this.lblPerHour.AutoSize = true;
+            this.lblPerHour.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.lblPerHour.Location = new System.Drawing.Point(13, 75);
+            this.lblPerHour.Name = "lblPerHour";
+            this.lblPerHour.Size = new System.Drawing.Size(83, 17);
+            this.lblPerHour.TabIndex = 40;
+            this.lblPerHour.Text = "Hourly Rate:";
+            this.lblPerHour.Visible = false;
+            // 
+            // txtPerHour
+            // 
+            this.txtPerHour.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPerHour.Location = new System.Drawing.Point(102, 72);
+            this.txtPerHour.Multiline = true;
+            this.txtPerHour.Name = "txtPerHour";
+            this.txtPerHour.Size = new System.Drawing.Size(110, 22);
+            this.txtPerHour.TabIndex = 13;
+            this.txtPerHour.Visible = false;
+            this.txtPerHour.TextChanged += new System.EventHandler(this.txtPerHour_TextChanged);
+            this.txtPerHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPerHour_KeyPress);
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label17.Location = new System.Drawing.Point(30, 186);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(94, 17);
+            this.label17.TabIndex = 48;
+            this.label17.Text = "Contributions:";
             // 
             // panel8
             // 
@@ -287,16 +283,6 @@ namespace Payroll__System
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1266, 43);
             this.panel8.TabIndex = 47;
-            // 
-            // panel9
-            // 
-            this.panel9.BackColor = System.Drawing.Color.White;
-            this.panel9.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_search_50;
-            this.panel9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel9.Location = new System.Drawing.Point(266, 11);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(24, 22);
-            this.panel9.TabIndex = 46;
             // 
             // txtSearch2
             // 
@@ -325,35 +311,35 @@ namespace Payroll__System
             this.dataGridViewSalary.AllowUserToAddRows = false;
             this.dataGridViewSalary.AllowUserToDeleteRows = false;
             this.dataGridViewSalary.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSalary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalary.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dataGridViewSalary.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewSalary.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewSalary.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridViewSalary.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridViewSalary.Location = new System.Drawing.Point(3, 361);
             this.dataGridViewSalary.Name = "dataGridViewSalary";
             this.dataGridViewSalary.ReadOnly = true;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewSalary.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewSalary.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dataGridViewSalary.RowHeadersVisible = false;
             this.dataGridViewSalary.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
             this.dataGridViewSalary.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -365,10 +351,11 @@ namespace Payroll__System
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel4.Controls.Add(this.btnDefault);
+            this.panel4.Controls.Add(this.btnCustom);
             this.panel4.Controls.Add(this.txtPhilHealth);
             this.panel4.Controls.Add(this.txtPagIbig);
             this.panel4.Controls.Add(this.txtSSS);
-            this.panel4.Controls.Add(this.btnClear2);
             this.panel4.Controls.Add(this.ckboPhilhealth);
             this.panel4.Controls.Add(this.ckboPagibig);
             this.panel4.Controls.Add(this.ckboSSS);
@@ -376,6 +363,36 @@ namespace Payroll__System
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(756, 92);
             this.panel4.TabIndex = 41;
+            // 
+            // txtPhilHealth
+            // 
+            this.txtPhilHealth.Enabled = false;
+            this.txtPhilHealth.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhilHealth.Location = new System.Drawing.Point(445, 46);
+            this.txtPhilHealth.Multiline = true;
+            this.txtPhilHealth.Name = "txtPhilHealth";
+            this.txtPhilHealth.Size = new System.Drawing.Size(131, 22);
+            this.txtPhilHealth.TabIndex = 19;
+            // 
+            // txtPagIbig
+            // 
+            this.txtPagIbig.Enabled = false;
+            this.txtPagIbig.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPagIbig.Location = new System.Drawing.Point(233, 46);
+            this.txtPagIbig.Multiline = true;
+            this.txtPagIbig.Name = "txtPagIbig";
+            this.txtPagIbig.Size = new System.Drawing.Size(131, 22);
+            this.txtPagIbig.TabIndex = 18;
+            // 
+            // txtSSS
+            // 
+            this.txtSSS.Enabled = false;
+            this.txtSSS.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSSS.Location = new System.Drawing.Point(34, 46);
+            this.txtSSS.Multiline = true;
+            this.txtSSS.Name = "txtSSS";
+            this.txtSSS.Size = new System.Drawing.Size(131, 22);
+            this.txtSSS.TabIndex = 17;
             // 
             // ckboPhilhealth
             // 
@@ -412,16 +429,6 @@ namespace Payroll__System
             this.ckboSSS.Text = "SSS";
             this.ckboSSS.UseVisualStyleBackColor = true;
             this.ckboSSS.CheckedChanged += new System.EventHandler(this.ckboSSS_CheckedChanged);
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label17.Location = new System.Drawing.Point(30, 186);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(94, 17);
-            this.label17.TabIndex = 48;
-            this.label17.Text = "Contributions:";
             // 
             // panel2
             // 
@@ -478,16 +485,6 @@ namespace Payroll__System
             this.txtTitle.Size = new System.Drawing.Size(174, 26);
             this.txtTitle.TabIndex = 43;
             // 
-            // lblHR
-            // 
-            this.lblHR.AutoSize = true;
-            this.lblHR.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHR.Location = new System.Drawing.Point(13, 23);
-            this.lblHR.Name = "lblHR";
-            this.lblHR.Size = new System.Drawing.Size(103, 15);
-            this.lblHR.TabIndex = 42;
-            this.lblHR.Text = "Add Hourly Salary";
-            // 
             // cboStatus
             // 
             this.cboStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -512,24 +509,6 @@ namespace Payroll__System
             this.label8.TabIndex = 29;
             this.label8.Text = "Job Status:";
             // 
-            // btnAddPerHour
-            // 
-            this.btnAddPerHour.BackColor = System.Drawing.Color.Transparent;
-            this.btnAddPerHour.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_add_50;
-            this.btnAddPerHour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddPerHour.FlatAppearance.BorderSize = 0;
-            this.btnAddPerHour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddPerHour.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddPerHour.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAddPerHour.Location = new System.Drawing.Point(119, 13);
-            this.btnAddPerHour.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddPerHour.Name = "btnAddPerHour";
-            this.btnAddPerHour.Size = new System.Drawing.Size(38, 35);
-            this.btnAddPerHour.TabIndex = 41;
-            this.btnAddPerHour.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddPerHour.UseVisualStyleBackColor = false;
-            this.btnAddPerHour.Click += new System.EventHandler(this.btnAddPerHour_Click);
-            // 
             // txtSalary
             // 
             this.txtSalary.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -540,18 +519,6 @@ namespace Payroll__System
             this.txtSalary.TabIndex = 11;
             this.txtSalary.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtSalary_KeyPress);
             // 
-            // txtPerHour
-            // 
-            this.txtPerHour.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPerHour.Location = new System.Drawing.Point(102, 72);
-            this.txtPerHour.Multiline = true;
-            this.txtPerHour.Name = "txtPerHour";
-            this.txtPerHour.Size = new System.Drawing.Size(110, 22);
-            this.txtPerHour.TabIndex = 13;
-            this.txtPerHour.Visible = false;
-            this.txtPerHour.TextChanged += new System.EventHandler(this.txtPerHour_TextChanged);
-            this.txtPerHour.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPerHour_KeyPress);
-            // 
             // lblSalary
             // 
             this.lblSalary.AutoSize = true;
@@ -561,17 +528,6 @@ namespace Payroll__System
             this.lblSalary.Size = new System.Drawing.Size(81, 17);
             this.lblSalary.TabIndex = 36;
             this.lblSalary.Text = "Basic Salary:";
-            // 
-            // lblPerHour
-            // 
-            this.lblPerHour.AutoSize = true;
-            this.lblPerHour.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.lblPerHour.Location = new System.Drawing.Point(13, 75);
-            this.lblPerHour.Name = "lblPerHour";
-            this.lblPerHour.Size = new System.Drawing.Size(83, 17);
-            this.lblPerHour.TabIndex = 40;
-            this.lblPerHour.Text = "Hourly Rate:";
-            this.lblPerHour.Visible = false;
             // 
             // label11
             // 
@@ -592,6 +548,27 @@ namespace Payroll__System
             this.label9.Size = new System.Drawing.Size(61, 17);
             this.label9.TabIndex = 31;
             this.label9.Text = "Job Title:";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label18.Location = new System.Drawing.Point(56, 119);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(87, 17);
+            this.label18.TabIndex = 32;
+            this.label18.Text = "Employee ID:";
+            this.label18.Visible = false;
+            // 
+            // txtEmpID2
+            // 
+            this.txtEmpID2.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmpID2.Location = new System.Drawing.Point(142, 116);
+            this.txtEmpID2.Multiline = true;
+            this.txtEmpID2.Name = "txtEmpID2";
+            this.txtEmpID2.Size = new System.Drawing.Size(247, 22);
+            this.txtEmpID2.TabIndex = 33;
+            this.txtEmpID2.Visible = false;
             // 
             // tabControl1
             // 
@@ -697,23 +674,6 @@ namespace Payroll__System
             this.btnDelete.Visible = false;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
-            // btnAddRfid
-            // 
-            this.btnAddRfid.BackColor = System.Drawing.Color.White;
-            this.btnAddRfid.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_add_50;
-            this.btnAddRfid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnAddRfid.FlatAppearance.BorderSize = 0;
-            this.btnAddRfid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAddRfid.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddRfid.Location = new System.Drawing.Point(171, 503);
-            this.btnAddRfid.Margin = new System.Windows.Forms.Padding(0);
-            this.btnAddRfid.Name = "btnAddRfid";
-            this.btnAddRfid.Size = new System.Drawing.Size(38, 35);
-            this.btnAddRfid.TabIndex = 48;
-            this.btnAddRfid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddRfid.UseVisualStyleBackColor = false;
-            this.btnAddRfid.Click += new System.EventHandler(this.btnAddRfid_Click);
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
@@ -735,16 +695,6 @@ namespace Payroll__System
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(614, 43);
             this.panel5.TabIndex = 45;
-            // 
-            // panel6
-            // 
-            this.panel6.BackColor = System.Drawing.Color.White;
-            this.panel6.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_search_50;
-            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel6.Location = new System.Drawing.Point(327, 11);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(24, 22);
-            this.panel6.TabIndex = 46;
             // 
             // txtSearch
             // 
@@ -794,21 +744,6 @@ namespace Payroll__System
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(611, 461);
             this.panel1.TabIndex = 29;
-            // 
-            // btnClear
-            // 
-            this.btnClear.BackColor = System.Drawing.Color.Transparent;
-            this.btnClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear.BackgroundImage")));
-            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnClear.FlatAppearance.BorderSize = 0;
-            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClear.Location = new System.Drawing.Point(563, 12);
-            this.btnClear.Name = "btnClear";
-            this.btnClear.Size = new System.Drawing.Size(31, 27);
-            this.btnClear.TabIndex = 46;
-            this.btnClear.UseVisualStyleBackColor = false;
-            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // txtMname
             // 
@@ -877,17 +812,6 @@ namespace Payroll__System
             this.btnUpload.Text = "UPLOAD";
             this.btnUpload.UseVisualStyleBackColor = false;
             this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            // 
-            // employeePicture
-            // 
-            this.employeePicture.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.employeePicture.Image = global::Payroll__System.Properties.Resources.Pfp;
-            this.employeePicture.Location = new System.Drawing.Point(22, 13);
-            this.employeePicture.Name = "employeePicture";
-            this.employeePicture.Size = new System.Drawing.Size(230, 202);
-            this.employeePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.employeePicture.TabIndex = 0;
-            this.employeePicture.TabStop = false;
             // 
             // txtFname
             // 
@@ -996,6 +920,100 @@ namespace Payroll__System
             this.txtAddress.Size = new System.Drawing.Size(230, 45);
             this.txtAddress.TabIndex = 7;
             // 
+            // dataGridViewEmployee
+            // 
+            this.dataGridViewEmployee.AllowUserToAddRows = false;
+            this.dataGridViewEmployee.AllowUserToDeleteRows = false;
+            this.dataGridViewEmployee.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewEmployee.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewEmployee.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.dataGridViewEmployee.Location = new System.Drawing.Point(641, 76);
+            this.dataGridViewEmployee.Name = "dataGridViewEmployee";
+            this.dataGridViewEmployee.ReadOnly = true;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewEmployee.RowHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewEmployee.RowHeadersVisible = false;
+            this.dataGridViewEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridViewEmployee.Size = new System.Drawing.Size(614, 524);
+            this.dataGridViewEmployee.TabIndex = 28;
+            this.dataGridViewEmployee.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewEmployee_CellMouseClick);
+            // 
+            // btnAddRfid
+            // 
+            this.btnAddRfid.BackColor = System.Drawing.Color.White;
+            this.btnAddRfid.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_add_50;
+            this.btnAddRfid.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddRfid.FlatAppearance.BorderSize = 0;
+            this.btnAddRfid.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddRfid.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddRfid.Location = new System.Drawing.Point(171, 503);
+            this.btnAddRfid.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddRfid.Name = "btnAddRfid";
+            this.btnAddRfid.Size = new System.Drawing.Size(38, 35);
+            this.btnAddRfid.TabIndex = 48;
+            this.btnAddRfid.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddRfid.UseVisualStyleBackColor = false;
+            this.btnAddRfid.Click += new System.EventHandler(this.btnAddRfid_Click);
+            // 
+            // panel6
+            // 
+            this.panel6.BackColor = System.Drawing.Color.White;
+            this.panel6.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_search_50;
+            this.panel6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel6.Location = new System.Drawing.Point(327, 11);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(24, 22);
+            this.panel6.TabIndex = 46;
+            // 
+            // btnClear
+            // 
+            this.btnClear.BackColor = System.Drawing.Color.Transparent;
+            this.btnClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear.BackgroundImage")));
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnClear.FlatAppearance.BorderSize = 0;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear.Location = new System.Drawing.Point(563, 12);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(31, 27);
+            this.btnClear.TabIndex = 46;
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            // 
+            // employeePicture
+            // 
+            this.employeePicture.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.employeePicture.Image = global::Payroll__System.Properties.Resources.Pfp;
+            this.employeePicture.Location = new System.Drawing.Point(22, 13);
+            this.employeePicture.Name = "employeePicture";
+            this.employeePicture.Size = new System.Drawing.Size(230, 202);
+            this.employeePicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.employeePicture.TabIndex = 0;
+            this.employeePicture.TabStop = false;
+            // 
             // btnEdit
             // 
             this.btnEdit.BackColor = System.Drawing.Color.Transparent;
@@ -1030,99 +1048,123 @@ namespace Payroll__System
             this.btnAdd.UseVisualStyleBackColor = false;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // dataGridViewEmployee
+            // btnAddPerHour
             // 
-            this.dataGridViewEmployee.AllowUserToAddRows = false;
-            this.dataGridViewEmployee.AllowUserToDeleteRows = false;
-            this.dataGridViewEmployee.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle22.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle22.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle22.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle22.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle22.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle22;
-            this.dataGridViewEmployee.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewEmployee.DefaultCellStyle = dataGridViewCellStyle23;
-            this.dataGridViewEmployee.GridColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.dataGridViewEmployee.Location = new System.Drawing.Point(641, 76);
-            this.dataGridViewEmployee.Name = "dataGridViewEmployee";
-            this.dataGridViewEmployee.ReadOnly = true;
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.MediumAquamarine;
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridViewEmployee.RowHeadersDefaultCellStyle = dataGridViewCellStyle24;
-            this.dataGridViewEmployee.RowHeadersVisible = false;
-            this.dataGridViewEmployee.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            this.dataGridViewEmployee.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridViewEmployee.Size = new System.Drawing.Size(614, 524);
-            this.dataGridViewEmployee.TabIndex = 28;
-            this.dataGridViewEmployee.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridViewEmployee_CellMouseClick);
+            this.btnAddPerHour.BackColor = System.Drawing.Color.Transparent;
+            this.btnAddPerHour.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_add_50;
+            this.btnAddPerHour.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnAddPerHour.FlatAppearance.BorderSize = 0;
+            this.btnAddPerHour.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAddPerHour.Font = new System.Drawing.Font("Yu Gothic UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPerHour.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnAddPerHour.Location = new System.Drawing.Point(119, 13);
+            this.btnAddPerHour.Margin = new System.Windows.Forms.Padding(0);
+            this.btnAddPerHour.Name = "btnAddPerHour";
+            this.btnAddPerHour.Size = new System.Drawing.Size(38, 35);
+            this.btnAddPerHour.TabIndex = 41;
+            this.btnAddPerHour.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddPerHour.UseVisualStyleBackColor = false;
+            this.btnAddPerHour.Click += new System.EventHandler(this.btnAddPerHour_Click);
             // 
-            // panel12
+            // btnClear2
             // 
-            this.panel12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
-            this.panel12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel12.Controls.Add(this.lblHR);
-            this.panel12.Controls.Add(this.btnAddPerHour);
-            this.panel12.Controls.Add(this.lblPerHour);
-            this.panel12.Controls.Add(this.txtPerHour);
-            this.panel12.Location = new System.Drawing.Point(1030, 41);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(226, 121);
-            this.panel12.TabIndex = 54;
+            this.btnClear2.BackColor = System.Drawing.Color.Transparent;
+            this.btnClear2.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_clear_30;
+            this.btnClear2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnClear2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnClear2.FlatAppearance.BorderSize = 0;
+            this.btnClear2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClear2.Location = new System.Drawing.Point(1204, 206);
+            this.btnClear2.Name = "btnClear2";
+            this.btnClear2.Size = new System.Drawing.Size(39, 34);
+            this.btnClear2.TabIndex = 52;
+            this.btnClear2.UseVisualStyleBackColor = false;
+            this.btnClear2.Click += new System.EventHandler(this.btnClear2_Click);
             // 
-            // label20
+            // btnEdit2
             // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label20.Location = new System.Drawing.Point(30, 21);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(108, 17);
-            this.label20.TabIndex = 55;
-            this.label20.Text = "Job Information:";
+            this.btnEdit2.BackColor = System.Drawing.Color.Transparent;
+            this.btnEdit2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnEdit2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnEdit2.FlatAppearance.BorderSize = 0;
+            this.btnEdit2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEdit2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEdit2.Image = global::Payroll__System.Properties.Resources.icons8_edit_30;
+            this.btnEdit2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit2.Location = new System.Drawing.Point(820, 206);
+            this.btnEdit2.Name = "btnEdit2";
+            this.btnEdit2.Size = new System.Drawing.Size(111, 34);
+            this.btnEdit2.TabIndex = 50;
+            this.btnEdit2.Text = "Edit";
+            this.btnEdit2.UseVisualStyleBackColor = false;
+            this.btnEdit2.Click += new System.EventHandler(this.btnEdit2_Click);
             // 
-            // txtSSS
+            // btnAdd2
             // 
-            this.txtSSS.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSSS.Location = new System.Drawing.Point(34, 46);
-            this.txtSSS.Multiline = true;
-            this.txtSSS.Name = "txtSSS";
-            this.txtSSS.Size = new System.Drawing.Size(131, 22);
-            this.txtSSS.TabIndex = 17;
-            this.txtSSS.Visible = false;
+            this.btnAdd2.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnAdd2.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnAdd2.FlatAppearance.BorderSize = 0;
+            this.btnAdd2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd2.Image = global::Payroll__System.Properties.Resources.add_30;
+            this.btnAdd2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd2.Location = new System.Drawing.Point(820, 206);
+            this.btnAdd2.Name = "btnAdd2";
+            this.btnAdd2.Size = new System.Drawing.Size(159, 34);
+            this.btnAdd2.TabIndex = 49;
+            this.btnAdd2.Text = "    Add Job Details";
+            this.btnAdd2.UseVisualStyleBackColor = false;
+            this.btnAdd2.Click += new System.EventHandler(this.btnAdd2_Click);
             // 
-            // txtPagIbig
+            // panel9
             // 
-            this.txtPagIbig.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPagIbig.Location = new System.Drawing.Point(233, 46);
-            this.txtPagIbig.Multiline = true;
-            this.txtPagIbig.Name = "txtPagIbig";
-            this.txtPagIbig.Size = new System.Drawing.Size(131, 22);
-            this.txtPagIbig.TabIndex = 18;
-            this.txtPagIbig.Visible = false;
+            this.panel9.BackColor = System.Drawing.Color.White;
+            this.panel9.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_search_50;
+            this.panel9.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel9.Location = new System.Drawing.Point(266, 11);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(24, 22);
+            this.panel9.TabIndex = 46;
             // 
-            // txtPhilHealth
+            // btnCustom
             // 
-            this.txtPhilHealth.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhilHealth.Location = new System.Drawing.Point(445, 46);
-            this.txtPhilHealth.Multiline = true;
-            this.txtPhilHealth.Name = "txtPhilHealth";
-            this.txtPhilHealth.Size = new System.Drawing.Size(131, 22);
-            this.txtPhilHealth.TabIndex = 19;
-            this.txtPhilHealth.Visible = false;
+            this.btnCustom.BackColor = System.Drawing.Color.Transparent;
+            this.btnCustom.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnCustom.Enabled = false;
+            this.btnCustom.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnCustom.FlatAppearance.BorderSize = 0;
+            this.btnCustom.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustom.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustom.Image = global::Payroll__System.Properties.Resources.icons8_custom_30;
+            this.btnCustom.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustom.Location = new System.Drawing.Point(618, 49);
+            this.btnCustom.Name = "btnCustom";
+            this.btnCustom.Size = new System.Drawing.Size(99, 34);
+            this.btnCustom.TabIndex = 56;
+            this.btnCustom.Text = "       Custom";
+            this.btnCustom.UseVisualStyleBackColor = false;
+            this.btnCustom.Click += new System.EventHandler(this.btnCustom_Click);
+            // 
+            // btnDefault
+            // 
+            this.btnDefault.BackColor = System.Drawing.Color.Transparent;
+            this.btnDefault.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnDefault.Enabled = false;
+            this.btnDefault.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnDefault.FlatAppearance.BorderSize = 0;
+            this.btnDefault.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDefault.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDefault.Image = global::Payroll__System.Properties.Resources.icons8_clear_filters_30;
+            this.btnDefault.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDefault.Location = new System.Drawing.Point(618, 7);
+            this.btnDefault.Name = "btnDefault";
+            this.btnDefault.Size = new System.Drawing.Size(99, 34);
+            this.btnDefault.TabIndex = 56;
+            this.btnDefault.Text = "       Default";
+            this.btnDefault.UseVisualStyleBackColor = false;
+            this.btnDefault.Click += new System.EventHandler(this.btnDefault_Click);
             // 
             // frmEmployee
             // 
@@ -1141,6 +1183,8 @@ namespace Payroll__System
             this.tabPage2.PerformLayout();
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
+            this.panel12.ResumeLayout(false);
+            this.panel12.PerformLayout();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewSalary)).EndInit();
@@ -1158,10 +1202,8 @@ namespace Payroll__System
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewEmployee)).EndInit();
-            this.panel12.ResumeLayout(false);
-            this.panel12.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.employeePicture)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1243,5 +1285,7 @@ namespace Payroll__System
         private System.Windows.Forms.TextBox txtPhilHealth;
         private System.Windows.Forms.TextBox txtPagIbig;
         private System.Windows.Forms.TextBox txtSSS;
+        private System.Windows.Forms.Button btnCustom;
+        private System.Windows.Forms.Button btnDefault;
     }
 }

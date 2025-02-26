@@ -868,6 +868,7 @@ namespace Payroll__System
                              "job.job_salary AS 'Basic Salary', " +
                              "job.job_hourly_rate AS 'Hourly Rate', " +
                              "job.job_date_hired AS 'Date Hired' " +
+                             "contribution.c_type AS 'Date Hired' " +
                              "FROM employee " +
                             "LEFT JOIN job ON employee.employee_id = job.employee_id";//Use left join instead of inner join to display the employee info
 
@@ -1368,9 +1369,12 @@ namespace Payroll__System
 
                 }
 
-                
-                
-                
+                /*if (string.IsNullOrWhiteSpace(txtSSS.Text = selectedRow.Cells["SSS"].Value.ToString()) &&
+                    string.IsNullOrWhiteSpace(txtPagIbig.Text = selectedRow.Cells["PagIbig"].Value.ToString()) &&
+                    string.IsNullOrWhiteSpace(txtPhilHealth.Text = selectedRow.Cells["PhilHealth"].Value.ToString())))
+                {
+
+                }*/
                 
             }
         }
@@ -1413,18 +1417,88 @@ namespace Payroll__System
         {
             if (ckboSSS.Checked == true)
             {
-
+                txtSSS.Text = "600";
+            }else if (ckboSSS.Checked == true && txtSSS.Enabled == true)
+            {
+                txtSSS.Text = txtSSS.Text;
+            }
+            else
+            {
+                txtSSS.Text = "";
             }
         }
 
         private void ckboPagibig_CheckedChanged(object sender, EventArgs e)
         {
-
+            if(ckboPagibig.Checked == true)
+            {
+                txtPagIbig.Text = "200";
+            }
+            else if (ckboPagibig.Checked == true && txtPagIbig.Enabled == true)
+            {
+                txtPagIbig.Text = txtPagIbig.Text;
+            }
+            else
+            {
+                txtPagIbig.Text = "";
+            }
         }
 
         private void ckboPhilhealth_CheckedChanged(object sender, EventArgs e)
         {
+            if (ckboPhilhealth.Checked == true)
+            {
+                txtPhilHealth.Text = "150";
+            }
+            else if (ckboPhilhealth.Checked == true && txtPhilHealth.Enabled == true)
+            {
+                txtPhilHealth.Text = txtPhilHealth.Text;
+            }
+            else
+            {
+                txtPhilHealth.Text = "";
+            }
+        }
 
+        private void btnDefault_Click(object sender, EventArgs e)
+        {
+            ckboSSS.Checked = true;
+            ckboPagibig.Checked = true;
+            ckboPhilhealth.Checked = true;
+
+        }
+
+        private void btnCustom_Click(object sender, EventArgs e)
+        {
+            if (ckboSSS.Checked == true)
+            {
+                txtSSS.Text = "";
+                txtSSS.Enabled = true;
+            }
+            else
+            {
+                txtSSS.Enabled = false;
+            }
+
+            if (ckboPagibig.Checked == true)
+            {
+                txtPagIbig.Text = "";
+                txtPagIbig.Enabled = true;
+            }
+            else
+            {
+                txtPagIbig.Enabled = false;
+            }
+
+            if (ckboPhilhealth.Checked == true)
+            {
+                txtPhilHealth.Text = "";
+                txtPhilHealth.Enabled = true;
+            }
+            else
+            {
+                txtPhilHealth.Enabled = false;
+            }
         }
 
         //Validation
@@ -1493,7 +1567,5 @@ namespace Payroll__System
         {
             mf.txtNumber(sender, e);
         }
-
-        
     }
 }

@@ -31,10 +31,10 @@ namespace Payroll__System
         {
             this.panel1 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.txtSearch2 = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
             this.btnSelect = new System.Windows.Forms.Button();
             this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
             this.label12 = new System.Windows.Forms.Label();
@@ -48,6 +48,7 @@ namespace Payroll__System
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.cboPeriod = new System.Windows.Forms.ComboBox();
             this.label14 = new System.Windows.Forms.Label();
             this.dtpTimeOut = new System.Windows.Forms.DateTimePicker();
@@ -57,7 +58,6 @@ namespace Payroll__System
             this.label13 = new System.Windows.Forms.Label();
             this.cboSemester = new System.Windows.Forms.ComboBox();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.dataGridViewSchedule = new System.Windows.Forms.DataGridView();
             this.label4 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -96,6 +96,20 @@ namespace Payroll__System
             this.label3.Size = new System.Drawing.Size(105, 24);
             this.label3.TabIndex = 1;
             this.label3.Text = "EMPLOYEE";
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Image = global::Payroll__System.Properties.Resources.icons8_reset_30;
+            this.btnReset.Location = new System.Drawing.Point(526, 2);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(37, 34);
+            this.btnReset.TabIndex = 25;
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // panel2
             // 
@@ -142,20 +156,6 @@ namespace Payroll__System
             this.label15.TabIndex = 47;
             this.label15.Text = "SEARCH:";
             this.label15.Click += new System.EventHandler(this.label15_Click);
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Image = global::Payroll__System.Properties.Resources.icons8_reset_30;
-            this.btnReset.Location = new System.Drawing.Point(526, 2);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(37, 34);
-            this.btnReset.TabIndex = 25;
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnSelect
             // 
@@ -318,6 +318,22 @@ namespace Payroll__System
             this.panel3.Size = new System.Drawing.Size(600, 597);
             this.panel3.TabIndex = 3;
             // 
+            // btnAdd
+            // 
+            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnAdd.FlatAppearance.BorderSize = 0;
+            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAdd.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Image = global::Payroll__System.Properties.Resources.add_30;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(441, 16);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(152, 39);
+            this.btnAdd.TabIndex = 25;
+            this.btnAdd.Text = "     Add Schedule";
+            this.btnAdd.UseVisualStyleBackColor = false;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // cboPeriod
             // 
             this.cboPeriod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -348,7 +364,7 @@ namespace Payroll__System
             this.dtpTimeOut.CustomFormat = "hh:mm tt";
             this.dtpTimeOut.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTimeOut.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTimeOut.Location = new System.Drawing.Point(157, 83);
+            this.dtpTimeOut.Location = new System.Drawing.Point(157, 85);
             this.dtpTimeOut.Name = "dtpTimeOut";
             this.dtpTimeOut.ShowUpDown = true;
             this.dtpTimeOut.Size = new System.Drawing.Size(278, 25);
@@ -359,7 +375,7 @@ namespace Payroll__System
             this.dtpTimeIn.CustomFormat = "hh:mm tt";
             this.dtpTimeIn.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpTimeIn.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpTimeIn.Location = new System.Drawing.Point(157, 45);
+            this.dtpTimeIn.Location = new System.Drawing.Point(157, 47);
             this.dtpTimeIn.Name = "dtpTimeIn";
             this.dtpTimeIn.ShowUpDown = true;
             this.dtpTimeIn.Size = new System.Drawing.Size(278, 25);
@@ -378,7 +394,7 @@ namespace Payroll__System
             "Friday",
             "Saturday",
             "Sunday"});
-            this.cboDay.Location = new System.Drawing.Point(157, 16);
+            this.cboDay.Location = new System.Drawing.Point(157, 13);
             this.cboDay.Name = "cboDay";
             this.cboDay.Size = new System.Drawing.Size(278, 25);
             this.cboDay.TabIndex = 1;
@@ -434,22 +450,6 @@ namespace Payroll__System
             this.btnEdit.Text = "   Edit";
             this.btnEdit.UseVisualStyleBackColor = false;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.BackColor = System.Drawing.Color.Transparent;
-            this.btnAdd.FlatAppearance.BorderSize = 0;
-            this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAdd.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Image = global::Payroll__System.Properties.Resources.add_30;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(441, 16);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(152, 39);
-            this.btnAdd.TabIndex = 25;
-            this.btnAdd.Text = "     Add Schedule";
-            this.btnAdd.UseVisualStyleBackColor = false;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // dataGridViewSchedule
             // 
@@ -564,12 +564,13 @@ namespace Payroll__System
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(245)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1245, 680);
+            this.ControlBox = false;
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnDelete);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "frmSchedule";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.frmSchedule_Load);

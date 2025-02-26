@@ -75,6 +75,12 @@
     </Compile>
     <Compile Include="DataGridPrinter.cs" />
     <Compile Include="DBconnection.cs" />
+    <Compile Include="frmPayroll.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPayroll.Designer.cs">
+      <DependentUpon>frmPayroll.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmAttendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPayroll.resx">
+      <DependentUpon>frmPayroll.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmAttendance.resx">
       <DependentUpon>frmAttendance.cs</DependentUpon>
@@ -283,6 +292,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\icons8-create-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-custom-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-clear-filters-30.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

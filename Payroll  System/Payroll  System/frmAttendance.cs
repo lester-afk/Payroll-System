@@ -27,6 +27,7 @@ namespace Payroll__System
         {
             
             LoadEmployee();
+            LoadSchedule();
             InitializeDateTimePicker();
             DisplayAttendance();
         }
@@ -73,73 +74,57 @@ namespace Payroll__System
             }
         }
 
-       /* private void LoadAttendance()
-        {
-            opencon.dbconnect();
 
-            if (opencon.OpenConnection())
-            {
-                try
-                {
+        private void searchAtt(string searchDate, string searchValue)
+        {
                     string query = @"SELECT
-                                CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
-                                       COALESCE(employee.employee_mname, ''), ' ', 
-                                       COALESCE(employee.employee_lname, '')) AS 'Full Name', 
-                                attendance.a_date AS 'Date',
-                                attendance.a_timeIn AS 'Time In',
-                                attendance.a_timeOut AS 'Time Out',
-                                attendance.a_period AS 'Period',
-                                attendance.a_statusIn AS 'In Status',
-                                attendance.a_statusOut AS 'Out Status'
-                             FROM employee
-                             LEFT JOIN attendance ON employee.employee_id = attendance.employee_id";
-  
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, opencon.connection);
+                                    employee.employee_id AS 'Employee ID',
+                                    CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                           COALESCE(employee.employee_mname, ''), ' ', 
+                                           COALESCE(employee.employee_lname, '')) AS 'Full Name',
+                                    COALESCE(attendance.a_date, '') AS 'Date',  
+                                    attendance.a_timeIn AS 'Time In',
+                                    attendance.a_timeOut AS 'Time Out',
+                                    attendance.a_period AS 'Period',
+                                    attendance.a_statusIn AS 'In Status',
+                                    attendance.a_statusOut AS 'Out Status'
+                                FROM employee
+                                LEFT JOIN attendance ON employee.employee_id = attendance.employee_id
+                                WHERE attendance.a_date LIKE @Date AND CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                           COALESCE(employee.employee_mname, ''), ' ', 
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search ";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                    cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
+                    cmd.Parameters.AddWithValue("@Date", "%" + searchDate + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
                     dataGridAttendance.DataSource = dt;
-                    opencon.CloseConnection();
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show($"An error occurred while loading data:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }*/
+               
+        }
 
-        private void txtSearch_TextChanged(object sender, EventArgs e)
+        private void searchSched(string searchValue)
         {
-            string searchValue = txtSearch.Text.Trim();
-
-            if (string.IsNullOrEmpty(searchValue))
-            {
-                LoadEmployee(); // Reload all data if search box is empty
-                return;
-            }
-
-            opencon.dbconnect();
-
-            if (opencon.OpenConnection())
-            {
-                try
-                {
-                    string query = @"SELECT 
+           
+                    string query = @"SELECT
                                 employee.employee_id AS 'Employee ID',
                                 CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
                                        COALESCE(employee.employee_mname, ''), ' ', 
                                        COALESCE(employee.employee_lname, '')) AS 'Full Name',
-                                job.job_department AS 'Department',
-                                job.job_title AS 'Job Title',
-                                job.job_status AS 'Job Status'
-                            FROM employee
-                            LEFT JOIN job ON employee.employee_id = job.employee_id
-                            WHERE employee.employee_id LIKE @Search
-                            OR employee.employee_fname LIKE @Search
-                            OR employee.employee_lname LIKE @Search
-                            OR job.job_status LIKE @Search
-                            OR job.job_department LIKE @Search
-                            OR job.job_title LIKE @Search";
+                                schedule.sched_day AS 'Day',
+                                COALESCE(schedule.sched_timeIn, '00:00 tt') AS 'Time In',
+                                COALESCE(schedule.sched_timeOut, '00:00 tt') AS 'Time Out',
+                                schedule.sched_period AS 'Period',
+                                schedule.sched_type AS 'Type',
+                                schedule.sched_semester AS 'Semester'
+                             FROM employee
+                             LEFT JOIN schedule ON employee.employee_id = schedule.employee_id
+                             WHERE CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                           COALESCE(employee.employee_mname, ''), ' ', 
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search ";
 
                     MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
                     cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
@@ -148,7 +133,26 @@ namespace Payroll__System
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    dataGridEmp.DataSource = dt;
+                    dataGridViewSchedule.DataSource = dt;
+                
+        }
+
+        private void txtSearch_TextChanged(object sender, EventArgs e)
+        {
+
+            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            {
+                DisplayAttendance(); // Reload all data if search box is empty
+                return;
+            }
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    searchAtt(dtpDate.Value.ToString("yyyy-MM-dd"), txtSearch.Text.Trim());
+                    searchSched(txtSearch.Text.Trim());
                 }
                 catch (MySqlException ex)
                 {
@@ -172,68 +176,34 @@ namespace Payroll__System
             }
         }
 
-        private void txtEmpID_TextChanged(object sender, EventArgs e)
-        {
-            string searchValue = txtEmpID.Text.Trim();
-
-            if (string.IsNullOrEmpty(searchValue))
-            {
-                DisplayAttendance() ;// Reload all data if search box is empty
-                return;
-            }
-
-            opencon.dbconnect();
-
-            if (opencon.OpenConnection())
-            {
-                try
-                {
-                    string query = @"SELECT
-                                CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
-                                       COALESCE(employee.employee_mname, ''), ' ', 
-                                       COALESCE(employee.employee_lname, '')) AS 'Full Name',
-                                attendance.a_date AS 'Date',
-                                attendance.a_timeIn AS 'Time In',
-                                attendance.a_timeOut AS 'Time Out',
-                                attendance.a_period AS 'Period',
-                                attendance.a_statusIn AS 'In Status',
-                                attendance.a_statusOut AS 'Out Status'
-                             FROM employee
-                             LEFT JOIN attendance ON employee.employee_id = attendance.employee_id
-                             WHERE employee.employee_id LIKE @Search";
-
-                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
-                    cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
-
-                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
-
-                    dataGridAttendance.DataSource = dt;
-                }
-                catch (MySqlException ex)
-                {
-                    MessageBox.Show($"An error occurred while searching:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-                finally
-                {
-                    opencon.CloseConnection();
-                }
-            }
-        }
+        
 
         private void btnReset_Click(object sender, EventArgs e)
         {
             txtEmpID.Text = "";
             txtFullName.Text = "";
+            txtDate.Text = "";
+            txtPeriod.Text = "";
+            dtpDay.ResetText();
+            dtpTimeIn.ResetText();
+            dtpTimeOut.ResetText();
+            txtType.Text = "";
+            txtSemester.Text = "";
+            lblStatIn.Show();
+            lblStatOut.Show();
+            txtStatIn.Show();
+            txtStatOut.Show(); 
             DisplayAttendance();
+            LoadSchedule();
+            txtStatIn.Text = "";
+            txtStatOut.Text = "";
+
         }
 
 
         private void DisplayAttendance()
         {
             string searchValue = dtpDate.Value.ToString("yyyy-MM-dd");
-            string empName = txtFullName.Text.Trim();
            // MessageBox.Show(searchValue, "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             if (string.IsNullOrEmpty(searchValue))
@@ -249,6 +219,7 @@ namespace Payroll__System
                 try
                 {
                     string query = @"SELECT
+                                    employee.employee_id AS 'Employee ID',
                                     CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
                                            COALESCE(employee.employee_mname, ''), ' ', 
                                            COALESCE(employee.employee_lname, '')) AS 'Full Name',
@@ -260,13 +231,10 @@ namespace Payroll__System
                                     attendance.a_statusOut AS 'Out Status'
                                 FROM employee
                                 LEFT JOIN attendance ON employee.employee_id = attendance.employee_id
-                                WHERE attendance.a_date LIKE @Search AND CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
-                                           COALESCE(employee.employee_mname, ''), ' ', 
-                                           COALESCE(employee.employee_lname, '')) LIKE @Name ";
+                                WHERE attendance.a_date LIKE @Search ";
 
                     MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
                     cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
-                    cmd.Parameters.AddWithValue("@Name", "%" + empName + "%");
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -275,6 +243,7 @@ namespace Payroll__System
                     dataGridAttendance.DataSource = dt;
 
                 }
+
                 catch (MySqlException ex)
                 {
                     MessageBox.Show($"An error occurred while searching:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -291,44 +260,7 @@ namespace Payroll__System
             DisplayAttendance();
         }
 
-        /*private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            // Define the font and brush for the text
-            Font font = new Font("Arial", 12, FontStyle.Regular);
-            Brush brush = Brushes.Black;
-
-            // Define the starting position for drawing
-            int startX = 50;
-            int startY = 100;
-            int offsetY = 30; // Vertical spacing between rows
-
-            // Draw the title and date
-            e.Graphics.DrawString("Attendance Sheet", new Font("Arial", 28, FontStyle.Bold), brush, new Point(startX, startY));
-            e.Graphics.DrawString("Date: " + dtpDate.Value.ToShortDateString(), font, brush, new Point(startX, startY + 40));
-
-            // Adjust the starting Y position for the grid data
-            startY += 80;
-
-            // Draw the column headers
-            for (int i = 0; i < dataGridAttendance.Columns.Count; i++)
-            {
-                e.Graphics.DrawString(dataGridAttendance.Columns[i].HeaderText, font, brush, new Point(startX + (i * 150), startY));
-            }
-
-            // Draw the rows
-            startY += offsetY;
-            for (int i = 0; i < dataGridAttendance.Rows.Count; i++)
-            {
-                for (int j = 0; j < dataGridAttendance.Columns.Count; j++)
-                {
-                    if (dataGridAttendance.Rows[i].Cells[j].Value != null)
-                    {
-                        e.Graphics.DrawString(dataGridAttendance.Rows[i].Cells[j].Value.ToString(), font, brush, new Point(startX + (j * 150), startY));
-                    }
-                }
-                startY += offsetY;
-            }
-        }*/
+     
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
@@ -396,5 +328,306 @@ namespace Payroll__System
             printPreviewDialog1.Document = printDocument1;
             printPreviewDialog1.ShowDialog();
         }
+
+        private void LoadSchedule()
+        {
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"SELECT
+                                employee.employee_id AS 'Employee ID',
+                                CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                       COALESCE(employee.employee_mname, ''), ' ', 
+                                       COALESCE(employee.employee_lname, '')) AS 'Full Name',
+                                schedule.sched_day AS 'Day',
+                                COALESCE(schedule.sched_timeIn, '00:00 tt') AS 'Time In',
+                                COALESCE(schedule.sched_timeOut, '00:00 tt') AS 'Time Out',
+                                schedule.sched_period AS 'Period',
+                                schedule.sched_type AS 'Type',
+                                schedule.sched_semester AS 'Semester'
+                             FROM employee
+                             LEFT JOIN schedule ON employee.employee_id = schedule.employee_id";
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, opencon.connection);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        // Check if "Time In" is null or empty
+                        if (string.IsNullOrWhiteSpace(row["Time In"].ToString()))
+                        {
+                            row["Time In"] = ""; // Display nothing if no valid data
+                        }
+                        else if (TimeSpan.TryParse(row["Time In"].ToString(), out TimeSpan timeIn))
+                        {
+                            row["Time In"] = DateTime.Today.Add(timeIn).ToString("hh:mm tt"); // Format valid time
+                        }
+                        else
+                        {
+                            row["Time In"] = ""; // Fallback to empty if data is invalid
+                        }
+
+                        // Check if "Time Out" is null or empty
+                        if (string.IsNullOrWhiteSpace(row["Time Out"].ToString()))
+                        {
+                            row["Time Out"] = ""; // Display nothing if no valid data
+                        }
+                        else if (TimeSpan.TryParse(row["Time Out"].ToString(), out TimeSpan timeOut))
+                        {
+                            row["Time Out"] = DateTime.Today.Add(timeOut).ToString("hh:mm tt"); // Format valid time
+                        }
+                        else
+                        {
+                            row["Time Out"] = ""; // Fallback to empty if data is invalid
+                        }
+                    }
+
+
+                    dataGridViewSchedule.DataSource = dt;
+                    opencon.CloseConnection();
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while loading data:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dataGridViewSchedule_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Get the first selected row
+                DataGridViewRow selectedRow = this.dataGridViewSchedule.Rows[e.RowIndex];
+
+                // Check if all relevant cells are empty
+                bool isEmptyRow = string.IsNullOrWhiteSpace(selectedRow.Cells["Employee ID"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Full Name"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Day"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Time In"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Time Out"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Period"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Type"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Semester"].Value?.ToString());
+
+                if (isEmptyRow)
+                {
+                    MessageBox.Show("Selected row is empty. Please select a valid row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+                }
+                else
+                {
+                    // Populate the fields if the row is not empty
+                    txtEmpID.Text = selectedRow.Cells["Employee ID"].Value.ToString();
+                    txtFullName.Text = selectedRow.Cells["Full Name"].Value.ToString();
+                    txtDate.Text = selectedRow.Cells["Day"].Value.ToString();
+                    if (DateTime.TryParse(selectedRow.Cells["Time In"].Value.ToString(), out DateTime timeIn))
+                    {
+                        dtpTimeIn.Value = timeIn;
+                    }
+
+                    if (DateTime.TryParse(selectedRow.Cells["Time Out"].Value.ToString(), out DateTime timeOut))
+                    {
+                        dtpTimeOut.Value = timeOut;
+                    }
+                    txtPeriod.Text = selectedRow.Cells["Period"].Value.ToString();
+                    txtType.Text = selectedRow.Cells["Type"].Value.ToString();
+                    txtSemester.Text = selectedRow.Cells["Semester"].Value.ToString();
+
+
+
+                    txtStatIn.Hide();
+                    txtStatOut.Hide();
+                    lblStatIn.Hide();
+                    lblStatOut.Hide();
+                    dataGridAttendance.Enabled = false;
+                    dtpDay.Hide();
+                    txtDate.Show();
+
+
+                }
+            }
+        }
+
+        private void dataGridAttendance_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                // Get the first selected row
+                DataGridViewRow selectedRow = this.dataGridAttendance.Rows[e.RowIndex];
+
+                // Check if all relevant cells are empty
+                bool isEmptyRow = string.IsNullOrWhiteSpace(selectedRow.Cells["Employee ID"].Value?.ToString()) &&
+                                  string.IsNullOrWhiteSpace(selectedRow.Cells["Full Name"].Value?.ToString());
+
+                if (isEmptyRow)
+                {
+                    MessageBox.Show("Selected row is empty. Please select a valid row.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    try
+                    {
+                        // Populate the fields if the row is not empty
+                        txtEmpID.Text = selectedRow.Cells["Employee ID"].Value?.ToString() ?? "";
+                        txtFullName.Text = selectedRow.Cells["Full Name"].Value?.ToString() ?? "";
+
+                        // Handle the "Date" column
+                        if (selectedRow.Cells["Date"].Value != null && DateTime.TryParse(selectedRow.Cells["Date"].Value.ToString(), out DateTime dateValue))
+                        {
+                            dtpDay.Text = dateValue.ToShortDateString(); // Format the date as needed
+                        }
+                        else
+                        {
+                            txtDate.Text = ""; // Clear the field if the date is invalid or null
+                        }
+
+                        // Handle the "Time In" column
+                        if (selectedRow.Cells["Time In"].Value != null && DateTime.TryParse(selectedRow.Cells["Time In"].Value.ToString(), out DateTime timeIn))
+                        {
+                            dtpTimeIn.Value = timeIn;
+                        }
+                        else
+                        {
+                            dtpTimeIn.Value = DateTime.Now; // Set a default value if the time is invalid or null
+                        }
+
+                        // Handle the "Time Out" column
+                        if (selectedRow.Cells["Time Out"].Value != null && DateTime.TryParse(selectedRow.Cells["Time Out"].Value.ToString(), out DateTime timeOut))
+                        {
+                            dtpTimeOut.Value = timeOut;
+                        }
+                        else
+                        {
+                            dtpTimeOut.Value = DateTime.Now; // Set a default value if the time is invalid or null
+                        }
+
+                        // Populate other fields
+                        txtPeriod.Text = selectedRow.Cells["Period"].Value?.ToString() ?? "";
+                        txtStatIn.Text = selectedRow.Cells["In Status"].Value?.ToString() ?? "";
+                        txtStatOut.Text = selectedRow.Cells["Out Status"].Value?.ToString() ?? "";
+
+                        // Show/hide controls as needed
+                        txtStatIn.Show();
+                        txtStatOut.Show();
+                        lblStatIn.Show();
+                        lblStatOut.Show();
+                        dtpTimeIn.Enabled = true;
+                        dtpTimeOut.Enabled = true;
+                        dataGridViewSchedule.Enabled = false;
+                        dtpDay.Show();
+                        txtDate.Hide();
+                        btnTiimeIn.Enabled = true;
+                        btnTimeOut.Enabled = true;
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"An error occurred while processing the selected row:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+
+        private void UpdateAttendance(string action)
+        {
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    
+                    if (action == "TIME IN")
+                    {
+                        string query = "UPDATE attendance SET employee_id = @EmployeeID, a_date = @Date, a_timeIn = @TimeIn, a_period = @Period, a_statusIn = @StatusIn WHERE employee_id = @EmployeeID AND a_date = @Date AND a_period = @Period";
+                        using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
+                        {
+                            cmd.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text);
+                            cmd.Parameters.AddWithValue("@Date", dtpDay.Value);
+                            cmd.Parameters.AddWithValue("@TimeIn", dtpTimeIn.Value);
+                            cmd.Parameters.AddWithValue("@Period", txtPeriod.Text);
+                            cmd.Parameters.AddWithValue("@StatusIn", "Excuse");
+
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    else if (action == "TIME OUT")
+                    {
+                        string query = @"UPDATE attendance SET a_timeOut = @TimeOut, a_statusOut = @StatusOut WHERE employee_id = @EmployeeID 
+                            AND a_date = @Date AND a_period = @Period"; // Update only the first found record without a Time Out
+
+                        using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
+                        {
+                            cmd.Parameters.AddWithValue("@TimeOut", dtpTimeOut.Value);
+                            cmd.Parameters.AddWithValue("@StatusOut", "Excuse");
+                            cmd.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text);
+                            cmd.Parameters.AddWithValue("@Date", dtpDay.Value);
+                            cmd.Parameters.AddWithValue("@Period", txtPeriod.Text);
+
+                            int rowsAffected = cmd.ExecuteNonQuery();
+
+                            if (rowsAffected == 0)
+                            {
+                                MessageBox.Show("No matching Time In record found to Time Out.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                        }
+                    }
+                   
+                    DisplayAttendance();
+                    MessageBox.Show("Record has been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                catch (MySqlException ex)
+                {
+                    //MessageBox.Show($"An error occurred while accessing the database:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
+        }
+
+
+        private void InsertAttendance()
+        {
+           
+        }
+
+        private void UpdateAttendance()
+        {
+            
+        }
+
+
+        private void btnTiimeIn_Click(object sender, EventArgs e)
+        {
+            if(btnTiimeIn.Text == "Time In")
+            {
+                UpdateAttendance("TIME IN");
+            }
+            else
+            {
+                MessageBox.Show("Please select a employee on attendance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+            
+        }
+
+        private void btnTimeOut_Click(object sender, EventArgs e)
+        {
+            if (btnTimeOut.Text == "Time Out")
+            {
+                UpdateAttendance("TIME OUT");
+            }
+            else
+            {
+                MessageBox.Show("Please select a employee on attendance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
     }
+
 }

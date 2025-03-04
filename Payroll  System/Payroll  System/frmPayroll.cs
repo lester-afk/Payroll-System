@@ -19,6 +19,10 @@ namespace Payroll__System
         public frmPayroll()
         {
             InitializeComponent();
+
+            // Attach event handlers for dynamic updates
+            txtCADeduction.TextChanged += txtCADeduction_TextChanged;
+            txtDeduction.TextChanged += txtDeduction_TextChanged;
         }
 
         private void RegularLoad(string loadValue)
@@ -163,12 +167,13 @@ namespace Payroll__System
             {
                 // Get the first selected row
                 DataGridViewRow selectedRow = this.dataGridViewEmployee.Rows[e.RowIndex];
-                txtEmpID.Text = selectedRow.Cells["Emplyee ID"].Value.ToString();
+                txtEmpID.Text = selectedRow.Cells["Employee ID"].Value.ToString();
                 txtFname.Text = selectedRow.Cells["Full Name"].Value.ToString();
-                txtFname.Text = selectedRow.Cells["Cash Advance ID"].Value.ToString();
+                txtCashAdvance.Text = selectedRow.Cells["Cash Advance ID"].Value.ToString();
             }
 
         }
+
 
         private void ComputeTeaching()
         {
@@ -176,156 +181,155 @@ namespace Payroll__System
             {
                 DateTime currentDate = DateTime.Now;
 
-
                 // Get selected Employee ID
                 string employeeId = dataGridViewEmployee.SelectedRows[0].Cells["Employee ID"].Value.ToString();
-                string jobStatus = dataGridViewEmployee.SelectedRows[0].Cells["Job Status"].Value.ToString();
                 decimal hourlyRate = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Hourly Rate"].Value);
 
-                // Get Contribution & Deductions
+                // Get Contributions & Deductions
                 decimal sss = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["SSS"].Value) / 2; // Split into two cut-offs
                 decimal pagibig = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Pag Ibig"].Value) / 2;
                 decimal philhealth = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["PhilHealth"].Value) / 2;
-                decimal cashAdvance = GetCashAdvance(employeeId);
+                decimal cashadvance = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Advance Amount"].Value);
 
-                // Get current date,                           
+                // Determine Payroll Cut-off Dates
                 int lastDayOfMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
 
-                DateTime firstCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, 14);
-                DateTime secondCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, lastDayOfMonth);
-                DateTime thirdCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, 14).AddMonths(1); // 31st - 14th (next month)
-
-                string payrollPeriod;
                 DateTime startDate, endDate;
-
-                if (currentDate.Day <= 14)  // First Cut-off: 1st to 14th
+                if (currentDate.Day <= 14)
                 {
-                    payrollPeriod = "1st - 14th";
                     startDate = new DateTime(currentDate.Year, currentDate.Month, 1);
-                    endDate = firstCutOffEnd;
+                    endDate = new DateTime(currentDate.Year, currentDate.Month, 14);
                 }
-                else if (currentDate.Day <= lastDayOfMonth)  // Second Cut-off: 15th to 30th/31st
+                else if (currentDate.Day <= lastDayOfMonth)
                 {
-                    payrollPeriod = "15th - " + lastDayOfMonth;
                     startDate = new DateTime(currentDate.Year, currentDate.Month, 15);
-                    endDate = secondCutOffEnd;
+                    endDate = new DateTime(currentDate.Year, currentDate.Month, lastDayOfMonth);
                 }
-                else  // Third Cut-off: 31st - 14th (next month)
+                else
                 {
-                    payrollPeriod = "31st - 14th (Next Month)";
                     startDate = new DateTime(currentDate.Year, currentDate.Month, 31);
-                    endDate = thirdCutOffEnd;
+                    endDate = new DateTime(currentDate.Year, currentDate.Month + 1, 14);
                 }
 
-                // Get Attendance Data Within Cut-Off Period
+                // Get Worked Hours
                 decimal workedHours = GetWorkedHours(employeeId, startDate, endDate);
 
+                // Compute Attendance-Based Deductions
+                var (absences, absencesAmount, latesMinutes, latesAmount, undertimeMinutes, undertimeAmount)
+                    = ComputeAttendanceDeductions(employeeId, startDate, endDate, hourlyRate);
+
                 // Compute Salary
-                decimal partTimeSalary = workedHours * hourlyRate;
+                decimal grossSalary = workedHours * hourlyRate;
+                decimal totalDeductions = sss + pagibig + philhealth + absencesAmount + latesAmount + undertimeAmount;
+                decimal netIncome = grossSalary - totalDeductions;
 
-                // Compute Total Deductions
-                decimal totalDeductions = sss + pagibig + philhealth + cashAdvance;
-
-                // Compute Net Income
-                decimal netPartTime = partTimeSalary - totalDeductions;
-
-
-
+                // Display on UI
+                txtPerHour.Text = hourlyRate.ToString("C2");
+                txtWorkedDays.Text = workedHours.ToString();
+                txtGrossIncome.Text = grossSalary.ToString("C2");
+                txtAbsence.Text = absences.ToString();
+                txtLates.Text = latesMinutes.ToString();
+                txtUndertime.Text = undertimeMinutes.ToString();
+                txtAbsencesAmount.Text = absencesAmount.ToString("C2");
+                txtLateAmount.Text = latesAmount.ToString("C2");
+                txtUndertimeAmount.Text = undertimeAmount.ToString("C2");
+                txtCashAdvance.Text = cashadvance.ToString("C2");
+                txtSSS.Text = sss.ToString("C2");
+                txtPagIbig.Text = pagibig.ToString("C2");
+                txtPhilHealth.Text = philhealth.ToString("C2");
+                txtNetIncome.Text = netIncome.ToString("C2");
             }
-
         }
 
-        private void ComputePayroll()
+        private void UpdateTotalDeductionsAndNetIncome()
         {
-            if (dataGridViewEmployee.SelectedRows.Count > 0)
+            try
             {
-                DateTime currentDate = DateTime.Now;
-                // Get selected Employee ID
-                string employeeId = dataGridViewEmployee.SelectedRows[0].Cells["Employee ID"].Value.ToString();
-                string jobStatus = dataGridViewEmployee.SelectedRows[0].Cells["Job Status"].Value.ToString();
+                // Parse user input values, default to 0 if invalid
+                decimal cashAdvance = string.IsNullOrEmpty(txtCashAdvance.Text) ? 0 : Convert.ToDecimal(txtCashAdvance.Text);
+                decimal otherDeduction = string.IsNullOrEmpty(txtDeduction.Text) ? 0 : Convert.ToDecimal(txtDeduction.Text);
+                decimal sss = string.IsNullOrEmpty(txtSSS.Text) ? 0 : Convert.ToDecimal(txtSSS.Text);
+                decimal pagibig = string.IsNullOrEmpty(txtPagIbig.Text) ? 0 : Convert.ToDecimal(txtPagIbig.Text);
+                decimal philhealth = string.IsNullOrEmpty(txtPhilHealth.Text) ? 0 : Convert.ToDecimal(txtPhilHealth.Text);
+                decimal absencesAmount = string.IsNullOrEmpty(txtAbsencesAmount.Text) ? 0 : Convert.ToDecimal(txtAbsencesAmount.Text);
+                decimal lateAmount = string.IsNullOrEmpty(txtLateAmount.Text) ? 0 : Convert.ToDecimal(txtLateAmount.Text);
+                decimal undertimeAmount = string.IsNullOrEmpty(txtUndertimeAmount.Text) ? 0 : Convert.ToDecimal(txtUndertimeAmount.Text);
+                decimal grossSalary = string.IsNullOrEmpty(txtGrossIncome.Text) ? 0 : Convert.ToDecimal(txtGrossIncome.Text);
 
-                // Get Salary Information
-                decimal baseSalary = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Salary"].Value);
-                decimal hourlyRate = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Hourly Rate"].Value);
+                // Compute total deductions
+                decimal totalDeductions = sss + pagibig + philhealth + absencesAmount + lateAmount + undertimeAmount + cashAdvance + otherDeduction;
+                txtTotalDeduction.Text = totalDeductions.ToString("C2");
 
-                // Get Contribution & Deductions
-                decimal sss = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["SSS"].Value) / 2; // Split into two cut-offs
-                decimal pagibig = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Pag Ibig"].Value) / 2;
-                decimal philhealth = Convert.ToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["PhilHealth"].Value) / 2;
-                decimal cashAdvance = GetCashAdvance(employeeId);
-
-                // Get current date,                           
-                int lastDayOfMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
-
-                DateTime firstCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, 14);
-                DateTime secondCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, lastDayOfMonth);
-                DateTime thirdCutOffEnd = new DateTime(currentDate.Year, currentDate.Month, 14).AddMonths(1); // 31st - 14th (next month)
-
-                string payrollPeriod;
-                DateTime startDate, endDate;
-
-                if (currentDate.Day <= 14)  // First Cut-off: 1st to 14th
-                {
-                    payrollPeriod = "1st - 14th";
-                    startDate = new DateTime(currentDate.Year, currentDate.Month, 1);
-                    endDate = firstCutOffEnd;
-                }
-                else if (currentDate.Day <= lastDayOfMonth)  // Second Cut-off: 15th to 30th/31st
-                {
-                    payrollPeriod = "15th - " + lastDayOfMonth;
-                    startDate = new DateTime(currentDate.Year, currentDate.Month, 15);
-                    endDate = secondCutOffEnd;
-                }
-                else  // Third Cut-off: 31st - 14th (next month)
-                {
-                    payrollPeriod = "31st - 14th (Next Month)";
-                    startDate = new DateTime(currentDate.Year, currentDate.Month, 31);
-                    endDate = thirdCutOffEnd;
-                }
-
-                // Get Attendance Data Within Cut-Off Period
-                decimal workedDays = GetWorkedDays(employeeId, startDate, endDate);
-                decimal workedHours = GetWorkedHours(employeeId, startDate, endDate);
-
-                // Compute Salary
-                decimal regularSalary = baseSalary / 2; // Split into two cut-offs
-                decimal partTimeSalary = workedHours * hourlyRate;
-
-                // Compute Total Deductions
-                decimal totalDeductions = sss + pagibig + philhealth + cashAdvance;
-
-                // Compute Net Income
-                decimal netRegular = regularSalary - totalDeductions;
-                decimal netPartTime = partTimeSalary - totalDeductions;
-
-                // Display in UI
-                txtRegCutOff.Text = payrollPeriod;
-                txtSalary.Text = regularSalary.ToString("N2");
-                txtWorkedDays.Text = workedDays.ToString();
-                txtRegGrossIncome.Text = regularSalary.ToString("N2");
-
-                txtRegSSS.Text = sss.ToString("N2");
-                txtRegPagIbig.Text = pagibig.ToString("N2");
-                txtRegPhilhealth.Text = philhealth.ToString("N2");
-                txtRegCashAdvance.Text = cashAdvance.ToString("N2");
-
-                txtRegDeduction.Text = totalDeductions.ToString("N2");
-                txtRegNetIncome.Text = netRegular.ToString("N2");
-
-                txtPerHour.Text = hourlyRate.ToString("N2");
-                txtWorkedHr.Text = workedHours.ToString();
-                txtGrossIncome.Text = partTimeSalary.ToString("N2");
-
-                txtTotalDeduction.Text = totalDeductions.ToString("N2");
-                txtNetIncome.Text = netPartTime.ToString("N2");
-
-                MessageBox.Show($"Payroll computed for {payrollPeriod}", "Payroll Computation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                // Compute net income
+                decimal netIncome = grossSalary - totalDeductions;
+                txtNetIncome.Text = netIncome.ToString("C2");
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Please select an employee from the list.", "No Selection", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Invalid input. Please enter numeric values.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+        private (int absences, decimal absencesAmount, int latesMinutes, decimal latesAmount, int undertimeMinutes, decimal undertimeAmount)
+        ComputeAttendanceDeductions(string employeeId, DateTime startDate, DateTime endDate, decimal hourlyRate)
+        {
+            int absences = 0, latesMinutes = 0, undertimeMinutes = 0;
+            decimal absencesAmount = 0, latesAmount = 0, undertimeAmount = 0;
+            decimal dailyHours = 8; // Default scheduled hours per day
+
+            string query = @"
+                            SELECT a.a_date, a.a_timeIn, a.a_timeOut, s.sched_timeIn, s.sched_timeOut
+                            FROM attendance a
+                            LEFT JOIN schedule s ON a.employee_id = s.employee_id AND a.a_date = s.sched_day
+                            WHERE a.employee_id = @EmpID AND a.a_date BETWEEN @StartDate AND @EndDate";
+
+            using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
+            {
+                cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                cmd.Parameters.AddWithValue("@StartDate", startDate);
+                cmd.Parameters.AddWithValue("@EndDate", endDate);
+
+                using (MySqlDataReader reader = cmd.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        DateTime date = Convert.ToDateTime(reader["a_date"]);
+                        TimeSpan? timeIn = reader["a_timeIn"] == DBNull.Value ? (TimeSpan?)null : TimeSpan.Parse(reader["a_timeIn"].ToString());
+                        TimeSpan? timeOut = reader["a_timeOut"] == DBNull.Value ? (TimeSpan?)null : TimeSpan.Parse(reader["a_timeOut"].ToString());
+                        TimeSpan? schedIn = reader["sched_timeIn"] == DBNull.Value ? (TimeSpan?)null : TimeSpan.Parse(reader["sched_timeIn"].ToString());
+                        TimeSpan? schedOut = reader["sched_timeOut"] == DBNull.Value ? (TimeSpan?)null : TimeSpan.Parse(reader["sched_timeOut"].ToString());
+
+                        if (timeIn == null && timeOut == null)
+                        {
+                            absences++; // Absence (No attendance record)
+                            absencesAmount += hourlyRate * dailyHours; // Deduct full day salary
+                        }
+                        else
+                        {
+                            if (timeIn > schedIn)
+                            {
+                                int lateMinutes = (int)(timeIn.Value - schedIn.Value).TotalMinutes;
+                                latesMinutes += lateMinutes;
+                                latesAmount += lateMinutes * (hourlyRate / 60); // Convert to per-minute deduction
+                            }
+
+                            if (timeOut < schedOut)
+                            {
+                                undertimeMinutes = (int)(schedOut.Value - timeOut.Value).TotalMinutes;
+                                undertimeMinutes += undertimeMinutes;
+                                undertimeAmount += undertimeMinutes * (hourlyRate / 60);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return (absences, absencesAmount, latesMinutes, latesAmount, undertimeMinutes, undertimeAmount);
+        }
+
+
+
 
         private decimal GetWorkedDays(string employeeId, DateTime startDate, DateTime endDate)
         {
@@ -361,22 +365,15 @@ namespace Payroll__System
             return totalHours;
         }
 
-        private decimal GetCashAdvance(string employeeId)
+        private void txtDeduction_TextChanged(object sender, EventArgs e)
         {
-            decimal advanceAmount = 0;
-            string query = "SELECT SUM(ca_amount) FROM cash_advance WHERE employee_id = @EmpID";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
-            {
-                cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                object result = cmd.ExecuteScalar();
-                advanceAmount = result != DBNull.Value ? Convert.ToDecimal(result) : 0;
-            }
-            return advanceAmount;
+            UpdateTotalDeductionsAndNetIncome();
         }
 
-
-
+        private void txtCADeduction_TextChanged(object sender, EventArgs e)
+        {
+            UpdateTotalDeductionsAndNetIncome();
+        }
     }
 
 

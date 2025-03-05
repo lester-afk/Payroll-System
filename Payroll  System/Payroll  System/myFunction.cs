@@ -72,6 +72,35 @@ namespace Payroll__System
             return maxnum;
         }
 
+        public int getMaxPR()
+        {
+
+
+            con.dbconnect();
+            if (con.OpenConnection() == true)
+            {
+                string sql = "SELECT COALESCE(MAX(pr_num),0) AS MAXNUM FROM payroll";
+
+
+                MySqlCommand da = new MySqlCommand(sql, con.connection);
+                MySqlDataReader readinfo;
+                readinfo = da.ExecuteReader();
+                da.CommandType = System.Data.CommandType.Text;
+
+                if (readinfo.HasRows)
+                {
+                    readinfo.Read();
+                    maxnum = Convert.ToInt32(readinfo["MAXNUM"]);//2
+
+
+                    readinfo.Close();
+
+                    con.CloseConnection();
+                }
+            }
+            return maxnum;
+        }
+
         private bool validtxt;
 
         public string GetEncrypt(string pass) //pass = sonny

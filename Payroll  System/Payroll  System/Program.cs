@@ -18,7 +18,7 @@ namespace Payroll__System
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmPayroll());
 
-           /* var logIn = new LogIn();
+           /*var logIn = new LogIn();
             logIn.Show();
             Application.Run();*/
         }

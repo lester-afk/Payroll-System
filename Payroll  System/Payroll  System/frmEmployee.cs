@@ -978,9 +978,9 @@ namespace Payroll__System
                             (@EmployeeID, @Status, @Department, @Title, @Salary, @HourlyRate, @DateHired)";
 
                         string contributionQuery = @"INSERT INTO contribution 
-                                (employee_id, pr_id, sss, pagibig,philhealth) 
+                                (employee_id, sss, pagibig,philhealth) 
                                 VALUES 
-                                (@EmployeeID, @PRID, @SSS, @Pagibig, @PhilHealth)";
+                                (@EmployeeID, @SSS, @Pagibig, @PhilHealth)";
 
                         // Validate required fields
                         if (string.IsNullOrWhiteSpace(cboStatus.Text))
@@ -1076,7 +1076,7 @@ namespace Payroll__System
                             using (MySqlCommand cmdCon = new MySqlCommand(contributionQuery, opencon.connection))
                             {
                                 cmdCon.Parameters.AddWithValue("@EmployeeID", txtEmpID2.Text.Trim());
-                                cmdCon.Parameters.AddWithValue("@PRID", DBNull.Value);
+                                
 
                                 if (!string.IsNullOrWhiteSpace(txtSSS.Text))
                                 {
@@ -1234,7 +1234,7 @@ namespace Payroll__System
 
                     string contributionQuery = @"UPDATE contribution SET
                                 employee_id = @EmployeeID, sss = @SSS, pagibig = @Pagibig, philhealth = @PhilHealth
-                                WHERE employee_id = @EmployeeID AND pr_id = null";
+                                WHERE employee_id = @EmployeeID";
                     try
                     {
                         // Validate required fields

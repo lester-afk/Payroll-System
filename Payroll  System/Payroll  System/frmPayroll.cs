@@ -722,7 +722,7 @@ namespace Payroll__System
             gbRegular.Enabled = false;  
         }
 
-        private void SaveRegularPayroll()
+        /*private void SaveRegularPayroll()
         {
             string employeeId = txtEmpID.Text.Trim();
             if (string.IsNullOrEmpty(employeeId))
@@ -825,9 +825,9 @@ namespace Payroll__System
                     opencon.CloseConnection();
                 }
             }
-        }
+        }*/
 
-        private void SaveTeachingPayroll()
+        /*private void SaveTeachingPayroll()
         {
             string employeeId = txtEmpID.Text.Trim();
             if (string.IsNullOrEmpty(employeeId))
@@ -921,9 +921,9 @@ namespace Payroll__System
                     opencon.CloseConnection();
                 }
             }
-        }
+        }*/
 
-        private void DeductCashAdvance(string employeeId, decimal availableDeduction, string payrollId, MySqlTransaction transaction)
+        /*private void DeductCashAdvance(string employeeId, decimal availableDeduction, string payrollId, MySqlTransaction transaction)
         {
             string query = @"
         SELECT ca_id, ca_balance 
@@ -980,7 +980,7 @@ namespace Payroll__System
                     }
                 }
             }
-        }
+        }*/
 
 
     }

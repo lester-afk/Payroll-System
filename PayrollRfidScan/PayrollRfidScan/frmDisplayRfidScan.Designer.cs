@@ -32,6 +32,7 @@ namespace PayrollRfidScan
             this.components = new System.ComponentModel.Container();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblTime = new System.Windows.Forms.Label();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.comboBox1 = new System.Windows.Forms.ComboBox();
@@ -42,6 +43,7 @@ namespace PayrollRfidScan
             this.btnTimeOut = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.lblCollegeCount = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -51,21 +53,19 @@ namespace PayrollRfidScan
             this.dataGridAttendance = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.dtpDate = new System.Windows.Forms.DateTimePicker();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.panel4 = new System.Windows.Forms.Panel();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).BeginInit();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel2
@@ -86,12 +86,21 @@ namespace PayrollRfidScan
             this.lblTime.AutoSize = true;
             this.lblTime.Font = new System.Drawing.Font("Trebuchet MS", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTime.ForeColor = System.Drawing.Color.Black;
-            this.lblTime.Location = new System.Drawing.Point(1060, 15);
+            this.lblTime.Location = new System.Drawing.Point(1042, 15);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(85, 37);
             this.lblTime.TabIndex = 32;
             this.lblTime.Text = "Time";
             this.lblTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // panel4
+            // 
+            this.panel4.BackgroundImage = global::PayrollRfidScan.Properties.Resources.csi_logo;
+            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel4.Location = new System.Drawing.Point(4, 1);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(65, 65);
+            this.panel4.TabIndex = 32;
             // 
             // label5
             // 
@@ -194,6 +203,16 @@ namespace PayrollRfidScan
             this.label1.Size = new System.Drawing.Size(175, 27);
             this.label1.TabIndex = 40;
             this.label1.Text = "SCAN YOUR RFID";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::PayrollRfidScan.Properties.Resources.rfid;
+            this.pictureBox1.Location = new System.Drawing.Point(58, 53);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(299, 259);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 36;
+            this.pictureBox1.TabStop = false;
             // 
             // panel3
             // 
@@ -304,6 +323,21 @@ namespace PayrollRfidScan
             this.panel7.Size = new System.Drawing.Size(496, 457);
             this.panel7.TabIndex = 45;
             // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset.BackgroundImage = global::PayrollRfidScan.Properties.Resources.icons8_reset_30;
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(453, 13);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(27, 26);
+            this.btnReset.TabIndex = 47;
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            // 
             // dtpDate
             // 
             this.dtpDate.CustomFormat = "MM/dd/yyyy";
@@ -336,16 +370,6 @@ namespace PayrollRfidScan
             this.label4.TabIndex = 46;
             this.label4.Text = "Search :";
             // 
-            // panel8
-            // 
-            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(0, 670);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1386, 30);
-            this.panel8.TabIndex = 46;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -357,39 +381,15 @@ namespace PayrollRfidScan
             this.label3.TabIndex = 41;
             this.label3.Text = "Filter:";
             // 
-            // pictureBox1
+            // panel8
             // 
-            this.pictureBox1.Image = global::PayrollRfidScan.Properties.Resources.rfid;
-            this.pictureBox1.Location = new System.Drawing.Point(58, 53);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(299, 259);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 36;
-            this.pictureBox1.TabStop = false;
-            // 
-            // panel4
-            // 
-            this.panel4.BackgroundImage = global::PayrollRfidScan.Properties.Resources.csi_logo;
-            this.panel4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel4.Location = new System.Drawing.Point(4, 1);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(65, 65);
-            this.panel4.TabIndex = 32;
-            // 
-            // btnReset
-            // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset.BackgroundImage = global::PayrollRfidScan.Properties.Resources.icons8_reset_30;
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(453, 13);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(27, 26);
-            this.btnReset.TabIndex = 47;
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.panel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(0, 670);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1386, 30);
+            this.panel8.TabIndex = 46;
             // 
             // frmDisplayRfidScan
             // 
@@ -416,6 +416,7 @@ namespace PayrollRfidScan
             this.panel2.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -423,7 +424,6 @@ namespace PayrollRfidScan
             ((System.ComponentModel.ISupportInitialize)(this.dataGridAttendance)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

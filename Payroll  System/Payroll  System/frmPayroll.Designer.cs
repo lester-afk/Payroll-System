@@ -38,15 +38,43 @@ namespace Payroll__System
             this.label19 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboTeachingCutoff = new System.Windows.Forms.ComboBox();
             this.label21 = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.txtSearchTeachingSalary = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
-            this.dataGridPartTime = new System.Windows.Forms.DataGridView();
+            this.dataGridTeaching = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.gbRegular = new System.Windows.Forms.GroupBox();
+            this.txtRegCADeduction = new System.Windows.Forms.TextBox();
+            this.label46 = new System.Windows.Forms.Label();
+            this.txtRegCutOff = new System.Windows.Forms.TextBox();
+            this.label33 = new System.Windows.Forms.Label();
+            this.btnRegSave = new System.Windows.Forms.Button();
+            this.txtRegularID = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtRegDescription = new System.Windows.Forms.TextBox();
+            this.txtRegNetIncome = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
+            this.txtRegDeduction = new System.Windows.Forms.TextBox();
+            this.txtRegTotalDeduction = new System.Windows.Forms.TextBox();
+            this.label26 = new System.Windows.Forms.Label();
+            this.txtRegCashAdvance = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.txtRegPhilhealth = new System.Windows.Forms.TextBox();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txtRegPagIbig = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.txtRegSSS = new System.Windows.Forms.TextBox();
+            this.label30 = new System.Windows.Forms.Label();
+            this.txtRegGrossIncome = new System.Windows.Forms.TextBox();
+            this.label34 = new System.Windows.Forms.Label();
+            this.txtSalary = new System.Windows.Forms.TextBox();
+            this.label36 = new System.Windows.Forms.Label();
             this.gbPerHour = new System.Windows.Forms.GroupBox();
             this.txtCADeduction = new System.Windows.Forms.TextBox();
             this.label45 = new System.Windows.Forms.Label();
@@ -89,51 +117,24 @@ namespace Payroll__System
             this.label18 = new System.Windows.Forms.Label();
             this.txtPerHour = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.gbRegular = new System.Windows.Forms.GroupBox();
-            this.txtRegCADeduction = new System.Windows.Forms.TextBox();
-            this.label46 = new System.Windows.Forms.Label();
-            this.txtRegCutOff = new System.Windows.Forms.TextBox();
-            this.label33 = new System.Windows.Forms.Label();
-            this.btnRegSave = new System.Windows.Forms.Button();
-            this.txtRegularID = new System.Windows.Forms.TextBox();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtRegDescription = new System.Windows.Forms.TextBox();
-            this.txtRegNetIncome = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.label25 = new System.Windows.Forms.Label();
-            this.txtRegDeduction = new System.Windows.Forms.TextBox();
-            this.txtRegTotalDeduction = new System.Windows.Forms.TextBox();
-            this.label26 = new System.Windows.Forms.Label();
-            this.txtRegCashAdvance = new System.Windows.Forms.TextBox();
-            this.label27 = new System.Windows.Forms.Label();
-            this.txtRegPhilhealth = new System.Windows.Forms.TextBox();
-            this.label28 = new System.Windows.Forms.Label();
-            this.txtRegPagIbig = new System.Windows.Forms.TextBox();
-            this.label29 = new System.Windows.Forms.Label();
-            this.txtRegSSS = new System.Windows.Forms.TextBox();
-            this.label30 = new System.Windows.Forms.Label();
-            this.txtRegGrossIncome = new System.Windows.Forms.TextBox();
-            this.label34 = new System.Windows.Forms.Label();
-            this.txtSalary = new System.Windows.Forms.TextBox();
-            this.label36 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.txtSearchRegularSalary = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.cboRegularCutOff = new System.Windows.Forms.ComboBox();
             this.dataGridRegular = new System.Windows.Forms.DataGridView();
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
+            this.label35 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPartTime)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTeaching)).BeginInit();
             this.panel3.SuspendLayout();
-            this.gbPerHour.SuspendLayout();
             this.gbRegular.SuspendLayout();
+            this.gbPerHour.SuspendLayout();
             this.panel4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRegular)).BeginInit();
             this.panel5.SuspendLayout();
@@ -178,6 +179,7 @@ namespace Payroll__System
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(175, 20);
             this.txtEmpID.TabIndex = 0;
+            this.txtEmpID.TextChanged += new System.EventHandler(this.txtEmpID_TextChanged);
             // 
             // label4
             // 
@@ -232,33 +234,34 @@ namespace Payroll__System
             // 
             this.label22.AutoSize = true;
             this.label22.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(321, 19);
+            this.label22.Location = new System.Drawing.Point(334, 19);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(60, 18);
             this.label22.TabIndex = 37;
             this.label22.Text = "Cut Off :";
             // 
-            // comboBox1
+            // cboTeachingCutoff
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "Regular",
-            "Part Time"});
-            this.comboBox1.Location = new System.Drawing.Point(400, 19);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(110, 21);
-            this.comboBox1.TabIndex = 36;
+            this.cboTeachingCutoff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboTeachingCutoff.FormattingEnabled = true;
+            this.cboTeachingCutoff.Items.AddRange(new object[] {
+            "1st Period",
+            "2nd Period"});
+            this.cboTeachingCutoff.Location = new System.Drawing.Point(400, 19);
+            this.cboTeachingCutoff.Name = "cboTeachingCutoff";
+            this.cboTeachingCutoff.Size = new System.Drawing.Size(110, 21);
+            this.cboTeachingCutoff.TabIndex = 36;
+            this.cboTeachingCutoff.SelectedIndexChanged += new System.EventHandler(this.cboTeachingCutoff_SelectedIndexChanged);
             // 
             // label21
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(29, 11);
+            this.label21.Location = new System.Drawing.Point(290, 12);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(143, 18);
+            this.label21.Size = new System.Drawing.Size(104, 18);
             this.label21.TabIndex = 25;
-            this.label21.Text = "Select Employee Load :";
+            this.label21.Text = "Employee Load :";
             // 
             // cboStatus
             // 
@@ -267,20 +270,20 @@ namespace Payroll__System
             this.cboStatus.Items.AddRange(new object[] {
             "Teaching",
             "Regular"});
-            this.cboStatus.Location = new System.Drawing.Point(178, 11);
+            this.cboStatus.Location = new System.Drawing.Point(400, 12);
             this.cboStatus.Name = "cboStatus";
-            this.cboStatus.Size = new System.Drawing.Size(155, 21);
+            this.cboStatus.Size = new System.Drawing.Size(110, 21);
             this.cboStatus.TabIndex = 3;
             this.cboStatus.SelectedIndexChanged += new System.EventHandler(this.cboStatus_SelectedIndexChanged);
             // 
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel2.Controls.Add(this.textBox3);
+            this.panel2.Controls.Add(this.cboTeachingCutoff);
+            this.panel2.Controls.Add(this.txtSearchTeachingSalary);
             this.panel2.Controls.Add(this.label38);
-            this.panel2.Controls.Add(this.dataGridPartTime);
+            this.panel2.Controls.Add(this.dataGridTeaching);
             this.panel2.Controls.Add(this.label22);
-            this.panel2.Controls.Add(this.comboBox1);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 241);
@@ -289,15 +292,16 @@ namespace Payroll__System
             this.panel2.Size = new System.Drawing.Size(822, 221);
             this.panel2.TabIndex = 1;
             // 
-            // textBox3
+            // txtSearchTeachingSalary
             // 
-            this.textBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox3.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(586, 15);
-            this.textBox3.Multiline = true;
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(227, 22);
-            this.textBox3.TabIndex = 39;
+            this.txtSearchTeachingSalary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchTeachingSalary.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchTeachingSalary.Location = new System.Drawing.Point(586, 15);
+            this.txtSearchTeachingSalary.Multiline = true;
+            this.txtSearchTeachingSalary.Name = "txtSearchTeachingSalary";
+            this.txtSearchTeachingSalary.Size = new System.Drawing.Size(227, 22);
+            this.txtSearchTeachingSalary.TabIndex = 39;
+            this.txtSearchTeachingSalary.TextChanged += new System.EventHandler(this.txtSearchTeachingSalary_TextChanged);
             // 
             // label38
             // 
@@ -309,20 +313,20 @@ namespace Payroll__System
             this.label38.TabIndex = 38;
             this.label38.Text = "Search :";
             // 
-            // dataGridPartTime
+            // dataGridTeaching
             // 
-            this.dataGridPartTime.AllowUserToAddRows = false;
-            this.dataGridPartTime.AllowUserToDeleteRows = false;
-            this.dataGridPartTime.BackgroundColor = System.Drawing.Color.White;
-            this.dataGridPartTime.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridPartTime.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.dataGridPartTime.Location = new System.Drawing.Point(2, 46);
-            this.dataGridPartTime.Name = "dataGridPartTime";
-            this.dataGridPartTime.ReadOnly = true;
-            this.dataGridPartTime.RowHeadersVisible = false;
-            this.dataGridPartTime.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridPartTime.Size = new System.Drawing.Size(814, 169);
-            this.dataGridPartTime.TabIndex = 1;
+            this.dataGridTeaching.AllowUserToAddRows = false;
+            this.dataGridTeaching.AllowUserToDeleteRows = false;
+            this.dataGridTeaching.BackgroundColor = System.Drawing.Color.White;
+            this.dataGridTeaching.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridTeaching.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dataGridTeaching.Location = new System.Drawing.Point(2, 46);
+            this.dataGridTeaching.Name = "dataGridTeaching";
+            this.dataGridTeaching.ReadOnly = true;
+            this.dataGridTeaching.RowHeadersVisible = false;
+            this.dataGridTeaching.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dataGridTeaching.Size = new System.Drawing.Size(814, 169);
+            this.dataGridTeaching.TabIndex = 1;
             // 
             // label1
             // 
@@ -345,6 +349,305 @@ namespace Payroll__System
             this.panel3.Padding = new System.Windows.Forms.Padding(2);
             this.panel3.Size = new System.Drawing.Size(407, 664);
             this.panel3.TabIndex = 2;
+            // 
+            // gbRegular
+            // 
+            this.gbRegular.Controls.Add(this.txtRegCADeduction);
+            this.gbRegular.Controls.Add(this.label46);
+            this.gbRegular.Controls.Add(this.txtRegCutOff);
+            this.gbRegular.Controls.Add(this.label33);
+            this.gbRegular.Controls.Add(this.btnRegSave);
+            this.gbRegular.Controls.Add(this.txtRegularID);
+            this.gbRegular.Controls.Add(this.label31);
+            this.gbRegular.Controls.Add(this.label23);
+            this.gbRegular.Controls.Add(this.txtRegDescription);
+            this.gbRegular.Controls.Add(this.txtRegNetIncome);
+            this.gbRegular.Controls.Add(this.label24);
+            this.gbRegular.Controls.Add(this.label25);
+            this.gbRegular.Controls.Add(this.txtRegDeduction);
+            this.gbRegular.Controls.Add(this.txtRegTotalDeduction);
+            this.gbRegular.Controls.Add(this.label26);
+            this.gbRegular.Controls.Add(this.txtRegCashAdvance);
+            this.gbRegular.Controls.Add(this.label27);
+            this.gbRegular.Controls.Add(this.txtRegPhilhealth);
+            this.gbRegular.Controls.Add(this.label28);
+            this.gbRegular.Controls.Add(this.txtRegPagIbig);
+            this.gbRegular.Controls.Add(this.label29);
+            this.gbRegular.Controls.Add(this.txtRegSSS);
+            this.gbRegular.Controls.Add(this.label30);
+            this.gbRegular.Controls.Add(this.txtRegGrossIncome);
+            this.gbRegular.Controls.Add(this.label34);
+            this.gbRegular.Controls.Add(this.txtSalary);
+            this.gbRegular.Controls.Add(this.label36);
+            this.gbRegular.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbRegular.Location = new System.Drawing.Point(5, 5);
+            this.gbRegular.Name = "gbRegular";
+            this.gbRegular.Size = new System.Drawing.Size(401, 654);
+            this.gbRegular.TabIndex = 1;
+            this.gbRegular.TabStop = false;
+            this.gbRegular.Text = "Regular Salary";
+            // 
+            // txtRegCADeduction
+            // 
+            this.txtRegCADeduction.Location = new System.Drawing.Point(295, 157);
+            this.txtRegCADeduction.Multiline = true;
+            this.txtRegCADeduction.Name = "txtRegCADeduction";
+            this.txtRegCADeduction.Size = new System.Drawing.Size(94, 20);
+            this.txtRegCADeduction.TabIndex = 47;
+            this.txtRegCADeduction.TextChanged += new System.EventHandler(this.txtRegCADeduction_TextChanged);
+            this.txtRegCADeduction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegCADeduction_KeyPress);
+            // 
+            // label46
+            // 
+            this.label46.AutoSize = true;
+            this.label46.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label46.Location = new System.Drawing.Point(221, 159);
+            this.label46.Name = "label46";
+            this.label46.Size = new System.Drawing.Size(75, 18);
+            this.label46.TabIndex = 46;
+            this.label46.Text = "Deduction :";
+            // 
+            // txtRegCutOff
+            // 
+            this.txtRegCutOff.Enabled = false;
+            this.txtRegCutOff.Location = new System.Drawing.Point(172, 479);
+            this.txtRegCutOff.Multiline = true;
+            this.txtRegCutOff.Name = "txtRegCutOff";
+            this.txtRegCutOff.Size = new System.Drawing.Size(120, 20);
+            this.txtRegCutOff.TabIndex = 45;
+            // 
+            // label33
+            // 
+            this.label33.AutoSize = true;
+            this.label33.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(13, 482);
+            this.label33.Name = "label33";
+            this.label33.Size = new System.Drawing.Size(100, 18);
+            this.label33.TabIndex = 44;
+            this.label33.Text = "Cut Off Period :";
+            // 
+            // btnRegSave
+            // 
+            this.btnRegSave.BackColor = System.Drawing.Color.MediumTurquoise;
+            this.btnRegSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegSave.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRegSave.Location = new System.Drawing.Point(289, 618);
+            this.btnRegSave.Name = "btnRegSave";
+            this.btnRegSave.Size = new System.Drawing.Size(100, 30);
+            this.btnRegSave.TabIndex = 43;
+            this.btnRegSave.Text = "Save";
+            this.btnRegSave.UseVisualStyleBackColor = false;
+            this.btnRegSave.Click += new System.EventHandler(this.btnRegSave_Click);
+            // 
+            // txtRegularID
+            // 
+            this.txtRegularID.Enabled = false;
+            this.txtRegularID.Location = new System.Drawing.Point(172, 30);
+            this.txtRegularID.Multiline = true;
+            this.txtRegularID.Name = "txtRegularID";
+            this.txtRegularID.Size = new System.Drawing.Size(120, 20);
+            this.txtRegularID.TabIndex = 41;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label31.Location = new System.Drawing.Point(13, 31);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(85, 20);
+            this.label31.TabIndex = 42;
+            this.label31.Text = "Payroll ID :";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(13, 362);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(145, 18);
+            this.label23.TabIndex = 39;
+            this.label23.Text = "Deduction Description :";
+            // 
+            // txtRegDescription
+            // 
+            this.txtRegDescription.Location = new System.Drawing.Point(172, 361);
+            this.txtRegDescription.Multiline = true;
+            this.txtRegDescription.Name = "txtRegDescription";
+            this.txtRegDescription.Size = new System.Drawing.Size(120, 20);
+            this.txtRegDescription.TabIndex = 40;
+            // 
+            // txtRegNetIncome
+            // 
+            this.txtRegNetIncome.Enabled = false;
+            this.txtRegNetIncome.Location = new System.Drawing.Point(172, 436);
+            this.txtRegNetIncome.Multiline = true;
+            this.txtRegNetIncome.Name = "txtRegNetIncome";
+            this.txtRegNetIncome.Size = new System.Drawing.Size(120, 20);
+            this.txtRegNetIncome.TabIndex = 38;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(14, 437);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(101, 20);
+            this.label24.TabIndex = 37;
+            this.label24.Text = "Net Income :";
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(13, 318);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(112, 18);
+            this.label25.TabIndex = 31;
+            this.label25.Text = "Other Deduction :";
+            // 
+            // txtRegDeduction
+            // 
+            this.txtRegDeduction.Location = new System.Drawing.Point(172, 315);
+            this.txtRegDeduction.Multiline = true;
+            this.txtRegDeduction.Name = "txtRegDeduction";
+            this.txtRegDeduction.Size = new System.Drawing.Size(120, 20);
+            this.txtRegDeduction.TabIndex = 32;
+            this.txtRegDeduction.TextChanged += new System.EventHandler(this.txtRegDeduction_TextChanged);
+            this.txtRegDeduction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtRegDeduction_KeyPress);
+            // 
+            // txtRegTotalDeduction
+            // 
+            this.txtRegTotalDeduction.Enabled = false;
+            this.txtRegTotalDeduction.Location = new System.Drawing.Point(172, 397);
+            this.txtRegTotalDeduction.Multiline = true;
+            this.txtRegTotalDeduction.Name = "txtRegTotalDeduction";
+            this.txtRegTotalDeduction.Size = new System.Drawing.Size(120, 20);
+            this.txtRegTotalDeduction.TabIndex = 36;
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label26.Location = new System.Drawing.Point(13, 400);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(112, 18);
+            this.label26.TabIndex = 35;
+            this.label26.Text = "Total Deduction :";
+            // 
+            // txtRegCashAdvance
+            // 
+            this.txtRegCashAdvance.Enabled = false;
+            this.txtRegCashAdvance.Location = new System.Drawing.Point(117, 156);
+            this.txtRegCashAdvance.Multiline = true;
+            this.txtRegCashAdvance.Name = "txtRegCashAdvance";
+            this.txtRegCashAdvance.Size = new System.Drawing.Size(94, 20);
+            this.txtRegCashAdvance.TabIndex = 34;
+            this.txtRegCashAdvance.TextChanged += new System.EventHandler(this.txtRegCashAdvance_TextChanged);
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label27.Location = new System.Drawing.Point(14, 156);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(97, 18);
+            this.label27.TabIndex = 33;
+            this.label27.Text = "Cash Advance :";
+            // 
+            // txtRegPhilhealth
+            // 
+            this.txtRegPhilhealth.Enabled = false;
+            this.txtRegPhilhealth.Location = new System.Drawing.Point(172, 271);
+            this.txtRegPhilhealth.Multiline = true;
+            this.txtRegPhilhealth.Name = "txtRegPhilhealth";
+            this.txtRegPhilhealth.Size = new System.Drawing.Size(120, 20);
+            this.txtRegPhilhealth.TabIndex = 30;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label28.Location = new System.Drawing.Point(12, 274);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(75, 18);
+            this.label28.TabIndex = 29;
+            this.label28.Text = "PhilHealth :";
+            // 
+            // txtRegPagIbig
+            // 
+            this.txtRegPagIbig.Enabled = false;
+            this.txtRegPagIbig.Location = new System.Drawing.Point(172, 232);
+            this.txtRegPagIbig.Multiline = true;
+            this.txtRegPagIbig.Name = "txtRegPagIbig";
+            this.txtRegPagIbig.Size = new System.Drawing.Size(120, 20);
+            this.txtRegPagIbig.TabIndex = 28;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(12, 235);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(63, 18);
+            this.label29.TabIndex = 27;
+            this.label29.Text = "Pag Ibig :";
+            // 
+            // txtRegSSS
+            // 
+            this.txtRegSSS.Enabled = false;
+            this.txtRegSSS.Location = new System.Drawing.Point(172, 194);
+            this.txtRegSSS.Multiline = true;
+            this.txtRegSSS.Name = "txtRegSSS";
+            this.txtRegSSS.Size = new System.Drawing.Size(120, 20);
+            this.txtRegSSS.TabIndex = 26;
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(12, 197);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(38, 18);
+            this.label30.TabIndex = 25;
+            this.label30.Text = "SSS :";
+            // 
+            // txtRegGrossIncome
+            // 
+            this.txtRegGrossIncome.Enabled = false;
+            this.txtRegGrossIncome.Location = new System.Drawing.Point(172, 112);
+            this.txtRegGrossIncome.Multiline = true;
+            this.txtRegGrossIncome.Name = "txtRegGrossIncome";
+            this.txtRegGrossIncome.Size = new System.Drawing.Size(120, 20);
+            this.txtRegGrossIncome.TabIndex = 18;
+            // 
+            // label34
+            // 
+            this.label34.AutoSize = true;
+            this.label34.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label34.Location = new System.Drawing.Point(11, 114);
+            this.label34.Name = "label34";
+            this.label34.Size = new System.Drawing.Size(112, 20);
+            this.label34.TabIndex = 17;
+            this.label34.Text = "Gross Income :";
+            // 
+            // txtSalary
+            // 
+            this.txtSalary.Enabled = false;
+            this.txtSalary.Location = new System.Drawing.Point(172, 68);
+            this.txtSalary.Multiline = true;
+            this.txtSalary.Name = "txtSalary";
+            this.txtSalary.Size = new System.Drawing.Size(120, 20);
+            this.txtSalary.TabIndex = 1;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label36.Location = new System.Drawing.Point(14, 71);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(83, 18);
+            this.label36.TabIndex = 2;
+            this.label36.Text = "Salary Rate :";
             // 
             // gbPerHour
             // 
@@ -405,6 +708,7 @@ namespace Payroll__System
             this.txtCADeduction.Size = new System.Drawing.Size(91, 20);
             this.txtCADeduction.TabIndex = 56;
             this.txtCADeduction.TextChanged += new System.EventHandler(this.txtCADeduction_TextChanged);
+            this.txtCADeduction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCADeduction_KeyPress);
             // 
             // label45
             // 
@@ -497,12 +801,13 @@ namespace Payroll__System
             this.btnTeachingSave.BackColor = System.Drawing.Color.MediumTurquoise;
             this.btnTeachingSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnTeachingSave.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTeachingSave.Location = new System.Drawing.Point(243, 618);
+            this.btnTeachingSave.Location = new System.Drawing.Point(287, 618);
             this.btnTeachingSave.Name = "btnTeachingSave";
-            this.btnTeachingSave.Size = new System.Drawing.Size(102, 30);
+            this.btnTeachingSave.Size = new System.Drawing.Size(100, 30);
             this.btnTeachingSave.TabIndex = 44;
             this.btnTeachingSave.Text = "Save";
             this.btnTeachingSave.UseVisualStyleBackColor = false;
+            this.btnTeachingSave.Click += new System.EventHandler(this.btnTeachingSave_Click);
             // 
             // txtTeachingID
             // 
@@ -580,6 +885,7 @@ namespace Payroll__System
             this.txtDeduction.Size = new System.Drawing.Size(120, 20);
             this.txtDeduction.TabIndex = 32;
             this.txtDeduction.TextChanged += new System.EventHandler(this.txtDeduction_TextChanged);
+            this.txtDeduction.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDeduction_KeyPress);
             // 
             // txtTotalDeduction
             // 
@@ -790,308 +1096,13 @@ namespace Payroll__System
             this.label5.TabIndex = 2;
             this.label5.Text = "Hourly Rate :";
             // 
-            // gbRegular
-            // 
-            this.gbRegular.Controls.Add(this.txtRegCADeduction);
-            this.gbRegular.Controls.Add(this.label46);
-            this.gbRegular.Controls.Add(this.txtRegCutOff);
-            this.gbRegular.Controls.Add(this.label33);
-            this.gbRegular.Controls.Add(this.btnRegSave);
-            this.gbRegular.Controls.Add(this.txtRegularID);
-            this.gbRegular.Controls.Add(this.label31);
-            this.gbRegular.Controls.Add(this.label23);
-            this.gbRegular.Controls.Add(this.txtRegDescription);
-            this.gbRegular.Controls.Add(this.txtRegNetIncome);
-            this.gbRegular.Controls.Add(this.label24);
-            this.gbRegular.Controls.Add(this.label25);
-            this.gbRegular.Controls.Add(this.txtRegDeduction);
-            this.gbRegular.Controls.Add(this.txtRegTotalDeduction);
-            this.gbRegular.Controls.Add(this.label26);
-            this.gbRegular.Controls.Add(this.txtRegCashAdvance);
-            this.gbRegular.Controls.Add(this.label27);
-            this.gbRegular.Controls.Add(this.txtRegPhilhealth);
-            this.gbRegular.Controls.Add(this.label28);
-            this.gbRegular.Controls.Add(this.txtRegPagIbig);
-            this.gbRegular.Controls.Add(this.label29);
-            this.gbRegular.Controls.Add(this.txtRegSSS);
-            this.gbRegular.Controls.Add(this.label30);
-            this.gbRegular.Controls.Add(this.txtRegGrossIncome);
-            this.gbRegular.Controls.Add(this.label34);
-            this.gbRegular.Controls.Add(this.txtSalary);
-            this.gbRegular.Controls.Add(this.label36);
-            this.gbRegular.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbRegular.Location = new System.Drawing.Point(5, 5);
-            this.gbRegular.Name = "gbRegular";
-            this.gbRegular.Size = new System.Drawing.Size(401, 654);
-            this.gbRegular.TabIndex = 1;
-            this.gbRegular.TabStop = false;
-            this.gbRegular.Text = "Regular Salary";
-            // 
-            // txtRegCADeduction
-            // 
-            this.txtRegCADeduction.Location = new System.Drawing.Point(295, 157);
-            this.txtRegCADeduction.Multiline = true;
-            this.txtRegCADeduction.Name = "txtRegCADeduction";
-            this.txtRegCADeduction.Size = new System.Drawing.Size(94, 20);
-            this.txtRegCADeduction.TabIndex = 47;
-            this.txtRegCADeduction.TextChanged += new System.EventHandler(this.txtRegCADeduction_TextChanged);
-            // 
-            // label46
-            // 
-            this.label46.AutoSize = true;
-            this.label46.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label46.Location = new System.Drawing.Point(221, 159);
-            this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(75, 18);
-            this.label46.TabIndex = 46;
-            this.label46.Text = "Deduction :";
-            // 
-            // txtRegCutOff
-            // 
-            this.txtRegCutOff.Enabled = false;
-            this.txtRegCutOff.Location = new System.Drawing.Point(172, 479);
-            this.txtRegCutOff.Multiline = true;
-            this.txtRegCutOff.Name = "txtRegCutOff";
-            this.txtRegCutOff.Size = new System.Drawing.Size(120, 20);
-            this.txtRegCutOff.TabIndex = 45;
-            // 
-            // label33
-            // 
-            this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(13, 482);
-            this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(100, 18);
-            this.label33.TabIndex = 44;
-            this.label33.Text = "Cut Off Period :";
-            // 
-            // btnRegSave
-            // 
-            this.btnRegSave.BackColor = System.Drawing.Color.MediumTurquoise;
-            this.btnRegSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegSave.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegSave.Location = new System.Drawing.Point(243, 609);
-            this.btnRegSave.Name = "btnRegSave";
-            this.btnRegSave.Size = new System.Drawing.Size(104, 33);
-            this.btnRegSave.TabIndex = 43;
-            this.btnRegSave.Text = "Save";
-            this.btnRegSave.UseVisualStyleBackColor = false;
-            // 
-            // txtRegularID
-            // 
-            this.txtRegularID.Enabled = false;
-            this.txtRegularID.Location = new System.Drawing.Point(172, 30);
-            this.txtRegularID.Multiline = true;
-            this.txtRegularID.Name = "txtRegularID";
-            this.txtRegularID.Size = new System.Drawing.Size(120, 20);
-            this.txtRegularID.TabIndex = 41;
-            // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(13, 31);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(85, 20);
-            this.label31.TabIndex = 42;
-            this.label31.Text = "Payroll ID :";
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(13, 362);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(145, 18);
-            this.label23.TabIndex = 39;
-            this.label23.Text = "Deduction Description :";
-            // 
-            // txtRegDescription
-            // 
-            this.txtRegDescription.Location = new System.Drawing.Point(172, 361);
-            this.txtRegDescription.Multiline = true;
-            this.txtRegDescription.Name = "txtRegDescription";
-            this.txtRegDescription.Size = new System.Drawing.Size(120, 20);
-            this.txtRegDescription.TabIndex = 40;
-            // 
-            // txtRegNetIncome
-            // 
-            this.txtRegNetIncome.Enabled = false;
-            this.txtRegNetIncome.Location = new System.Drawing.Point(172, 436);
-            this.txtRegNetIncome.Multiline = true;
-            this.txtRegNetIncome.Name = "txtRegNetIncome";
-            this.txtRegNetIncome.Size = new System.Drawing.Size(120, 20);
-            this.txtRegNetIncome.TabIndex = 38;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(14, 437);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(101, 20);
-            this.label24.TabIndex = 37;
-            this.label24.Text = "Net Income :";
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(13, 318);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(112, 18);
-            this.label25.TabIndex = 31;
-            this.label25.Text = "Other Deduction :";
-            // 
-            // txtRegDeduction
-            // 
-            this.txtRegDeduction.Location = new System.Drawing.Point(172, 315);
-            this.txtRegDeduction.Multiline = true;
-            this.txtRegDeduction.Name = "txtRegDeduction";
-            this.txtRegDeduction.Size = new System.Drawing.Size(120, 20);
-            this.txtRegDeduction.TabIndex = 32;
-            this.txtRegDeduction.TextChanged += new System.EventHandler(this.txtRegDeduction_TextChanged);
-            // 
-            // txtRegTotalDeduction
-            // 
-            this.txtRegTotalDeduction.Enabled = false;
-            this.txtRegTotalDeduction.Location = new System.Drawing.Point(172, 397);
-            this.txtRegTotalDeduction.Multiline = true;
-            this.txtRegTotalDeduction.Name = "txtRegTotalDeduction";
-            this.txtRegTotalDeduction.Size = new System.Drawing.Size(120, 20);
-            this.txtRegTotalDeduction.TabIndex = 36;
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(13, 400);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(112, 18);
-            this.label26.TabIndex = 35;
-            this.label26.Text = "Total Deduction :";
-            // 
-            // txtRegCashAdvance
-            // 
-            this.txtRegCashAdvance.Enabled = false;
-            this.txtRegCashAdvance.Location = new System.Drawing.Point(117, 156);
-            this.txtRegCashAdvance.Multiline = true;
-            this.txtRegCashAdvance.Name = "txtRegCashAdvance";
-            this.txtRegCashAdvance.Size = new System.Drawing.Size(94, 20);
-            this.txtRegCashAdvance.TabIndex = 34;
-            // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(14, 156);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(97, 18);
-            this.label27.TabIndex = 33;
-            this.label27.Text = "Cash Advance :";
-            // 
-            // txtRegPhilhealth
-            // 
-            this.txtRegPhilhealth.Enabled = false;
-            this.txtRegPhilhealth.Location = new System.Drawing.Point(172, 271);
-            this.txtRegPhilhealth.Multiline = true;
-            this.txtRegPhilhealth.Name = "txtRegPhilhealth";
-            this.txtRegPhilhealth.Size = new System.Drawing.Size(120, 20);
-            this.txtRegPhilhealth.TabIndex = 30;
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(12, 274);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(75, 18);
-            this.label28.TabIndex = 29;
-            this.label28.Text = "PhilHealth :";
-            // 
-            // txtRegPagIbig
-            // 
-            this.txtRegPagIbig.Enabled = false;
-            this.txtRegPagIbig.Location = new System.Drawing.Point(172, 232);
-            this.txtRegPagIbig.Multiline = true;
-            this.txtRegPagIbig.Name = "txtRegPagIbig";
-            this.txtRegPagIbig.Size = new System.Drawing.Size(120, 20);
-            this.txtRegPagIbig.TabIndex = 28;
-            // 
-            // label29
-            // 
-            this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(12, 235);
-            this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(63, 18);
-            this.label29.TabIndex = 27;
-            this.label29.Text = "Pag Ibig :";
-            // 
-            // txtRegSSS
-            // 
-            this.txtRegSSS.Enabled = false;
-            this.txtRegSSS.Location = new System.Drawing.Point(172, 194);
-            this.txtRegSSS.Multiline = true;
-            this.txtRegSSS.Name = "txtRegSSS";
-            this.txtRegSSS.Size = new System.Drawing.Size(120, 20);
-            this.txtRegSSS.TabIndex = 26;
-            // 
-            // label30
-            // 
-            this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(12, 197);
-            this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(38, 18);
-            this.label30.TabIndex = 25;
-            this.label30.Text = "SSS :";
-            // 
-            // txtRegGrossIncome
-            // 
-            this.txtRegGrossIncome.Enabled = false;
-            this.txtRegGrossIncome.Location = new System.Drawing.Point(172, 112);
-            this.txtRegGrossIncome.Multiline = true;
-            this.txtRegGrossIncome.Name = "txtRegGrossIncome";
-            this.txtRegGrossIncome.Size = new System.Drawing.Size(120, 20);
-            this.txtRegGrossIncome.TabIndex = 18;
-            // 
-            // label34
-            // 
-            this.label34.AutoSize = true;
-            this.label34.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label34.Location = new System.Drawing.Point(11, 114);
-            this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(112, 20);
-            this.label34.TabIndex = 17;
-            this.label34.Text = "Gross Income :";
-            // 
-            // txtSalary
-            // 
-            this.txtSalary.Enabled = false;
-            this.txtSalary.Location = new System.Drawing.Point(172, 68);
-            this.txtSalary.Multiline = true;
-            this.txtSalary.Name = "txtSalary";
-            this.txtSalary.Size = new System.Drawing.Size(120, 20);
-            this.txtSalary.TabIndex = 1;
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(14, 71);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(83, 18);
-            this.label36.TabIndex = 2;
-            this.label36.Text = "Salary Rate :";
-            // 
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel4.Controls.Add(this.textBox4);
+            this.panel4.Controls.Add(this.txtSearchRegularSalary);
             this.panel4.Controls.Add(this.label39);
             this.panel4.Controls.Add(this.label40);
-            this.panel4.Controls.Add(this.comboBox2);
+            this.panel4.Controls.Add(this.cboRegularCutOff);
             this.panel4.Controls.Add(this.dataGridRegular);
             this.panel4.Controls.Add(this.label2);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -1101,15 +1112,16 @@ namespace Payroll__System
             this.panel4.Size = new System.Drawing.Size(822, 202);
             this.panel4.TabIndex = 3;
             // 
-            // textBox4
+            // txtSearchRegularSalary
             // 
-            this.textBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox4.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(586, 14);
-            this.textBox4.Multiline = true;
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(227, 22);
-            this.textBox4.TabIndex = 43;
+            this.txtSearchRegularSalary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtSearchRegularSalary.Font = new System.Drawing.Font("Yu Gothic UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearchRegularSalary.Location = new System.Drawing.Point(586, 14);
+            this.txtSearchRegularSalary.Multiline = true;
+            this.txtSearchRegularSalary.Name = "txtSearchRegularSalary";
+            this.txtSearchRegularSalary.Size = new System.Drawing.Size(227, 22);
+            this.txtSearchRegularSalary.TabIndex = 43;
+            this.txtSearchRegularSalary.TextChanged += new System.EventHandler(this.txtSearchRegularSalary_TextChanged);
             // 
             // label39
             // 
@@ -1125,23 +1137,24 @@ namespace Payroll__System
             // 
             this.label40.AutoSize = true;
             this.label40.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(321, 18);
+            this.label40.Location = new System.Drawing.Point(334, 18);
             this.label40.Name = "label40";
             this.label40.Size = new System.Drawing.Size(60, 18);
             this.label40.TabIndex = 41;
             this.label40.Text = "Cut Off :";
             // 
-            // comboBox2
+            // cboRegularCutOff
             // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Regular",
-            "Part Time"});
-            this.comboBox2.Location = new System.Drawing.Point(400, 18);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(110, 21);
-            this.comboBox2.TabIndex = 40;
+            this.cboRegularCutOff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboRegularCutOff.FormattingEnabled = true;
+            this.cboRegularCutOff.Items.AddRange(new object[] {
+            "1st Period",
+            "2nd Period"});
+            this.cboRegularCutOff.Location = new System.Drawing.Point(400, 18);
+            this.cboRegularCutOff.Name = "cboRegularCutOff";
+            this.cboRegularCutOff.Size = new System.Drawing.Size(110, 21);
+            this.cboRegularCutOff.TabIndex = 40;
+            this.cboRegularCutOff.SelectedIndexChanged += new System.EventHandler(this.cboRegularCutOff_SelectedIndexChanged);
             // 
             // dataGridRegular
             // 
@@ -1171,6 +1184,7 @@ namespace Payroll__System
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.label35);
             this.panel5.Controls.Add(this.txtSearch);
             this.panel5.Controls.Add(this.label21);
             this.panel5.Controls.Add(this.label20);
@@ -1219,6 +1233,16 @@ namespace Payroll__System
             this.dataGridViewEmployee.TabIndex = 2;
             this.dataGridViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
             // 
+            // label35
+            // 
+            this.label35.AutoSize = true;
+            this.label35.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label35.Location = new System.Drawing.Point(5, 9);
+            this.label35.Name = "label35";
+            this.label35.Size = new System.Drawing.Size(132, 20);
+            this.label35.TabIndex = 26;
+            this.label35.Text = "Select Employee ";
+            // 
             // frmPayroll
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1240,12 +1264,12 @@ namespace Payroll__System
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridPartTime)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridTeaching)).EndInit();
             this.panel3.ResumeLayout(false);
-            this.gbPerHour.ResumeLayout(false);
-            this.gbPerHour.PerformLayout();
             this.gbRegular.ResumeLayout(false);
             this.gbRegular.PerformLayout();
+            this.gbPerHour.ResumeLayout(false);
+            this.gbPerHour.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridRegular)).EndInit();
@@ -1264,7 +1288,7 @@ namespace Payroll__System
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.DataGridView dataGridPartTime;
+        private System.Windows.Forms.DataGridView dataGridTeaching;
         private System.Windows.Forms.DataGridView dataGridRegular;
         private System.Windows.Forms.TextBox txtFname;
         private System.Windows.Forms.Label label4;
@@ -1308,7 +1332,7 @@ namespace Payroll__System
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.DateTimePicker dtpDate;
         private System.Windows.Forms.Label label22;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboTeachingCutoff;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox gbRegular;
         private System.Windows.Forms.Label label23;
@@ -1339,14 +1363,14 @@ namespace Payroll__System
         private System.Windows.Forms.Button btnRegSave;
         private System.Windows.Forms.TextBox txtRegCutOff;
         private System.Windows.Forms.Label label33;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox txtSearchTeachingSalary;
         private System.Windows.Forms.Label label38;
         private System.Windows.Forms.TextBox txtCutOff;
         private System.Windows.Forms.Label label37;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox txtSearchRegularSalary;
         private System.Windows.Forms.Label label39;
         private System.Windows.Forms.Label label40;
-        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.ComboBox cboRegularCutOff;
         private System.Windows.Forms.TextBox txtUndertimeAmount;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox txtLateAmount;
@@ -1357,5 +1381,6 @@ namespace Payroll__System
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.TextBox txtRegCADeduction;
         private System.Windows.Forms.Label label46;
+        private System.Windows.Forms.Label label35;
     }
 }

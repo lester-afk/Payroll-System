@@ -54,6 +54,7 @@ namespace Payroll__System
             this.label2 = new System.Windows.Forms.Label();
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.dtpDay = new System.Windows.Forms.DateTimePicker();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -72,7 +73,7 @@ namespace Payroll__System
             this.panel7 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
-            this.dtpDay = new System.Windows.Forms.DateTimePicker();
+            this.btnInsertInOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmp)).BeginInit();
@@ -112,6 +113,7 @@ namespace Payroll__System
             this.panel1.Controls.Add(this.txtEmpID);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.dtpDay);
+            this.panel1.Controls.Add(this.btnInsertInOut);
             this.panel1.Location = new System.Drawing.Point(40, 12);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1193, 174);
@@ -372,6 +374,18 @@ namespace Payroll__System
             this.label1.TabIndex = 0;
             this.label1.Text = "Employee ID :";
             // 
+            // dtpDay
+            // 
+            this.dtpDay.CustomFormat = "MM/dd/yyyy";
+            this.dtpDay.Enabled = false;
+            this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDay.Location = new System.Drawing.Point(162, 90);
+            this.dtpDay.Name = "dtpDay";
+            this.dtpDay.Size = new System.Drawing.Size(193, 20);
+            this.dtpDay.TabIndex = 62;
+            this.dtpDay.Value = new System.DateTime(2025, 2, 16, 22, 55, 35, 0);
+            this.dtpDay.Visible = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -586,17 +600,19 @@ namespace Payroll__System
             this.btnClear.TabIndex = 27;
             this.btnClear.UseVisualStyleBackColor = false;
             // 
-            // dtpDay
+            // btnInsertInOut
             // 
-            this.dtpDay.CustomFormat = "MM/dd/yyyy";
-            this.dtpDay.Enabled = false;
-            this.dtpDay.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDay.Location = new System.Drawing.Point(162, 90);
-            this.dtpDay.Name = "dtpDay";
-            this.dtpDay.Size = new System.Drawing.Size(193, 20);
-            this.dtpDay.TabIndex = 62;
-            this.dtpDay.Value = new System.DateTime(2025, 2, 16, 22, 55, 35, 0);
-            this.dtpDay.Visible = false;
+            this.btnInsertInOut.BackColor = System.Drawing.Color.Teal;
+            this.btnInsertInOut.Enabled = false;
+            this.btnInsertInOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsertInOut.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsertInOut.Location = new System.Drawing.Point(835, 102);
+            this.btnInsertInOut.Name = "btnInsertInOut";
+            this.btnInsertInOut.Size = new System.Drawing.Size(117, 46);
+            this.btnInsertInOut.TabIndex = 63;
+            this.btnInsertInOut.Text = "Time In/Out";
+            this.btnInsertInOut.UseVisualStyleBackColor = false;
+            this.btnInsertInOut.Click += new System.EventHandler(this.btnInsertInOut_Click);
             // 
             // frmAttendance
             // 
@@ -679,5 +695,6 @@ namespace Payroll__System
         private System.Windows.Forms.DateTimePicker dtpTimeOut;
         private System.Windows.Forms.DateTimePicker dtpTimeIn;
         private System.Windows.Forms.DateTimePicker dtpDay;
+        private System.Windows.Forms.Button btnInsertInOut;
     }
 }

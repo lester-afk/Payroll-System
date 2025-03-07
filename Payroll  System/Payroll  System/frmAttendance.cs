@@ -30,6 +30,7 @@ namespace Payroll__System
             LoadSchedule();
             InitializeDateTimePicker();
             DisplayAttendance();
+            dtpDate.Value = DateTime.Now;
         }
 
         private void InitializeDateTimePicker()
@@ -140,9 +141,10 @@ namespace Payroll__System
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
 
-            if (string.IsNullOrEmpty(txtSearch.Text.Trim()))
+            if (string.IsNullOrWhiteSpace(txtSearch.Text.Trim()))
             {
                 DisplayAttendance(); // Reload all data if search box is empty
+                LoadSchedule();
                 return;
             }
             opencon.dbconnect();
@@ -447,6 +449,10 @@ namespace Payroll__System
                     dataGridAttendance.Enabled = false;
                     dtpDay.Hide();
                     txtDate.Show();
+                    btnInsertInOut.Enabled = true;
+                    btnInsertInOut.Show();
+                    btnTiimeIn.Hide();
+                    btnTimeOut.Hide();
 
 
                 }
@@ -523,6 +529,9 @@ namespace Payroll__System
                         txtDate.Hide();
                         btnTiimeIn.Enabled = true;
                         btnTimeOut.Enabled = true;
+                        btnInsertInOut.Hide();
+                        btnTiimeIn.Show();
+                        btnTimeOut.Show();
                     }
                     catch (Exception ex)
                     {
@@ -593,17 +602,6 @@ namespace Payroll__System
         }
 
 
-        private void InsertAttendance()
-        {
-           
-        }
-
-        private void UpdateAttendance()
-        {
-            
-        }
-
-
         private void btnTiimeIn_Click(object sender, EventArgs e)
         {
             if(btnTiimeIn.Text == "Time In")
@@ -626,6 +624,83 @@ namespace Payroll__System
             else
             {
                 MessageBox.Show("Please select a employee on attendance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void btnInsertInOut_Click(object sender, EventArgs e)
+        {
+            opencon.dbconnect();
+            // Attempt to save the new employee to the database
+            if (opencon.OpenConnection())
+            {
+                string query = "INSERT INTO attendance(employee_id, a_date, a_timeIn, a_timeOut, a_period, a_statusIn, a_statusOut) " +
+                                "VALUES (@EmployeeID, CURDATE(), @TimeIn, @TimeOut, @Period, 'Excuse', 'Excuse')";
+                try
+                {
+
+                     string queryCheck = @"
+                                    SELECT *
+                                    FROM attendance 
+                                    WHERE employee_id = @EmployeeID 
+                                    AND a_date = @Date 
+                                    AND a_period = @Period";
+
+                    MySqlCommand checkCmd = new MySqlCommand(queryCheck, opencon.connection);
+                    checkCmd.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text);
+                    checkCmd.Parameters.AddWithValue("@Date", DateTime.Now.ToString("yyyy/MM/dd"));
+                    checkCmd.Parameters.AddWithValue("@Period", txtPeriod.Text);
+
+
+                    // Execute the query and get the result
+                    int employeeExists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (employeeExists > 0)
+                    {
+                        // Employee with the same full name already exists, show error message
+                        MessageBox.Show("An employee with the same Attendance already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
+                    }
+                    else
+                    {
+                        using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
+                        {
+                            cmd.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text.Trim());
+                            cmd.Parameters.AddWithValue("@TimeIn", dtpTimeIn.Value);
+                            cmd.Parameters.AddWithValue("@TimeOut", dtpTimeOut.Value);
+                            cmd.Parameters.AddWithValue("@Period", txtPeriod.Text.Trim());
+
+                            cmd.ExecuteNonQuery();
+                        }
+
+                    }
+                    btnInsertInOut.Enabled = false;
+                    btnInsertInOut.Hide();
+                    btnTiimeIn.Show();
+                    btnTimeOut.Show();
+                    DisplayAttendance();
+                    LoadSchedule();
+                    
+                }
+                catch (MySqlException ex)
+                {
+                    // Detailed exception message
+                    MessageBox.Show($"An error occurred while inserting the data:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    // Handle any other exceptions
+                    MessageBox.Show($"An unexpected error occurred:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    // Ensure the connection is closed even if an error occurs
+                    if (opencon.connection.State == ConnectionState.Open)
+                    {
+                        opencon.CloseConnection();
+                    }
+                }
+
             }
         }
     }

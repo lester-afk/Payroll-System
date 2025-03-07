@@ -16,11 +16,11 @@ namespace Payroll__System
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmPayroll());
+            //Application.Run(new frmPayroll());
 
-           /*var logIn = new LogIn();
+           var logIn = new LogIn();
             logIn.Show();
-            Application.Run();*/
+            Application.Run();
         }
     }
 }

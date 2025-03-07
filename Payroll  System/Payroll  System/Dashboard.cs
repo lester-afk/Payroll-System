@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,6 +20,9 @@ namespace Payroll__System
         private frmCashAdvance formCashAdvance;
         private frmReports formReports;
         private frmMain formMain;
+        private frmPayroll formPayroll;
+        DBconnection opencon = new DBconnection();
+        myFunction mf = new myFunction();
         public Dashboard()
         {
             InitializeComponent();
@@ -72,8 +76,8 @@ namespace Payroll__System
                 formSchedule.Close();
             if (formCashAdvance != null && !formCashAdvance.IsDisposed)
                 formCashAdvance.Close();
-            if (formReports != null && !formReports.IsDisposed)
-                formReports.Close();
+            if (formPayroll != null && !formPayroll.IsDisposed)
+                formPayroll.Close();
         }
 
         private void btnMenu_Click(object sender, EventArgs e)
@@ -85,6 +89,7 @@ namespace Payroll__System
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
+            ActiveSY();
             lblPayroll.Text = "Payroll System";
             CloseAllForms();
 
@@ -240,8 +245,36 @@ namespace Payroll__System
                 lblPayroll.Text = "Cash Advance";
             }
         }
+        private void btnPayroll_Click(object sender, EventArgs e)
+        {
+            // Close all other forms
+            CloseAllForms();
 
-        private void btnPayslip_Click(object sender, EventArgs e)
+            if (sideBarPanel.Width >= 200)
+            {
+                sideBarPanel.Width = 70;
+
+                pnlAtt.Width = sideBarPanel.Width;
+                pnlCash.Width = sideBarPanel.Width;
+                pnlDash.Width = sideBarPanel.Width;
+                pnlEmp.Width = sideBarPanel.Width;
+                pnlPay.Width = sideBarPanel.Width;
+                pnlSched.Width = sideBarPanel.Width;
+                pnlSettings.Width = sideBarPanel.Width;
+            }
+
+            // Show Reports form
+            if (formPayroll == null || formPayroll.IsDisposed)
+            {
+                formPayroll = new frmPayroll();
+                formPayroll.MdiParent = this;
+                formPayroll.Show();
+                formPayroll.Dock = DockStyle.Fill;
+                lblPayroll.Text = "Payroll ";
+            }
+        }
+
+        /*private void btnPayslip_Click(object sender, EventArgs e)
         {
             // Close all other forms
             CloseAllForms();
@@ -268,7 +301,7 @@ namespace Payroll__System
                 formReports.Dock = DockStyle.Fill;
                 lblPayroll.Text = "Payslip Report";
             }
-        }
+        }*/
 
         private void btnSettings_Click(object sender, EventArgs e)
         {
@@ -296,6 +329,38 @@ namespace Payroll__System
         private void label3_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void ActiveSY()
+        {
+            opencon.dbconnect();
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT CONCAT(sy_start,  '-',  sy_end) AS 'Active SY'
+                                    FROM school_year";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lblYear.Text = "S.Y : " + reader["Active SY"].ToString();
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Error checking attendance record: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
         }
     }
 }

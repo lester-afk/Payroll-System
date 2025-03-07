@@ -34,7 +34,7 @@ namespace Payroll__System
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            lblTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
+            lblTime.Text = DateTime.Now.ToString("dddd, hh:mm:ss tt");
         }
 
        private void GetEmpTotal()

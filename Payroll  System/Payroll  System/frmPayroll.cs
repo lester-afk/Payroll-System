@@ -86,7 +86,7 @@ namespace Payroll__System
             txtRegCutOff.Clear();
         }
 
-        private void RegularLoad(string loadValue)
+        private void RegularLoad()
         {
             opencon.dbconnect();
 
@@ -126,8 +126,8 @@ namespace Payroll__System
                                         contribution.sss, 
                                         contribution.pagibig, 
                                         contribution.philhealth
-                                    LIMIT 1000"; 
-        
+                                    LIMIT 1000";
+
                     MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
@@ -150,7 +150,7 @@ namespace Payroll__System
             }
         }
 
-        private void TeachingLoad(string loadValue)
+        private void TeachingLoad()
         {
             opencon.dbconnect();
 
@@ -159,40 +159,40 @@ namespace Payroll__System
                 try
                 {
                     string query = @"
-                            SELECT 
-                                employee.employee_id AS 'Employee ID', 
-                                CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
-                                       COALESCE(employee.employee_mname, ''), ' ', 
-                                       COALESCE(employee.employee_lname, '')) AS 'Full Name', 
-                                job.job_department AS 'Department',
-                                job.job_status AS 'Job Status',
-                                job.job_hourly_rate AS 'Hourly Rate',
-                                contribution.sss AS 'SSS',
-                                contribution.pagibig AS 'Pag Ibig',
-                                contribution.philhealth AS 'PhilHealth',
-                                -- Merge cash advance records into a single string
-                                GROUP_CONCAT(DISTINCT cash_advance.ca_id ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Cash Advance ID',
-                                GROUP_CONCAT(DISTINCT cash_advance.ca_amount ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Advance Amount',
-                                COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance' -- Ensure non-null balance
-                            FROM employee
-                            LEFT JOIN job ON employee.employee_id = job.employee_id
-                            LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
-                            LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
-                            WHERE job.job_hourly_rate IS NOT NULL
-                            GROUP BY 
-                                employee.employee_id, 
-                                employee.employee_fname, 
-                                employee.employee_mname, 
-                                employee.employee_lname, 
-                                job.job_department, 
-                                job.job_status, 
-                                job.job_hourly_rate, 
-                                contribution.sss, 
-                                contribution.pagibig, 
-                                contribution.philhealth
-                            LIMIT 1000"; 
-        
-            MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                                    SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        job.job_department AS 'Department',
+                                        job.job_status AS 'Job Status',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        -- Merge cash advance records into a single string
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_id ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Cash Advance ID',
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_amount ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Advance Amount',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance' -- Ensure non-null balance
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    WHERE job.job_hourly_rate IS NOT NULL
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_department, 
+                                        job.job_status, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth
+                                    LIMIT 1000";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
@@ -218,29 +218,165 @@ namespace Payroll__System
         {
             txtEmpID.Clear();
             txtFname.Clear();
-            
+
             if (cboStatus.Text == "Teaching")
             {
-                TeachingLoad("Teaching");
+                TeachingLoad();
                 gbPerHour.Show();
                 gbRegular.Hide();
                 ClearRegularSalary();
                 gbRegular.Enabled = false;
             }
-            else if(cboStatus.Text == "Regular")
+            else if (cboStatus.Text == "Regular")
             {
-                RegularLoad("Regular");
+                RegularLoad();
                 gbPerHour.Hide();
                 gbRegular.Show();
                 ClearTeachingSalary();
                 gbPerHour.Enabled = false;
             }
-             
+
+        }
+
+        private void SearchTeaching(string Search)
+        {
+            string query = @"SELECT 
+                                     employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        job.job_department AS 'Department',
+                                        job.job_status AS 'Job Status',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        -- Merge cash advance records into a single string
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_id ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Cash Advance ID',
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_amount ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Advance Amount',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance' -- Ensure non-null balance
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    WHERE CONCAT(COALESCE(employee.employee_fname, ''), ' ',
+                                           COALESCE(employee.employee_mname, ''), ' ',
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search
+                                           AND job.job_hourly_rate IS NOT NULL 
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_department, 
+                                        job.job_status, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth
+                                    LIMIT 1000";
+
+            MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+            cmd.Parameters.AddWithValue("@Search", "%" + Search + "%");
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            dataGridViewEmployee.DataSource = dt;
+        }
+
+        private void SearchRegular(string Search)
+        {
+            string query = @"SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        job.job_department AS 'Department',
+                                        job.job_status AS 'Job Status',
+                                        job.job_salary AS 'Salary',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        -- Merge cash advance records into a single string
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_id ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Cash Advance ID',
+                                        GROUP_CONCAT(DISTINCT cash_advance.ca_amount ORDER BY cash_advance.ca_id SEPARATOR ', ') AS 'Advance Amount',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance' -- Ensure non-null balance
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    WHERE CONCAT(COALESCE(employee.employee_fname, ''), ' ',
+                                           COALESCE(employee.employee_mname, ''), ' ',
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search
+                                           AND job.job_salary IS NOT NULL
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_department, 
+                                        job.job_status, 
+                                        job.job_salary, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth
+                                    LIMIT 1000";
+
+            MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+            cmd.Parameters.AddWithValue("@Search", "%" + Search + "%");
+
+            MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+            adapter.Fill(dt);
+
+            dataGridViewEmployee.DataSource = dt;
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
+            string searchValue = txtSearch.Text.Trim();
+            string statusValue = cboStatus.Text.ToString();
 
+            if (string.IsNullOrEmpty(searchValue) && statusValue == "Teaching")
+            {
+                TeachingLoad(); // Reload all data if search box is empty
+                return;
+            }
+            else if (string.IsNullOrEmpty(searchValue) && statusValue == "Regular")
+            {
+                RegularLoad();
+                return;
+            }
+
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    if (!string.IsNullOrEmpty(searchValue) && statusValue == "Teaching")
+                    {
+                        SearchTeaching(searchValue);
+
+                    }
+                    else if (!string.IsNullOrEmpty(searchValue) && statusValue == "Regular")
+                    {
+                        SearchRegular(searchValue);
+
+                    }
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while searching:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
         }
 
         private void dataGridViewEmployee_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -254,6 +390,8 @@ namespace Payroll__System
                 cboStatus.SelectedValue = selectedRow.Cells["Job Status"].Value.ToString();
                 ClearRegularSalary();
                 ClearTeachingSalary();
+                gbPerHour.Enabled = false;
+                gbRegular.Enabled = false;
             }
 
         }
@@ -281,10 +419,10 @@ namespace Payroll__System
                 decimal sss = ConvertToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["SSS"].Value) / 2;
                 decimal pagibig = ConvertToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["Pag Ibig"].Value) / 2;
                 decimal philhealth = ConvertToDecimal(dataGridViewEmployee.SelectedRows[0].Cells["PhilHealth"].Value) / 2;
-                
+
                 // Load and display cash advance
                 decimal totalAdvanceBalance = LoadCashAdvance(employeeId);
-                
+
 
                 // Determine Payroll Cut-off Dates
                 int lastDayOfMonth = DateTime.DaysInMonth(currentDate.Year, currentDate.Month);
@@ -304,12 +442,12 @@ namespace Payroll__System
                 }
 
                 // Compute Attendance-Based Deductions
-               /* var (absences, absencesAmount, latesMinutes, latesAmount, undertimeMinutes, undertimeAmount)
-                    = ComputeAttendanceDeductions(employeeId, startDate, endDate, monthlyRate / 22);*/ // 
+                /* var (absences, absencesAmount, latesMinutes, latesAmount, undertimeMinutes, undertimeAmount)
+                     = ComputeAttendanceDeductions(employeeId, startDate, endDate, monthlyRate / 22);*/ // 
 
                 // Compute Salary
                 decimal grossSalary = monthlyRate / 2; // Bi-monthly salary
-                decimal totalDeductions = sss + pagibig + philhealth ;
+                decimal totalDeductions = sss + pagibig + philhealth;
                 decimal netIncome = grossSalary - totalDeductions;
 
                 // Display on UI
@@ -420,11 +558,11 @@ namespace Payroll__System
 
                 // Compute total deductions
                 decimal totalDeductions = sss + pagibig + philhealth + absencesAmount + lateAmount + undertimeAmount + cashAdvance + otherDeduction;
-                txtTotalDeduction.Text = totalDeductions.ToString("C2");
+                txtTotalDeduction.Text = totalDeductions.ToString("N2");
 
                 // Compute net income
                 decimal netIncome = grossSalary - totalDeductions;
-                txtNetIncome.Text = netIncome.ToString("C2");
+                txtNetIncome.Text = netIncome.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -446,11 +584,11 @@ namespace Payroll__System
 
                 // Compute total deductions
                 decimal totalDeductions = sss + pagibig + philhealth + cashAdvance + otherDeduction;
-                txtRegTotalDeduction.Text = totalDeductions.ToString("C2");
+                txtRegTotalDeduction.Text = totalDeductions.ToString("N2");
 
                 // Compute net income
                 decimal netIncome = grossSalary - totalDeductions;
-                txtRegNetIncome.Text = netIncome.ToString("C2");
+                txtRegNetIncome.Text = netIncome.ToString("N2");
             }
             catch (Exception ex)
             {
@@ -470,10 +608,10 @@ namespace Payroll__System
             if (opencon.OpenConnection())
             {
                 string query = @"
-            SELECT a.a_date, a.a_timeIn, a.a_timeOut, s.sched_timeIn, s.sched_timeOut
-            FROM attendance a
-            LEFT JOIN schedule s ON a.employee_id = s.employee_id AND a.a_date = s.sched_day
-            WHERE a.employee_id = @EmpID AND a.a_date BETWEEN @StartDate AND @EndDate";
+                                SELECT a.a_date, a.a_timeIn, a.a_timeOut, s.sched_timeIn, s.sched_timeOut
+                                FROM attendance a
+                                LEFT JOIN schedule s ON a.employee_id = s.employee_id AND a.a_date = s.sched_day
+                                WHERE a.employee_id = @EmpID AND a.a_date BETWEEN @StartDate AND @EndDate";
 
                 using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
                 {
@@ -546,7 +684,7 @@ namespace Payroll__System
 
 
             }
-           
+
             opencon.CloseConnection();
             return hasRegularLoad;
         }
@@ -592,7 +730,9 @@ namespace Payroll__System
                     object result = cmd.ExecuteScalar();
                     if (result != DBNull.Value && result != null)
                     {
+
                         totalAdvanceBalance = Convert.ToDecimal(result);
+
                     }
                 }
 
@@ -604,64 +744,6 @@ namespace Payroll__System
             return totalAdvanceBalance;
         }
 
-        private void DeductCashAdvance(string employeeId, decimal deductionAmount)
-        {
-            if (deductionAmount <= 0) return; // No deduction needed
-
-            opencon.dbconnect();
-            if (opencon.OpenConnection())
-            {
-                string query = @"
-            SELECT ca_id, ca_balance 
-            FROM cash_advance 
-            WHERE employee_id = @EmpID AND ca_balance > 0 
-            ORDER BY ca_id ASC";
-
-                using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
-                {
-                    cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                    using (MySqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        List<(int caId, decimal balance)> advances = new List<(int, decimal)>();
-
-                        while (reader.Read())
-                        {
-                            advances.Add((reader.GetInt32("ca_id"), reader.GetDecimal("ca_balance")));
-                        }
-
-                        reader.Close();
-                        opencon.CloseConnection();
-
-                        if (advances.Count == 0) return;
-
-                        opencon.dbconnect();
-                        opencon.OpenConnection();
-
-                        foreach (var advance in advances)
-                        {
-                            if (deductionAmount <= 0) break;
-
-                            decimal deduction = Math.Min(deductionAmount, advance.balance);
-                            deductionAmount -= deduction;
-
-                            string updateQuery = @"
-                        UPDATE cash_advance 
-                        SET ca_balance = ca_balance - @Deduction 
-                        WHERE ca_id = @CAID";
-
-                            using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, opencon.connection))
-                            {
-                                updateCmd.Parameters.AddWithValue("@Deduction", deduction);
-                                updateCmd.Parameters.AddWithValue("@CAID", advance.caId);
-                                updateCmd.ExecuteNonQuery();
-                            }
-                        }
-
-                        opencon.CloseConnection();
-                    }
-                }
-            }
-        }
 
         /*private decimal GetWorkedDays(string employeeId, DateTime startDate, DateTime endDate)
         {
@@ -698,6 +780,7 @@ namespace Payroll__System
         private void txtRegCADeduction_TextChanged(object sender, EventArgs e)
         {
             RegularUpdateTDandNI();
+            
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -718,11 +801,16 @@ namespace Payroll__System
         private void frmPayroll_Load(object sender, EventArgs e)
         {
             cboStatus.SelectedIndex = 0;
+            cboTeachingCutoff.SelectedIndex = 0;
+            cboRegularCutOff.SelectedIndex = 0;
             gbPerHour.Enabled = false;
-            gbRegular.Enabled = false;  
+            gbRegular.Enabled = false;
+            TeachingPayroll();
+            RegularPayroll();
+            btnGenerate.Enabled = false;
         }
 
-        /*private void SaveRegularPayroll()
+        private void SaveRegularPayroll()
         {
             string employeeId = txtEmpID.Text.Trim();
             if (string.IsNullOrEmpty(employeeId))
@@ -731,10 +819,10 @@ namespace Payroll__System
                 return;
             }
 
-            string payrollId = Guid.NewGuid().ToString(); // Generate a new Payroll ID
-            decimal cashAdvanceAmount = decimal.Parse(txtCashAdvance.Text);
-            decimal totalDeductions = decimal.Parse(txtRegTotalDeduction.Text);
-            decimal netIncome = decimal.Parse(txtNetIncome.Text);
+            string payrollId = txtRegularID.Text.Trim();
+            decimal cashAdvanceAmount = decimal.TryParse(txtRegCADeduction.Text, out var caAmount) ? caAmount : 0;
+            decimal totalDeductions = decimal.TryParse(txtRegTotalDeduction.Text, out var regDeductions) ? regDeductions : 0;
+            decimal netIncome = decimal.TryParse(txtRegNetIncome.Text, out var net) ? net : 0;
 
             opencon.dbconnect();
             if (opencon.OpenConnection())
@@ -743,76 +831,80 @@ namespace Payroll__System
 
                 try
                 {
-                    // 1️⃣ Insert Payroll record
-                    string payrollQuery = @"
-                INSERT INTO payroll 
-                (pr_id, employee_id, pr_date, pr_cutoff, pr_grossincome, pr_deductions, pr_netincome, pr_lates_minutes, 
-                pr_lates_deduction, pr_undertime_minutes, pr_undertime_deduction, pr_absences_days, pr_absence_deduction, pr_job_status)
-                VALUES 
-                (@PRID, @EmpID, CURDATE(), @CutOff, @GrossIncome, @Deductions, @NetIncome, @LatesMin, 
-                @LatesDeduction, @UndertimeMin, @UndertimeDeduction, @Absences, @AbsenceDeduction, 'Regular')";
+                    // Check if an employee already exists
+                    string checkQuery = @"SELECT COUNT(*) FROM payroll 
+                                      WHERE employee_id = @EmpID AND pr_cutoff = @CutOff";
 
-                    using (MySqlCommand cmd = new MySqlCommand(payrollQuery, opencon.connection, transaction))
+
+                    MySqlCommand checkCmd = new MySqlCommand(checkQuery, opencon.connection);
+                    checkCmd.Parameters.AddWithValue("@EmpID", employeeId);
+                    checkCmd.Parameters.AddWithValue("@CutOff", txtRegCutOff.Text);
+
+
+                    // Execute the query and get the result
+                    int employeeExists = Convert.ToInt32(checkCmd.ExecuteScalar());
+
+                    if (employeeExists > 0)
                     {
-                        cmd.Parameters.AddWithValue("@PRID", payrollId);
-                        cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                        cmd.Parameters.AddWithValue("@CutOff", cmbCutOff.SelectedItem?.ToString());
-                        cmd.Parameters.AddWithValue("@GrossIncome", decimal.Parse(txtGrossIncome.Text));
-                        cmd.Parameters.AddWithValue("@Deductions", totalDeductions);
-                        cmd.Parameters.AddWithValue("@NetIncome", netIncome);
-                        cmd.Parameters.AddWithValue("@LatesMin", int.Parse(txtLatesMinutes.Text));
-                        cmd.Parameters.AddWithValue("@LatesDeduction", decimal.Parse(txtLatesDeduction.Text));
-                        cmd.Parameters.AddWithValue("@UndertimeMin", int.Parse(txtUndertimeMinutes.Text));
-                        cmd.Parameters.AddWithValue("@UndertimeDeduction", decimal.Parse(txtUndertimeDeduction.Text));
-                        cmd.Parameters.AddWithValue("@Absences", int.Parse(txtAbsencesDays.Text));
-                        cmd.Parameters.AddWithValue("@AbsenceDeduction", decimal.Parse(txtAbsenceDeduction.Text));
-                        cmd.ExecuteNonQuery();
+                        // Employee with the same full name already exists, show error message
+                        MessageBox.Show("An employee with the same Information already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
+                    }
+                    else
+                    {
+                        string payrollQuery = @"
+                                            INSERT INTO payroll 
+                                            (pr_id, employee_id, pr_date, pr_cutoff, pr_workedhours, pr_grossincome, pr_deductions, pr_netincome, 
+                                            pr_lates_minutes, pr_lates_deduction, pr_undertime_minutes, pr_undertime_deduction, pr_absences_days, pr_absence_deduction, pr_job_status)
+                                            VALUES 
+                                            (@PRID, @EmpID, CURDATE(), @CutOff, NULL, @GrossIncome, @Deductions, @NetIncome, NULL, 
+                                            NULL, NULL, NULL, NULL, NULL, 'Regular')";
+
+                        using (MySqlCommand cmd = new MySqlCommand(payrollQuery, opencon.connection, transaction))
+                        {
+                            cmd.Parameters.AddWithValue("@PRID", payrollId);
+                            cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                            //cmd.Parameters.AddWithValue("@Date", dtpDate.Value);
+                            cmd.Parameters.AddWithValue("@CutOff", txtRegCutOff.Text.Trim());
+                            cmd.Parameters.AddWithValue("@GrossIncome", decimal.Parse(txtRegGrossIncome.Text));
+                            cmd.Parameters.AddWithValue("@Deductions", totalDeductions);
+                            cmd.Parameters.AddWithValue("@NetIncome", netIncome);
+                            cmd.ExecuteNonQuery();
+                        }
+
+
+                        if (cashAdvanceAmount > 0)
+                        {
+                            DeductCashAdvance(employeeId, cashAdvanceAmount, payrollId, transaction);
+                        }
+
+
+                        if (totalDeductions > 0)
+                        {
+                            string deductionQuery = @"
+                                                INSERT INTO deduction (employee_id, pr_id, d_description, d_amount)
+                                                VALUES (@EmpID, @PRID, @DeductionDesc, @DeductionAmount)";
+
+                            using (MySqlCommand cmd = new MySqlCommand(deductionQuery, opencon.connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                                cmd.Parameters.AddWithValue("@PRID", payrollId);
+                                cmd.Parameters.AddWithValue("@DeductionDesc", txtRegDescription.Text);
+                                cmd.Parameters.AddWithValue("@DeductionAmount", totalDeductions);
+                                cmd.ExecuteNonQuery();
+                            }
+                        }
                     }
 
-                    // 2️⃣ Update Contribution table - Set the pr_id for existing records
-                    string updateContributionQuery = @"
-                UPDATE contribution 
-                SET pr_id = @PRID 
-                WHERE employee_id = @EmpID AND pr_id IS NULL";
-
-                    using (MySqlCommand cmd = new MySqlCommand(updateContributionQuery, opencon.connection, transaction))
-                    {
-                        cmd.Parameters.AddWithValue("@PRID", payrollId);
-                        cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    // 3️⃣ Update Cash Advance table - Link the payroll ID
-                    string updateCashAdvanceQuery = @"
-                UPDATE cash_advance 
-                SET pr_id = @PRID 
-                WHERE employee_id = @EmpID AND pr_id IS NULL";
-
-                    using (MySqlCommand cmd = new MySqlCommand(updateCashAdvanceQuery, opencon.connection, transaction))
-                    {
-                        cmd.Parameters.AddWithValue("@PRID", payrollId);
-                        cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                        cmd.ExecuteNonQuery();
-                    }
-
-                    // 4️⃣ Deduct Cash Advance and Log Payment  
-                    DeductCashAdvance(employeeId, cashAdvanceAmount, payrollId, transaction);
-
-                    // 5️⃣ Insert Deduction records
-                    string deductionQuery = @"
-                INSERT INTO deduction (employee_id, pr_id, d_description, d_amount)
-                VALUES (@EmpID, @PRID, @DeductionDesc, @DeductionAmount)";
-
-                    using (MySqlCommand cmd = new MySqlCommand(deductionQuery, opencon.connection, transaction))
-                    {
-                        cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                        cmd.Parameters.AddWithValue("@PRID", payrollId);
-                        cmd.Parameters.AddWithValue("@DeductionDesc", txtDeductionDescription.Text);
-                        cmd.Parameters.AddWithValue("@DeductionAmount", totalDeductions);
-                        cmd.ExecuteNonQuery();
-                    }
 
                     transaction.Commit();
+                    ClearRegularSalary();
+                    ClearTeachingSalary();
+                    txtEmpID.Clear();
+                    txtFname.Clear();
+                    btnGenerate.Enabled = false;
+                    RegularPayroll();
                     MessageBox.Show("Regular payroll saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -825,9 +917,9 @@ namespace Payroll__System
                     opencon.CloseConnection();
                 }
             }
-        }*/
+        }
 
-        /*private void SaveTeachingPayroll()
+        private void SaveTeachingPayroll()
         {
             string employeeId = txtEmpID.Text.Trim();
             if (string.IsNullOrEmpty(employeeId))
@@ -836,10 +928,10 @@ namespace Payroll__System
                 return;
             }
 
-            string payrollId = Guid.NewGuid().ToString();
-            decimal cashAdvanceAmount = decimal.Parse(txtCashAdvance.Text);
-            decimal totalDeductions = decimal.Parse(txtTotalDeduction.Text);
-            decimal netIncome = decimal.Parse(txtNetIncome.Text);
+            string payrollId = txtTeachingID.Text.Trim();
+            decimal cashAdvanceAmount = decimal.TryParse(txtCADeduction.Text, out var caAmount) ? caAmount : 0;
+            decimal totalDeductions = decimal.TryParse(txtTotalDeduction.Text, out var regDeductions) ? regDeductions : 0;
+            decimal netIncome = decimal.TryParse(txtNetIncome.Text, out var net) ? net : 0;
 
             opencon.dbconnect();
             if (opencon.OpenConnection())
@@ -848,11 +940,11 @@ namespace Payroll__System
 
                 try
                 {
-                    // 🔹 1️⃣ Check if Employee already has a Regular Salary
+
                     bool hasRegularSalary = false;
                     string checkRegularQuery = @"
-                SELECT COUNT(*) FROM payroll 
-                WHERE employee_id = @EmpID AND pr_job_status = 'Regular'";
+                                                SELECT COUNT(*) FROM job 
+                                                WHERE employee_id = @EmpID AND job_salary IS NOT NULL AND job_hourly_rate IS NOT NULL";
 
                     using (MySqlCommand checkCmd = new MySqlCommand(checkRegularQuery, opencon.connection, transaction))
                     {
@@ -860,55 +952,84 @@ namespace Payroll__System
                         hasRegularSalary = Convert.ToInt32(checkCmd.ExecuteScalar()) > 0;
                     }
 
-                    // 🔹 2️⃣ Insert Payroll Record for Teaching Salary
-                    string payrollQuery = @"
-                INSERT INTO payroll 
-                (pr_id, employee_id, pr_date, pr_cutoff, pr_workedhours, pr_grossincome, pr_deductions, pr_netincome, 
-                pr_lates_minutes, pr_lates_deduction, pr_undertime_minutes, pr_undertime_deduction, pr_absences_days, pr_absence_deduction, pr_job_status)
-                VALUES 
-                (@PRID, @EmpID, CURDATE(), @CutOff, @WorkedHours, @GrossIncome, @Deductions, @NetIncome, 
-                @LatesMin, @LatesDeduction, @UndertimeMin, @UndertimeDeduction, @Absences, @AbsenceDeduction, 'Teaching')";
+                    // Check if an employee already exists
+                    string checkQuery = @"SELECT COUNT(*) FROM payroll 
+                                      WHERE employee_id = @EmpID AND pr_cutoff = @CutOff";
 
-                    using (MySqlCommand cmd = new MySqlCommand(payrollQuery, opencon.connection, transaction))
+
+                    MySqlCommand Cmdcheck = new MySqlCommand(checkQuery, opencon.connection);
+                    Cmdcheck.Parameters.AddWithValue("@EmpID", employeeId);
+                    Cmdcheck.Parameters.AddWithValue("@CutOff", txtCutOff.Text);
+
+
+                    // Execute the query and get the result
+                    int employeeExists = Convert.ToInt32(Cmdcheck.ExecuteScalar());
+
+                    if (employeeExists > 0)
                     {
-                        cmd.Parameters.AddWithValue("@PRID", payrollId);
-                        cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                        cmd.Parameters.AddWithValue("@CutOff", cmbCutOff.SelectedItem?.ToString());
-                        cmd.Parameters.AddWithValue("@WorkedHours", decimal.Parse(txtWorkedHr.Text));
-                        cmd.Parameters.AddWithValue("@GrossIncome", decimal.Parse(txtGrossIncome.Text));
-                        cmd.Parameters.AddWithValue("@Deductions", totalDeductions);
-                        cmd.Parameters.AddWithValue("@NetIncome", netIncome);
-                        cmd.Parameters.AddWithValue("@LatesMin", int.Parse(txtLates.Text));
-                        cmd.Parameters.AddWithValue("@LatesDeduction", decimal.Parse(txtLateAmount.Text));
-                        cmd.Parameters.AddWithValue("@UndertimeMin", int.Parse(txtUndertime.Text));
-                        cmd.Parameters.AddWithValue("@UndertimeDeduction", decimal.Parse(txtUndertimeAmount.Text));
-                        cmd.Parameters.AddWithValue("@Absences", int.Parse(txtAbsence.Text));
-                        cmd.Parameters.AddWithValue("@AbsenceDeduction", decimal.Parse(txtAbsencesAmount.Text));
-                        cmd.ExecuteNonQuery();
+                        // Employee with the same full name already exists, show error message
+                        MessageBox.Show("An employee with the same Information already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+
                     }
-
-                    // 🔹 3️⃣ Deduct Cash Advance & Insert Deduction if No Regular Salary
-                    if (!hasRegularSalary)
+                    else
                     {
-                        // 🔸 Deduct Cash Advance
-                        DeductCashAdvance(employeeId, cashAdvanceAmount, payrollId, transaction);
+                        string payrollQuery = @"
+                                            INSERT INTO payroll 
+                                            (pr_id, employee_id, pr_date, pr_cutoff, pr_workedhours, pr_grossincome, pr_deductions, pr_netincome, 
+                                            pr_lates_minutes, pr_lates_deduction, pr_undertime_minutes, pr_undertime_deduction, pr_absences_days, pr_absence_deduction, pr_job_status)
+                                            VALUES 
+                                            (@PRID, @EmpID, CURDATE(), @CutOff, @WorkedHours, @GrossIncome, @Deductions, @NetIncome, 
+                                            @LatesMin, @LatesDeduction, @UndertimeMin, @UndertimeDeduction, @Absences, @AbsenceDeduction, 'Teaching')";
 
-                        // 🔸 Insert Deduction Records
-                        string deductionQuery = @"
-                INSERT INTO deduction (employee_id, pr_id, d_description, d_amount)
-                VALUES (@EmpID, @PRID, @DeductionDesc, @DeductionAmount)";
-
-                        using (MySqlCommand cmd = new MySqlCommand(deductionQuery, opencon.connection, transaction))
+                        using (MySqlCommand cmd = new MySqlCommand(payrollQuery, opencon.connection, transaction))
                         {
-                            cmd.Parameters.AddWithValue("@EmpID", employeeId);
                             cmd.Parameters.AddWithValue("@PRID", payrollId);
-                            cmd.Parameters.AddWithValue("@DeductionDesc", txtDeductionDescription.Text);
-                            cmd.Parameters.AddWithValue("@DeductionAmount", totalDeductions);
+                            cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                            cmd.Parameters.AddWithValue("@CutOff", txtCutOff.Text.ToString());
+                            cmd.Parameters.AddWithValue("@WorkedHours", decimal.Parse(txtWorkedHr.Text));
+                            cmd.Parameters.AddWithValue("@GrossIncome", decimal.Parse(txtGrossIncome.Text));
+                            cmd.Parameters.AddWithValue("@Deductions", totalDeductions);
+                            cmd.Parameters.AddWithValue("@NetIncome", netIncome);
+                            cmd.Parameters.AddWithValue("@LatesMin", int.Parse(txtLates.Text));
+                            cmd.Parameters.AddWithValue("@LatesDeduction", decimal.Parse(txtLateAmount.Text));
+                            cmd.Parameters.AddWithValue("@UndertimeMin", int.Parse(txtUndertime.Text));
+                            cmd.Parameters.AddWithValue("@UndertimeDeduction", decimal.Parse(txtUndertimeAmount.Text));
+                            cmd.Parameters.AddWithValue("@Absences", int.Parse(txtAbsence.Text));
+                            cmd.Parameters.AddWithValue("@AbsenceDeduction", decimal.Parse(txtAbsencesAmount.Text));
                             cmd.ExecuteNonQuery();
+                        }
+
+                        // 🔹 3️⃣ Deduct Cash Advance & Insert Deduction if No Regular Salary
+                        if (!hasRegularSalary)
+                        {
+                            // 🔸 Deduct Cash Advance
+                            DeductCashAdvance(employeeId, cashAdvanceAmount, payrollId, transaction);
+
+                            // 🔸 Insert Deduction Records
+                            string deductionQuery = @"
+                                                INSERT INTO deduction (employee_id, pr_id, d_description, d_amount)
+                                                VALUES (@EmpID, @PRID, @DeductionDesc, @DeductionAmount)";
+
+                            using (MySqlCommand cmd = new MySqlCommand(deductionQuery, opencon.connection, transaction))
+                            {
+                                cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                                cmd.Parameters.AddWithValue("@PRID", payrollId);
+                                cmd.Parameters.AddWithValue("@DeductionDesc", txtDescription.Text);
+                                cmd.Parameters.AddWithValue("@DeductionAmount", totalDeductions);
+                                cmd.ExecuteNonQuery();
+                            }
                         }
                     }
 
+
                     transaction.Commit();
+                    ClearRegularSalary();
+                    ClearTeachingSalary();
+                    txtEmpID.Clear();
+                    txtFname.Clear();
+                    btnGenerate.Enabled = false;
+                    TeachingPayroll();
                     MessageBox.Show("Teaching payroll saved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
@@ -921,27 +1042,35 @@ namespace Payroll__System
                     opencon.CloseConnection();
                 }
             }
-        }*/
+        }
 
-        /*private void DeductCashAdvance(string employeeId, decimal availableDeduction, string payrollId, MySqlTransaction transaction)
+        private void DeductCashAdvance(string employeeId, decimal availableDeduction, string payrollId, MySqlTransaction transaction)
         {
-            string query = @"
-        SELECT ca_id, ca_balance 
-        FROM cash_advance 
-        WHERE employee_id = @EmpID AND ca_balance > 0 
-        ORDER BY ca_id ASC";
-
-            using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection, transaction))
+            try
             {
-                cmd.Parameters.AddWithValue("@EmpID", employeeId);
-                using (MySqlDataReader reader = cmd.ExecuteReader())
-                {
-                    List<(int caId, decimal balance)> advances = new List<(int, decimal)>();
+                string query = @"
+                                SELECT ca_id, ca_balance 
+                                FROM cash_advance 
+                                WHERE employee_id = @EmpID AND ca_balance > 0 
+                                ORDER BY ca_id ASC";
 
-                    while (reader.Read())
+                List<(string caId, decimal balance)> advances = new List<(string, decimal)>();
+
+                using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection, transaction))
+                {
+                    cmd.Parameters.AddWithValue("@EmpID", employeeId);
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
-                        advances.Add((reader.GetInt32("ca_id"), reader.GetDecimal("ca_balance")));
+                        while (reader.Read())
+                        {
+                            advances.Add((reader.GetString("ca_id"), reader.GetDecimal("ca_balance")));
+                        }
                     }
+                }
+
+                if (advances.Count == 0 || availableDeduction <= 0)
+                {
+                    return; // No cash advance to deduct
                 }
 
                 foreach (var advance in advances)
@@ -953,9 +1082,9 @@ namespace Payroll__System
 
                     // Update cash advance balance
                     string updateQuery = @"
-                UPDATE cash_advance 
-                SET ca_balance = ca_balance - @Deduction 
-                WHERE ca_id = @CAID";
+                                            UPDATE cash_advance 
+                                            SET ca_balance = ca_balance - @Deduction 
+                                            WHERE ca_id = @CAID";
 
                     using (MySqlCommand updateCmd = new MySqlCommand(updateQuery, opencon.connection, transaction))
                     {
@@ -966,8 +1095,9 @@ namespace Payroll__System
 
                     // Insert record in cash_advance_payment
                     string insertQuery = @"
-                INSERT INTO cash_advance_payment (pr_id, employee_id, ca_id, payment_amount, remaining_balance, payment_date)
-                VALUES (@PRID, @EmpID, @CAID, @Deduction, @Remaining, CURDATE())";
+                                            INSERT INTO cash_advance_payment 
+                                            (pr_id, employee_id, ca_id, payment_amount, remaining_balance, payment_date)
+                                            VALUES (@PRID, @EmpID, @CAID, @Deduction, @Remaining, CURDATE())";
 
                     using (MySqlCommand insertCmd = new MySqlCommand(insertQuery, opencon.connection, transaction))
                     {
@@ -980,9 +1110,441 @@ namespace Payroll__System
                     }
                 }
             }
-        }*/
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                MessageBox.Show($"Error deducting cash advance: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
 
+        private void btnTeachingSave_Click(object sender, EventArgs e)
+        {
+            SaveTeachingPayroll();
+        }
+
+        private void btnRegSave_Click(object sender, EventArgs e)
+        {
+            SaveRegularPayroll();
+        }
+
+        private void TeachingPayroll()
+        {
+            DateTime date = DateTime.Now;
+            string monthYear = date.ToString("MMMM yyyy");
+            string cutoff = cboTeachingCutoff.Text;
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        payroll.pr_id AS 'Payroll ID',
+                                        DATE_FORMAT(pr_date, '%M %Y') AS 'Month',
+                                        payroll.pr_cutoff AS 'Cutoff Period',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        payroll.pr_workedhours AS 'Worked Hours',
+                                        payroll.pr_grossincome AS 'Gross Income',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Cash Advance Amount',
+                                        cash_advance_payment.payment_amount AS 'Cash Advance Deducted',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance',
+                                        deduction.d_amount AS 'Other Deduction',
+                                        deduction.d_description AS 'Description',
+                                        payroll.pr_lates_minutes AS 'Lates Per Min',
+                                        payroll.pr_lates_deduction AS 'Lates In Amount',
+                                        payroll.pr_undertime_minutes AS 'Undertime Per Min',
+                                        payroll.pr_undertime_deduction AS 'Undertime In Amount',
+                                        payroll.pr_absences_days AS 'Absences',
+                                        payroll.pr_absence_deduction AS 'Absences In Amount',
+                                        payroll.pr_deductions AS 'Overall Deduction',
+                                        payroll.pr_netincome AS 'Net Income',
+                                        payroll.pr_job_status AS 'Category'
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    LEFT JOIN payroll ON employee.employee_id = payroll.employee_id
+                                    LEFT JOIN deduction ON payroll.pr_id = deduction.pr_id
+                                    LEFT JOIN cash_advance_payment ON payroll.pr_id = cash_advance_payment.pr_id
+                                    WHERE payroll.pr_job_status = 'Teaching' AND payroll.pr_cutoff LIKE @CutOff
+                                    AND DATE_FORMAT(pr_date, '%M %Y') LIKE @Date
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth,
+                                        payroll.pr_id,
+                                        cash_advance_payment.payment_amount,
+                                        deduction.d_amount,
+                                        deduction.d_description
+                                    LIMIT 1000";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                    cmd.Parameters.AddWithValue("@CutOff", "%" + cutoff + "%");
+                    cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGridTeaching.DataSource = dt;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while loading data:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An unexpected error occurred:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
+        }
+
+        private void RegularPayroll()
+        {
+            DateTime date = DateTime.Now;
+            string monthYear = date.ToString("MMMM yyyy");
+            string cutoff = cboRegularCutOff.Text;
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        payroll.pr_id AS 'Payroll ID',
+                                        DATE_FORMAT(pr_date, '%M %Y') AS 'Month',
+                                        payroll.pr_cutoff AS 'Cutoff Period',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        payroll.pr_workedhours AS 'Worked Hours',
+                                        payroll.pr_grossincome AS 'Gross Income',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Cash Advance Amount',
+                                        cash_advance_payment.payment_amount AS 'Cash Advance Deducted',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance',
+                                        deduction.d_amount AS 'Other Deduction',
+                                        deduction.d_description AS 'Description',
+                                        payroll.pr_deductions AS 'Overall Deduction',
+                                        payroll.pr_netincome AS 'Net Income',
+                                        payroll.pr_job_status AS 'Category'
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    LEFT JOIN payroll ON employee.employee_id = payroll.employee_id
+                                    LEFT JOIN deduction ON payroll.pr_id = deduction.pr_id
+                                    LEFT JOIN cash_advance_payment ON payroll.pr_id = cash_advance_payment.pr_id
+                                    WHERE payroll.pr_job_status = 'Regular' AND payroll.pr_cutoff LIKE @CutOff
+                                    AND DATE_FORMAT(pr_date, '%M %Y') LIKE @Date
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth,
+                                        payroll.pr_id,
+                                        cash_advance_payment.payment_amount,
+                                        deduction.d_amount,
+                                        deduction.d_description
+                                    LIMIT 1000";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                    cmd.Parameters.AddWithValue("@CutOff", "%" + cutoff + "%");
+                    cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGridRegular.DataSource = dt;
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while loading data:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An unexpected error occurred:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
+        }
+
+        private void txtEmpID_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(txtEmpID.Text))
+            {
+                btnGenerate.Enabled = false;
+            }
+            else
+            {
+                btnGenerate.Enabled = true;
+            }
+        }
+
+        private void txtRegCashAdvance_TextChanged(object sender, EventArgs e)
+        {
+            if (txtRegCashAdvance.Text == "0.00")
+            {
+                txtRegCADeduction.Enabled = false;
+            }
+            else
+            {
+                txtRegCADeduction.Enabled = true;
+            }
+        }
+
+        private void txtSearchTeachingSalary_TextChanged(object sender, EventArgs e)
+        {
+            string searchValue = txtSearchTeachingSalary.Text.Trim();
+            DateTime date = DateTime.Now;
+            string monthYear = date.ToString("MMMM yyyy");
+            string cutoff = cboTeachingCutoff.Text;
+
+            if (string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(cutoff))
+            {
+                TeachingPayroll(); // Reload all data if search box is empty
+                return;
+            }
+
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        payroll.pr_id AS 'Payroll ID',
+                                        DATE_FORMAT(pr_date, '%M %Y') AS 'Month',
+                                        payroll.pr_cutoff AS 'Cutoff Period',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        payroll.pr_workedhours AS 'Worked Hours',
+                                        payroll.pr_grossincome AS 'Gross Income',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Cash Advance Amount',
+                                        cash_advance_payment.payment_amount AS 'Cash Advance Deducted',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance',
+                                        deduction.d_amount AS 'Other Deduction',
+                                        deduction.d_description AS 'Description',
+                                        payroll.pr_lates_minutes AS 'Lates Per Min',
+                                        payroll.pr_lates_deduction AS 'Lates In Amount',
+                                        payroll.pr_undertime_minutes AS 'Undertime Per Min',
+                                        payroll.pr_undertime_deduction AS 'Undertime In Amount',
+                                        payroll.pr_absences_days AS 'Absences',
+                                        payroll.pr_absence_deduction AS 'Absences In Amount',
+                                        payroll.pr_deductions AS 'Overall Deduction',
+                                        payroll.pr_netincome AS 'Net Income',
+                                        payroll.pr_job_status AS 'Category'
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    LEFT JOIN payroll ON employee.employee_id = payroll.employee_id
+                                    LEFT JOIN deduction ON payroll.pr_id = deduction.pr_id
+                                    LEFT JOIN cash_advance_payment ON payroll.pr_id = cash_advance_payment.pr_id
+                                    WHERE payroll.pr_job_status = 'Teaching' AND payroll.pr_cutoff LIKE @CutOff
+                                    AND DATE_FORMAT(pr_date, '%M %Y') LIKE @Date
+                                    AND CONCAT(COALESCE(employee.employee_fname, ''), ' ',
+                                           COALESCE(employee.employee_mname, ''), ' ',
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth,
+                                        payroll.pr_id,
+                                        cash_advance_payment.payment_amount,
+                                        deduction.d_amount,
+                                        deduction.d_description
+                                    LIMIT 1000";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                    cmd.Parameters.AddWithValue("@CutOff", "%" + cutoff + "%");
+                    cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
+                    cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGridTeaching.DataSource = dt;
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while searching:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
+        }
+
+        private void txtSearchRegularSalary_TextChanged(object sender, EventArgs e)
+        {
+            string searchValue = txtSearchRegularSalary.Text.Trim();
+            DateTime date = DateTime.Now;
+            string monthYear = date.ToString("MMMM yyyy");
+            string cutoff = cboRegularCutOff.Text;
+
+            if (string.IsNullOrEmpty(searchValue) && !string.IsNullOrEmpty(cutoff))
+            {
+                TeachingPayroll(); // Reload all data if search box is empty
+                return;
+            }
+
+            opencon.dbconnect();
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT 
+                                        employee.employee_id AS 'Employee ID', 
+                                        CONCAT(COALESCE(employee.employee_fname, ''), ' ', 
+                                               COALESCE(employee.employee_mname, ''), ' ', 
+                                               COALESCE(employee.employee_lname, '')) AS 'Full Name', 
+                                        payroll.pr_id AS 'Payroll ID',
+                                        DATE_FORMAT(pr_date, '%M %Y') AS 'Month',
+                                        payroll.pr_cutoff AS 'Cutoff Period',
+                                        job.job_hourly_rate AS 'Hourly Rate',
+                                        payroll.pr_workedhours AS 'Worked Hours',
+                                        payroll.pr_grossincome AS 'Gross Income',
+                                        contribution.sss AS 'SSS',
+                                        contribution.pagibig AS 'Pag Ibig',
+                                        contribution.philhealth AS 'PhilHealth',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Cash Advance Amount',
+                                        cash_advance_payment.payment_amount AS 'Cash Advance Deducted',
+                                        COALESCE(SUM(cash_advance.ca_balance), 0) AS 'Total Advance Balance',
+                                        deduction.d_amount AS 'Other Deduction',
+                                        deduction.d_description AS 'Description',
+                                        payroll.pr_deductions AS 'Overall Deduction',
+                                        payroll.pr_netincome AS 'Net Income',
+                                        payroll.pr_job_status AS 'Category'
+                                    FROM employee
+                                    LEFT JOIN job ON employee.employee_id = job.employee_id
+                                    LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
+                                    LEFT JOIN cash_advance ON employee.employee_id = cash_advance.employee_id
+                                    LEFT JOIN payroll ON employee.employee_id = payroll.employee_id
+                                    LEFT JOIN deduction ON payroll.pr_id = deduction.pr_id
+                                    LEFT JOIN cash_advance_payment ON payroll.pr_id = cash_advance_payment.pr_id
+                                    WHERE payroll.pr_job_status = 'Regular' AND payroll.pr_cutoff LIKE @CutOff
+                                    AND DATE_FORMAT(pr_date, '%M %Y') LIKE @Date
+                                    AND CONCAT(COALESCE(employee.employee_fname, ''), ' ',
+                                           COALESCE(employee.employee_mname, ''), ' ',
+                                           COALESCE(employee.employee_lname, '')) LIKE @Search
+                                    GROUP BY 
+                                        employee.employee_id, 
+                                        employee.employee_fname, 
+                                        employee.employee_mname, 
+                                        employee.employee_lname, 
+                                        job.job_hourly_rate, 
+                                        contribution.sss, 
+                                        contribution.pagibig, 
+                                        contribution.philhealth,
+                                        payroll.pr_id,
+                                        cash_advance_payment.payment_amount,
+                                        deduction.d_amount,
+                                        deduction.d_description
+                                    LIMIT 1000";
+
+                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
+                    cmd.Parameters.AddWithValue("@CutOff", "%" + cutoff + "%");
+                    cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
+                    cmd.Parameters.AddWithValue("@Search", "%" + searchValue + "%");
+
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    dataGridRegular.DataSource = dt;
+
+
+
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"An error occurred while searching:\n{ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection();
+                }
+            }
+        }
+
+        private void cboTeachingCutoff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            TeachingPayroll();
+        }
+
+        private void cboRegularCutOff_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            RegularPayroll();
+        }
+
+        private void txtRegCADeduction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            mf.txtNumber(sender, e);
+        }
+
+        private void txtRegDeduction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            mf.txtNumber(sender, e);
+        }
+
+        private void txtCADeduction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            mf.txtNumber(sender, e);
+        }
+
+        private void txtDeduction_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            mf.txtNumber(sender, e);
+        }
     }
 
 

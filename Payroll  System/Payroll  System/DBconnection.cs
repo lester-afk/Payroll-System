@@ -16,7 +16,7 @@ namespace Payroll__System
         public void dbconnect()
         {
             // Initialize connection parameters
-            server = "192.168.8.123"; // or your MySQL server address
+            server = "192.168.1.61"; // or your MySQL server address
             port = "3306";        // default MySQL port
             database = "payrollDB";
             uid = "payroll";         // your MySQL username

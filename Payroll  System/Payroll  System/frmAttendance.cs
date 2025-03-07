@@ -178,9 +178,7 @@ namespace Payroll__System
             }
         }
 
-        
-
-        private void btnReset_Click(object sender, EventArgs e)
+        private void ClearAll()
         {
             txtEmpID.Text = "";
             txtFullName.Text = "";
@@ -194,12 +192,17 @@ namespace Payroll__System
             lblStatIn.Show();
             lblStatOut.Show();
             txtStatIn.Show();
-            txtStatOut.Show(); 
+            txtStatOut.Show();
             DisplayAttendance();
             LoadSchedule();
             txtStatIn.Text = "";
             txtStatOut.Text = "";
+        }
 
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+
+            ClearAll();
         }
 
 
@@ -586,7 +589,13 @@ namespace Payroll__System
                             }
                         }
                     }
-                   
+                    ClearAll();
+                    dataGridAttendance.Enabled = true;
+                    dataGridViewSchedule.Enabled = true;
+                    btnInsertInOut.Enabled = false;
+                    btnInsertInOut.Hide();
+                    btnTiimeIn.Show();
+                    btnTimeOut.Show();
                     DisplayAttendance();
                     MessageBox.Show("Record has been updated successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -680,6 +689,7 @@ namespace Payroll__System
                     btnTimeOut.Show();
                     DisplayAttendance();
                     LoadSchedule();
+                    ClearAll();
                     
                 }
                 catch (MySqlException ex)

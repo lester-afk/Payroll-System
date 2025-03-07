@@ -1545,6 +1545,14 @@ namespace Payroll__System
         {
             mf.txtNumber(sender, e);
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearRegularSalary();
+            ClearTeachingSalary();
+            txtEmpID.Clear();
+            txtFname.Clear();
+        }
     }
 
 

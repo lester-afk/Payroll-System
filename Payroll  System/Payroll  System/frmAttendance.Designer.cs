@@ -55,6 +55,7 @@ namespace Payroll__System
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dtpDay = new System.Windows.Forms.DateTimePicker();
+            this.btnInsertInOut = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -73,7 +74,6 @@ namespace Payroll__System
             this.panel7 = new System.Windows.Forms.Panel();
             this.label19 = new System.Windows.Forms.Label();
             this.btnClear = new System.Windows.Forms.Button();
-            this.btnInsertInOut = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridEmp)).BeginInit();
@@ -386,6 +386,20 @@ namespace Payroll__System
             this.dtpDay.Value = new System.DateTime(2025, 2, 16, 22, 55, 35, 0);
             this.dtpDay.Visible = false;
             // 
+            // btnInsertInOut
+            // 
+            this.btnInsertInOut.BackColor = System.Drawing.Color.Teal;
+            this.btnInsertInOut.Enabled = false;
+            this.btnInsertInOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInsertInOut.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInsertInOut.Location = new System.Drawing.Point(1043, 19);
+            this.btnInsertInOut.Name = "btnInsertInOut";
+            this.btnInsertInOut.Size = new System.Drawing.Size(117, 46);
+            this.btnInsertInOut.TabIndex = 63;
+            this.btnInsertInOut.Text = "Time In/Out";
+            this.btnInsertInOut.UseVisualStyleBackColor = false;
+            this.btnInsertInOut.Click += new System.EventHandler(this.btnInsertInOut_Click);
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -491,9 +505,9 @@ namespace Payroll__System
             this.label3.ForeColor = System.Drawing.SystemColors.Desktop;
             this.label3.Location = new System.Drawing.Point(10, 8);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(180, 24);
+            this.label3.Size = new System.Drawing.Size(174, 24);
             this.label3.TabIndex = 0;
-            this.label3.Text = "Attendance Details";
+            this.label3.Text = "Select Attendance";
             // 
             // dataGridAttendance
             // 
@@ -583,9 +597,9 @@ namespace Payroll__System
             this.label19.ForeColor = System.Drawing.Color.Black;
             this.label19.Location = new System.Drawing.Point(3, 9);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(103, 24);
+            this.label19.Size = new System.Drawing.Size(153, 24);
             this.label19.TabIndex = 1;
-            this.label19.Text = "SCHEDULE";
+            this.label19.Text = "Select Schedule";
             // 
             // btnClear
             // 
@@ -599,20 +613,6 @@ namespace Payroll__System
             this.btnClear.Size = new System.Drawing.Size(43, 39);
             this.btnClear.TabIndex = 27;
             this.btnClear.UseVisualStyleBackColor = false;
-            // 
-            // btnInsertInOut
-            // 
-            this.btnInsertInOut.BackColor = System.Drawing.Color.Teal;
-            this.btnInsertInOut.Enabled = false;
-            this.btnInsertInOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnInsertInOut.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInsertInOut.Location = new System.Drawing.Point(835, 102);
-            this.btnInsertInOut.Name = "btnInsertInOut";
-            this.btnInsertInOut.Size = new System.Drawing.Size(117, 46);
-            this.btnInsertInOut.TabIndex = 63;
-            this.btnInsertInOut.Text = "Time In/Out";
-            this.btnInsertInOut.UseVisualStyleBackColor = false;
-            this.btnInsertInOut.Click += new System.EventHandler(this.btnInsertInOut_Click);
             // 
             // frmAttendance
             // 

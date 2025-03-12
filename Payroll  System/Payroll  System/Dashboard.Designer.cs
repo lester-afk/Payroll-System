@@ -30,6 +30,8 @@ namespace Payroll__System
         private void InitializeComponent()
         {
             this.sideBarPanel = new System.Windows.Forms.Panel();
+            this.pnlPay = new System.Windows.Forms.Panel();
+            this.btnPayroll = new System.Windows.Forms.Button();
             this.pnlSettings = new System.Windows.Forms.Panel();
             this.btnSettings = new System.Windows.Forms.Button();
             this.pnlDash = new System.Windows.Forms.Panel();
@@ -42,26 +44,24 @@ namespace Payroll__System
             this.btnSchedule = new System.Windows.Forms.Button();
             this.pnlAtt = new System.Windows.Forms.Panel();
             this.btnAttendance = new System.Windows.Forms.Button();
-            this.pnlPay = new System.Windows.Forms.Panel();
-            this.btnPayroll = new System.Windows.Forms.Button();
-            this.btnMenu = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPayroll = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.lblYear = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblSemester = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.btnMenu = new System.Windows.Forms.Button();
             this.sideBarPanel.SuspendLayout();
+            this.pnlPay.SuspendLayout();
             this.pnlSettings.SuspendLayout();
             this.pnlDash.SuspendLayout();
             this.pnlCash.SuspendLayout();
             this.pnlEmp.SuspendLayout();
             this.pnlSched.SuspendLayout();
             this.pnlAtt.SuspendLayout();
-            this.pnlPay.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -83,6 +83,32 @@ namespace Payroll__System
             this.sideBarPanel.Name = "sideBarPanel";
             this.sideBarPanel.Size = new System.Drawing.Size(200, 660);
             this.sideBarPanel.TabIndex = 1;
+            // 
+            // pnlPay
+            // 
+            this.pnlPay.Controls.Add(this.btnPayroll);
+            this.pnlPay.Location = new System.Drawing.Point(0, 280);
+            this.pnlPay.Name = "pnlPay";
+            this.pnlPay.Size = new System.Drawing.Size(200, 54);
+            this.pnlPay.TabIndex = 9;
+            // 
+            // btnPayroll
+            // 
+            this.btnPayroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnPayroll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnPayroll.FlatAppearance.BorderSize = 0;
+            this.btnPayroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPayroll.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPayroll.Image = global::Payroll__System.Properties.Resources.icon_payslip;
+            this.btnPayroll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPayroll.Location = new System.Drawing.Point(0, 0);
+            this.btnPayroll.Name = "btnPayroll";
+            this.btnPayroll.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
+            this.btnPayroll.Size = new System.Drawing.Size(200, 50);
+            this.btnPayroll.TabIndex = 3;
+            this.btnPayroll.Text = "        Payroll";
+            this.btnPayroll.UseVisualStyleBackColor = false;
+            this.btnPayroll.Click += new System.EventHandler(this.btnPayroll_Click);
             // 
             // pnlSettings
             // 
@@ -240,45 +266,6 @@ namespace Payroll__System
             this.btnAttendance.UseVisualStyleBackColor = false;
             this.btnAttendance.Click += new System.EventHandler(this.btnAttendance_Click);
             // 
-            // pnlPay
-            // 
-            this.pnlPay.Controls.Add(this.btnPayroll);
-            this.pnlPay.Location = new System.Drawing.Point(0, 280);
-            this.pnlPay.Name = "pnlPay";
-            this.pnlPay.Size = new System.Drawing.Size(200, 54);
-            this.pnlPay.TabIndex = 9;
-            // 
-            // btnPayroll
-            // 
-            this.btnPayroll.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.btnPayroll.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnPayroll.FlatAppearance.BorderSize = 0;
-            this.btnPayroll.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPayroll.Font = new System.Drawing.Font("Yu Gothic UI Semibold", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPayroll.Image = global::Payroll__System.Properties.Resources.icon_payslip;
-            this.btnPayroll.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPayroll.Location = new System.Drawing.Point(0, 0);
-            this.btnPayroll.Name = "btnPayroll";
-            this.btnPayroll.Padding = new System.Windows.Forms.Padding(15, 0, 0, 0);
-            this.btnPayroll.Size = new System.Drawing.Size(200, 50);
-            this.btnPayroll.TabIndex = 3;
-            this.btnPayroll.Text = "        Payroll";
-            this.btnPayroll.UseVisualStyleBackColor = false;
-            this.btnPayroll.Click += new System.EventHandler(this.btnPayroll_Click);
-            // 
-            // btnMenu
-            // 
-            this.btnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.btnMenu.FlatAppearance.BorderSize = 0;
-            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMenu.Image = global::Payroll__System.Properties.Resources.icon_menu_main;
-            this.btnMenu.Location = new System.Drawing.Point(0, 0);
-            this.btnMenu.Name = "btnMenu";
-            this.btnMenu.Size = new System.Drawing.Size(70, 65);
-            this.btnMenu.TabIndex = 2;
-            this.btnMenu.UseVisualStyleBackColor = false;
-            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
-            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -292,23 +279,13 @@ namespace Payroll__System
             // lblPayroll
             // 
             this.lblPayroll.AutoSize = true;
-            this.lblPayroll.Font = new System.Drawing.Font("Trebuchet MS", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPayroll.Font = new System.Drawing.Font("Trebuchet MS", 24F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblPayroll.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.lblPayroll.Location = new System.Drawing.Point(152, 33);
+            this.lblPayroll.Location = new System.Drawing.Point(627, 8);
             this.lblPayroll.Name = "lblPayroll";
-            this.lblPayroll.Size = new System.Drawing.Size(121, 22);
+            this.lblPayroll.Size = new System.Drawing.Size(243, 40);
             this.lblPayroll.TabIndex = 4;
             this.lblPayroll.Text = "Payroll System";
-            // 
-            // panel2
-            // 
-            this.panel2.BackColor = System.Drawing.Color.Transparent;
-            this.panel2.BackgroundImage = global::Payroll__System.Properties.Resources.csi_logo;
-            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.panel2.Location = new System.Drawing.Point(76, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(70, 65);
-            this.panel2.TabIndex = 3;
             // 
             // panel4
             // 
@@ -319,16 +296,6 @@ namespace Payroll__System
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(281, 65);
             this.panel4.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(77, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(195, 20);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Welcome, Glenn M. Lanuzo";
             // 
             // label3
             // 
@@ -342,19 +309,22 @@ namespace Payroll__System
             this.label3.Text = "President";
             this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
-            // panel3
+            // label2
             // 
-            this.panel3.Location = new System.Drawing.Point(699, 10);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(53, 45);
-            this.panel3.TabIndex = 5;
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Yu Gothic UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(77, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(195, 20);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Welcome, Glenn M. Lanuzo";
             // 
             // lblYear
             // 
             this.lblYear.AutoSize = true;
             this.lblYear.Font = new System.Drawing.Font("Trebuchet MS", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
-            this.lblYear.Location = new System.Drawing.Point(451, 15);
+            this.lblYear.Location = new System.Drawing.Point(313, 37);
             this.lblYear.Name = "lblYear";
             this.lblYear.Size = new System.Drawing.Size(29, 18);
             this.lblYear.TabIndex = 7;
@@ -363,11 +333,11 @@ namespace Payroll__System
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panel1.Controls.Add(this.lblPayroll);
+            this.panel1.Controls.Add(this.lblSemester);
             this.panel1.Controls.Add(this.lblYear);
-            this.panel1.Controls.Add(this.panel3);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel2);
-            this.panel1.Controls.Add(this.lblPayroll);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnMenu);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -375,6 +345,40 @@ namespace Payroll__System
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1080, 65);
             this.panel1.TabIndex = 0;
+            // 
+            // lblSemester
+            // 
+            this.lblSemester.AutoSize = true;
+            this.lblSemester.Font = new System.Drawing.Font("Trebuchet MS", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSemester.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.lblSemester.Location = new System.Drawing.Point(153, 37);
+            this.lblSemester.Name = "lblSemester";
+            this.lblSemester.Size = new System.Drawing.Size(61, 18);
+            this.lblSemester.TabIndex = 8;
+            this.lblSemester.Text = "Semester";
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.Transparent;
+            this.panel2.BackgroundImage = global::Payroll__System.Properties.Resources.csi_logo;
+            this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.panel2.Location = new System.Drawing.Point(76, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(70, 65);
+            this.panel2.TabIndex = 3;
+            // 
+            // btnMenu
+            // 
+            this.btnMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(83)))), ((int)(((byte)(86)))), ((int)(((byte)(255)))));
+            this.btnMenu.FlatAppearance.BorderSize = 0;
+            this.btnMenu.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMenu.Image = global::Payroll__System.Properties.Resources.icon_menu_main;
+            this.btnMenu.Location = new System.Drawing.Point(0, 0);
+            this.btnMenu.Name = "btnMenu";
+            this.btnMenu.Size = new System.Drawing.Size(70, 65);
+            this.btnMenu.TabIndex = 2;
+            this.btnMenu.UseVisualStyleBackColor = false;
+            this.btnMenu.Click += new System.EventHandler(this.btnMenu_Click);
             // 
             // Dashboard
             // 
@@ -390,13 +394,13 @@ namespace Payroll__System
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.Dashboard_Load);
             this.sideBarPanel.ResumeLayout(false);
+            this.pnlPay.ResumeLayout(false);
             this.pnlSettings.ResumeLayout(false);
             this.pnlDash.ResumeLayout(false);
             this.pnlCash.ResumeLayout(false);
             this.pnlEmp.ResumeLayout(false);
             this.pnlSched.ResumeLayout(false);
             this.pnlAtt.ResumeLayout(false);
-            this.pnlPay.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -428,8 +432,8 @@ namespace Payroll__System
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblYear;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label lblSemester;
     }
 }

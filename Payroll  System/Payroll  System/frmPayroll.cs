@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace Payroll__System
             // Attach event handlers for dynamic updates
             txtCADeduction.TextChanged += txtCADeduction_TextChanged;
             txtDeduction.TextChanged += txtDeduction_TextChanged;
+
         }
 
         private void GenTeachingID()
@@ -780,7 +782,7 @@ namespace Payroll__System
         private void txtRegCADeduction_TextChanged(object sender, EventArgs e)
         {
             RegularUpdateTDandNI();
-            
+
         }
 
         private void btnGenerate_Click(object sender, EventArgs e)
@@ -954,7 +956,7 @@ namespace Payroll__System
 
                     // Check if an employee already exists
                     string checkQuery = @"SELECT COUNT(*) FROM payroll 
-                                      WHERE employee_id = @EmpID AND pr_cutoff = @CutOff";
+                                      WHERE employee_id = @EmpID AND pr_cutoff = @CutOff AND pr_job_status ='Teaching'";
 
 
                     MySqlCommand Cmdcheck = new MySqlCommand(checkQuery, opencon.connection);
@@ -1121,13 +1123,15 @@ namespace Payroll__System
         private void btnTeachingSave_Click(object sender, EventArgs e)
         {
             SaveTeachingPayroll();
+            
         }
 
         private void btnRegSave_Click(object sender, EventArgs e)
         {
             SaveRegularPayroll();
+            
         }
-
+        DataTable dtTeaching = new DataTable();
         private void TeachingPayroll()
         {
             DateTime date = DateTime.Now;
@@ -1197,10 +1201,10 @@ namespace Payroll__System
                     cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
 
-                    dataGridTeaching.DataSource = dt;
+                    adapter.Fill(dtTeaching);
+
+                    dataGridTeaching.DataSource = dtTeaching;
                 }
                 catch (MySqlException ex)
                 {
@@ -1216,7 +1220,7 @@ namespace Payroll__System
                 }
             }
         }
-
+        DataTable dtRegular = new DataTable();
         private void RegularPayroll()
         {
             DateTime date = DateTime.Now;
@@ -1280,10 +1284,10 @@ namespace Payroll__System
                     cmd.Parameters.AddWithValue("@Date", "%" + monthYear + "%");
 
                     MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
-                    DataTable dt = new DataTable();
-                    adapter.Fill(dt);
 
-                    dataGridRegular.DataSource = dt;
+                    adapter.Fill(dtRegular);
+
+                    dataGridRegular.DataSource = dtRegular;
                 }
                 catch (MySqlException ex)
                 {
@@ -1518,12 +1522,12 @@ namespace Payroll__System
 
         private void cboTeachingCutoff_SelectedIndexChanged(object sender, EventArgs e)
         {
-            TeachingPayroll();
+            
         }
 
         private void cboRegularCutOff_SelectedIndexChanged(object sender, EventArgs e)
         {
-            RegularPayroll();
+
         }
 
         private void txtRegCADeduction_KeyPress(object sender, KeyPressEventArgs e)
@@ -1552,6 +1556,325 @@ namespace Payroll__System
             ClearTeachingSalary();
             txtEmpID.Clear();
             txtFname.Clear();
+        }
+      
+
+        private int currentTeachingIndex = 0;
+
+        private void btnPrintTeaching_Click(object sender, EventArgs e)
+        {
+            if (dataGridTeaching.Rows.Count == 0)
+            {
+                MessageBox.Show("No payroll records available to print.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            currentTeachingIndex = 0;
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Short Bond", 850, 1100);
+            printDoc.PrintPage += new PrintPageEventHandler(printDocumentTeaching_PrintPage);
+
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog
+            {
+                Document = printDoc
+            };
+
+            previewDialog.ShowDialog();
+        }
+
+        private void printDocumentTeaching_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if (currentTeachingIndex >= dataGridTeaching.Rows.Count)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            Font titleFont = new Font("Arial", 14, FontStyle.Bold);
+            Font subTitleFont = new Font("Arial", 12, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
+            Font contentFont = new Font("Arial", 10);
+            Pen blackPen = new Pen(Color.Black, 2);
+            Brush headerBrush = new SolidBrush(Color.LightGray);
+
+            int leftMargin = 50;
+            int tableWidth = 700;
+            int rowHeight = 30;
+            int column1Width = 350;
+            int column2Width = 350;
+            int y = 50;
+
+            DataGridViewRow row = dataGridTeaching.Rows[currentTeachingIndex];
+
+            if (row.Cells["Full Name"].Value == null)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            // Retrieve employee data
+            string employeeName = row.Cells["Full Name"].Value.ToString();
+            string payrollId = row.Cells["Payroll ID"].Value.ToString();
+            string workedHours = row.Cells["Worked Hours"].Value.ToString();
+            string grossIncome = row.Cells["Gross Income"].Value.ToString();
+            string sss = row.Cells["SSS"].Value.ToString();
+            string pagibig = row.Cells["Pag Ibig"].Value.ToString();
+            string philhealth = row.Cells["PhilHealth"].Value.ToString();
+            string cashAdvance = row.Cells["Cash Advance Amount"].Value.ToString();
+            string cashAdvanceDeducted = row.Cells["Cash Advance Deducted"].Value.ToString();
+            string otherDeductionDesc = row.Cells["Description"].Value.ToString();
+            string otherDeductionAmount = row.Cells["Other Deduction"].Value.ToString();
+            string lateMinutes = row.Cells["Lates Per Min"].Value.ToString();
+            string lateDeduction = row.Cells["Lates In Amount"].Value.ToString();
+            string undertimeMinutes = row.Cells["Undertime Per Min"].Value.ToString();
+            string undertimeDeduction = row.Cells["Undertime In Amount"].Value.ToString();
+            string absences = row.Cells["Absences"].Value.ToString();
+            string absenceDeduction = row.Cells["Absences In Amount"].Value.ToString();
+            string totalDeductions = row.Cells["Overall Deduction"].Value.ToString();
+            string netIncome = row.Cells["Net Income"].Value.ToString();
+            string category = row.Cells["Category"].Value.ToString();
+
+            
+            e.Graphics.DrawString("YOUR COMPANY NAME", titleFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 25;
+            e.Graphics.DrawString("123 Business St, City, Country", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 20;
+            e.Graphics.DrawString("Phone: (123) 456-7890 | Email: contact@company.com", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 35;
+
+         
+            e.Graphics.DrawString($"Employee Name: {employeeName}", subTitleFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 30;
+            e.Graphics.DrawString($"Payroll ID: {payrollId}   |   Job Status: {category}", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 25;
+            e.Graphics.DrawString($"Worked Hours: {workedHours}", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 35;
+
+            
+            DrawTableHeader(e.Graphics, leftMargin, y, "Earnings", tableWidth, headerBrush);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Gross Income", grossIncome);
+            y += rowHeight + 10;
+
+           
+            DrawTableHeader(e.Graphics, leftMargin, y, "Contributions", tableWidth, Brushes.LightBlue);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "SSS", sss);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Pag-IBIG", pagibig);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "PhilHealth", philhealth);
+            y += rowHeight + 10;
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Cash Advances", tableWidth, Brushes.LightGreen);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Cash Advance Amount", cashAdvance);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Cash Advance Deducted", cashAdvanceDeducted);
+            y += rowHeight + 10;
+
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Other Deductions", tableWidth, Brushes.Pink);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, otherDeductionDesc, otherDeductionAmount);
+            y += rowHeight;
+
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Attendance Deductions", tableWidth, Brushes.Orange);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Lates (Minutes)", lateMinutes);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Lates Deduction", lateDeduction);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Undertime (Minutes)", undertimeMinutes);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Undertime Deduction", undertimeDeduction);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Absences", absences);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Absences Deduction", absenceDeduction);
+            y += rowHeight + 10;
+
+         
+            DrawTableHeader(e.Graphics, leftMargin, y, "Net Pay", tableWidth, Brushes.Yellow);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Net Pay Amount", netIncome);
+            y += rowHeight + 100;
+
+            e.Graphics.DrawString("Employer Signature: _______________", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            e.Graphics.DrawString("Employee Signature: _______________", contentFont, Brushes.Black, new PointF(leftMargin + 300, y));
+            y += 50;
+ 
+            currentTeachingIndex++;
+
+            if (currentTeachingIndex < dataGridTeaching.Rows.Count)
+            {
+                e.HasMorePages = true;
+            }
+            else
+            {
+                e.HasMorePages = false;
+            }
+        }
+
+        private int currentEmployeeIndex = 0;
+
+        private void btnPrintRegular_Click(object sender, EventArgs e)
+        {
+            if (dataGridRegular.Rows.Count == 0)
+            {
+                MessageBox.Show("No payroll records available to print.", "Print Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            currentEmployeeIndex = 0;
+
+            PrintDocument printDoc = new PrintDocument();
+            printDoc.DefaultPageSettings.PaperSize = new PaperSize("Short Bond", 850, 1100);
+            printDoc.PrintPage += new PrintPageEventHandler(printDocumentRegular_PrintPage);
+
+            PrintPreviewDialog previewDialog = new PrintPreviewDialog
+            {
+                Document = printDoc
+            };
+
+            previewDialog.ShowDialog();
+        }
+
+        private void DrawTableHeader(Graphics g, int x, int y, string title, int width, Brush backgroundBrush)
+        {
+            int rowHeight = 30;
+            g.FillRectangle(backgroundBrush, x, y, width, rowHeight);
+            g.DrawRectangle(Pens.Black, x, y, width, rowHeight);
+            g.DrawString(title, new Font("Arial", 12, FontStyle.Bold), Brushes.Black, new PointF(x + 5, y + 5));
+        }
+
+        private void DrawTableRow(Graphics g, Pen pen, int x, int y, int width, string col1Text, string col2Text)
+        {
+            int rowHeight = 30;
+            g.DrawRectangle(pen, x, y, width / 2, rowHeight);
+            g.DrawRectangle(pen, x + (width / 2), y, width / 2, rowHeight);
+            g.DrawString(col1Text, new Font("Arial", 10), Brushes.Black, new PointF(x + 5, y + 5));
+            g.DrawString(col2Text, new Font("Arial", 10), Brushes.Black, new PointF(x + (width / 2) + 5, y + 5));
+        }
+
+        private void printDocumentRegular_PrintPage(object sender, PrintPageEventArgs e)
+        {
+            if (currentEmployeeIndex >= dataGridRegular.Rows.Count)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            Font titleFont = new Font("Arial", 14, FontStyle.Bold);
+            Font subTitleFont = new Font("Arial", 12, FontStyle.Bold);
+            Font headerFont = new Font("Arial", 10, FontStyle.Bold);
+            Font contentFont = new Font("Arial", 10);
+            Pen blackPen = new Pen(Color.Black, 2);
+            Brush headerBrush = new SolidBrush(Color.LightGray);
+
+            int leftMargin = 50;
+            int tableWidth = 700;
+            int rowHeight = 30;
+            int column1Width = 350;
+            int column2Width = 350;
+            int y = 50;
+
+            DataGridViewRow row = dataGridRegular.Rows[currentEmployeeIndex];
+
+            if (row.Cells["Full Name"].Value == null)
+            {
+                e.HasMorePages = false;
+                return;
+            }
+
+            // Retrieve employee data
+            string employeeName = row.Cells["Full Name"].Value.ToString();
+            string payrollId = row.Cells["Payroll ID"].Value.ToString();
+            string workedHours = row.Cells["Worked Hours"].Value.ToString();
+            string grossIncome = row.Cells["Gross Income"].Value.ToString();
+            string sss = row.Cells["SSS"].Value.ToString();
+            string pagibig = row.Cells["Pag Ibig"].Value.ToString();
+            string philhealth = row.Cells["PhilHealth"].Value.ToString();
+            string cashAdvance = row.Cells["Cash Advance Amount"].Value.ToString();
+            string cashAdvanceDeducted = row.Cells["Cash Advance Deducted"].Value.ToString();
+            string otherDeductionDesc = row.Cells["Description"].Value.ToString();
+            string otherDeductionAmount = row.Cells["Other Deduction"].Value.ToString();
+            string totalDeductions = row.Cells["Overall Deduction"].Value.ToString();
+            string netIncome = row.Cells["Net Income"].Value.ToString();
+            string category = row.Cells["Category"].Value.ToString();
+
+    
+            e.Graphics.DrawString("COMPUTER SYSTEMS INSTITUTE INC.", titleFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 25;
+            e.Graphics.DrawString("F.Imperial St, Legazpi City, Albay", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 35;
+            
+
+
+            e.Graphics.DrawString($"Employee Name: {employeeName}", subTitleFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 30;
+            e.Graphics.DrawString($"Payroll ID: {payrollId}   |   Job Status: {category}", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            y += 35;
+            
+
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Earnings", tableWidth, headerBrush);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Gross Income", grossIncome);
+            y += rowHeight + 10;
+
+        
+            DrawTableHeader(e.Graphics, leftMargin, y, "Contributions", tableWidth, Brushes.LightBlue);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "SSS", sss);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Pag-IBIG", pagibig);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "PhilHealth", philhealth);
+            y += rowHeight + 10;
+
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Cash Advances", tableWidth, Brushes.LightGreen);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Cash Advance Amount", cashAdvance);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Cash Advance Deducted", cashAdvanceDeducted);
+            y += rowHeight + 10;
+
+
+            DrawTableHeader(e.Graphics, leftMargin, y, "Other Deductions", tableWidth, Brushes.Pink);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, otherDeductionDesc, otherDeductionAmount);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Total Deductions", totalDeductions);
+            y += rowHeight + 10;
+
+  
+            DrawTableHeader(e.Graphics, leftMargin, y, "Net Pay", tableWidth, Brushes.Orange);
+            y += rowHeight;
+            DrawTableRow(e.Graphics, blackPen, leftMargin, y, tableWidth, "Net Pay Amount", netIncome);
+            y += rowHeight + 100;
+
+        
+            e.Graphics.DrawString("Employer Signature: _______________", contentFont, Brushes.Black, new PointF(leftMargin, y));
+            e.Graphics.DrawString("Employee Signature: _______________", contentFont, Brushes.Black, new PointF(leftMargin + 300, y));
+            y += 50;
+
+      
+            currentEmployeeIndex++;
+
+            if (currentEmployeeIndex < dataGridRegular.Rows.Count)
+            {
+                e.HasMorePages = true;
+            }
+            else
+            {
+                e.HasMorePages = false;
+
+            
+            }
         }
     }
 

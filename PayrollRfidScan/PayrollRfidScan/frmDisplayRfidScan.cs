@@ -38,7 +38,7 @@ namespace PayrollRfidScan
             InitializeComponent();
             this.Size = new Size(SystemInformation.WorkingArea.Width, SystemInformation.WorkingArea.Height);
             maxLengthTimer = new System.Windows.Forms.Timer();
-            maxLengthTimer.Interval = 10000; // Set timer interval (800ms)
+            maxLengthTimer.Interval = 15000; // Set timer interval (800ms)
             maxLengthTimer.Tick += Timer_Tick;
             formDisplayInfo = formInfo;
         }
@@ -349,6 +349,8 @@ namespace PayrollRfidScan
             {
                 formDisplayInfo.FillRfid(lastInput);
             }
+
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -732,6 +734,7 @@ namespace PayrollRfidScan
             
             if (btnTimeIn.Text == "TIME IN" && !string.IsNullOrWhiteSpace(txtRFID.Text))
             {
+                LoadEmployee();
                 aStatusIn = DetermineStatus(schedIn, aTimeIn, "IN");
                 InsertOrUpdateAttendance("TIME IN");
             }
@@ -747,6 +750,7 @@ namespace PayrollRfidScan
             
             if (btnTimeOut.Text == "TIME OUT" && !string.IsNullOrWhiteSpace(txtRFID.Text))
             {
+                LoadEmployee();
                 aStatusOut = DetermineStatus(schedOut, aTimeOut, "OUT");
                 InsertOrUpdateAttendance("TIME OUT");
             }

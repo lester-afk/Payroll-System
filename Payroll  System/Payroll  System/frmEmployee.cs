@@ -801,6 +801,10 @@ namespace Payroll__System
             dtpDate.Enabled = false;
             btnAddPerHour.Enabled = false;
 
+            txtSSS.Enabled = false;
+            txtPagIbig.Enabled = false;
+            txtPhilHealth.Enabled = false;
+
             ckboSSS.Enabled = false;
             ckboPagibig.Enabled = false;
             ckboPhilhealth.Enabled = false;
@@ -876,7 +880,6 @@ namespace Payroll__System
                              "job.job_salary AS 'Basic Salary', " +
                              "job.job_hourly_rate AS 'Hourly Rate', " +
                              "job.job_date_hired AS 'Date Hired', " +
-                             "job.job_hourly_rate AS 'Hourly Rate', " +
                              "contribution.sss AS 'SSS', " +
                              "contribution.pagibig AS 'Pag Ibig', " +
                              "contribution.philhealth AS 'PhilHealth' " +
@@ -943,6 +946,8 @@ namespace Payroll__System
             btnAdd2.Show();
             btnAdd2.Enabled = false;
             btnClear2.Enabled = false;
+            btnDefault.Enabled = false;
+            btnCustom.Enabled = false;
         }
 
 
@@ -959,6 +964,8 @@ namespace Payroll__System
                 btnAdd2.Text = "    Save";
                 isAdd = false; // Switch state
                 btnEdit2.Hide();
+                btnDefault.Enabled = true;
+                btnCustom.Enabled = true;
 
             }
             else 
@@ -1118,6 +1125,8 @@ namespace Payroll__System
                             isAdd = true; // Switch back
                             LoadSalary();
                             LockSalary();
+                            btnDefault.Enabled = false;
+                            btnCustom.Enabled = false;
                         }
 
                     }
@@ -1170,9 +1179,13 @@ namespace Payroll__System
                                 job.job_title AS 'Job Title',
                                 job.job_salary AS 'Basic Salary',
                                 job.job_hourly_rate AS 'Hourly Rate',
-                                job.job_date_hired AS 'Date Hired'
+                                job.job_date_hired AS 'Date Hired' 
+                                contribution.sss AS 'SSS', 
+                                contribution.pagibig AS 'Pag Ibig', 
+                                contribution.philhealth AS 'PhilHealth' 
                             FROM employee
                             LEFT JOIN job ON employee.employee_id = job.employee_id
+                            LEFT JOIN contribution ON employee.employee_id = contribution.employee_id
                             WHERE employee.employee_id LIKE @Search
                             OR employee.employee_fname LIKE @Search
                             OR employee.employee_lname LIKE @Search
@@ -1213,6 +1226,7 @@ namespace Payroll__System
                 btnAdd2.Enabled = false;
                 UnlockSalary();
                 txtSalary.Enabled = true;
+                btnCustom.Enabled = true;
                 
                 
             }
@@ -1367,6 +1381,7 @@ namespace Payroll__System
                         btnAdd.Show();
                         LoadSalary();
                         LockSalary();
+                        btnCustom.Enabled = false;
                     }
                     catch (MySqlException ex)
                     {
@@ -1392,6 +1407,28 @@ namespace Payroll__System
 
         }
 
+        private void ConLock()
+        {
+            btnEdit2.Enabled = true;
+            btnAdd2.Enabled = false;
+            btnAdd2.Text = "    Add Details";
+            btnAdd2.Image = Properties.Resources.add_30;
+            btnAdd2.Hide();
+            btnEdit2.Show();
+            isEdit = true;
+
+        }
+        private void ConUnlock()
+        {
+            btnAdd2.Enabled = true;
+            btnEdit2.Enabled = false;
+            LockSalary();
+            btnEdit2.Text = "Edit";
+            btnAdd2.Show();
+            btnEdit2.Hide();
+            isAdd = true;
+            btnEdit2.Image = Properties.Resources.icons8_edit_30;
+        }
         private void dataGridViewSalary_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -1460,29 +1497,29 @@ namespace Payroll__System
 
                 }
 
-                if (string.IsNullOrWhiteSpace(txtSSS.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()) &&
-                    string.IsNullOrWhiteSpace(txtPagIbig.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()) &&
-                    string.IsNullOrWhiteSpace(txtPhilHealth.Text = selectedRow.Cells["Hourly Rate"].Value.ToString()))
+                if (string.IsNullOrWhiteSpace(txtSSS.Text = selectedRow.Cells["SSS"].Value.ToString()))
                 {
-                    btnAdd2.Enabled = true;
-                    btnEdit2.Enabled = false;
-                    LockSalary();
-                    btnEdit2.Text = "Edit";
-                    btnAdd2.Show();
-                    btnEdit2.Hide();
-                    isAdd = true;
-                    btnEdit2.Image = Properties.Resources.icons8_edit_30;
+                    ConUnlock();
                 }
                 else
                 {
-                    btnEdit2.Enabled = true;
-                    btnAdd2.Enabled = false;
-                    btnAdd2.Text = "    Add Details";
-                    btnAdd2.Image = Properties.Resources.add_30;
-                    btnAdd2.Hide();
-                    btnEdit2.Show();
-                    isEdit = true;
-
+                    ConLock();
+                }
+                if(string.IsNullOrWhiteSpace(txtPagIbig.Text = selectedRow.Cells["Pag Ibig"].Value.ToString()))
+                {
+                    ConUnlock();
+                }
+                else
+                {
+                    ConLock();
+                }
+                if(string.IsNullOrWhiteSpace(txtPhilHealth.Text = selectedRow.Cells["PhilHealth"].Value.ToString()))
+                {
+                    ConUnlock();
+                }
+                else
+                {
+                    ConLock();
                 }
 
             }
@@ -1526,7 +1563,7 @@ namespace Payroll__System
         {
             if (ckboSSS.Checked == true)
             {
-                txtSSS.Text = "600";
+                txtSSS.Text = "500";
             }else if (ckboSSS.Checked == true && txtSSS.Enabled == true)
             {
                 txtSSS.Text = txtSSS.Text;
@@ -1557,7 +1594,7 @@ namespace Payroll__System
         {
             if (ckboPhilhealth.Checked == true)
             {
-                txtPhilHealth.Text = "150";
+                txtPhilHealth.Text = "500";
             }
             else if (ckboPhilhealth.Checked == true && txtPhilHealth.Enabled == true)
             {
@@ -1579,30 +1616,33 @@ namespace Payroll__System
 
         private void btnCustom_Click(object sender, EventArgs e)
         {
-            if (ckboSSS.Checked == true)
+            if (ckboSSS.Checked == true || string.IsNullOrEmpty(txtSSS.Text))
             {
                 txtSSS.Text = "";
                 txtSSS.Enabled = true;
+                ckboSSS.Checked = false;
             }
             else
             {
                 txtSSS.Enabled = false;
             }
 
-            if (ckboPagibig.Checked == true)
+            if (ckboPagibig.Checked == true || string.IsNullOrEmpty(txtPagIbig.Text))
             {
                 txtPagIbig.Text = "";
                 txtPagIbig.Enabled = true;
+                ckboPagibig.Checked = false;
             }
             else
             {
                 txtPagIbig.Enabled = false;
             }
 
-            if (ckboPhilhealth.Checked == true)
+            if (ckboPhilhealth.Checked == true || string.IsNullOrEmpty(txtPhilHealth.Text))
             {
                 txtPhilHealth.Text = "";
                 txtPhilHealth.Enabled = true;
+                ckboPhilhealth.Checked = false;
             }
             else
             {
@@ -1675,6 +1715,18 @@ namespace Payroll__System
         private void txtPerHour_KeyPress(object sender, KeyPressEventArgs e)
         {
             mf.txtNumber(sender, e);
+        }
+
+        private void txtDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (txtDepartment.Text == "School Staff")
+            {
+                btnAddPerHour.Enabled = false;
+            }
+            else
+            {
+                btnAddPerHour.Enabled = true;
+            }
         }
     }
 }

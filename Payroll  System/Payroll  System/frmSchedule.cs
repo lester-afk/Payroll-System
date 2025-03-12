@@ -302,6 +302,10 @@ namespace Payroll__System
                 LockBtn();
                 LoadSchedule();
                 LockSchedule();
+                Clear();
+                dataGridViewSchedule.Enabled = false;
+                btnAdd.Show();
+                btnEdit.Hide();
             }
         }
 
@@ -317,6 +321,7 @@ namespace Payroll__System
                 btnAdd.Enabled = true;
                 SelectedEmployee();
                 btnClear.Enabled = true;
+                dataGridViewSchedule.Enabled = true;
             }
             
         }
@@ -404,25 +409,28 @@ namespace Payroll__System
                     string formattedTimeIn = timeIn.ToString(@"hh\:mm");
                     string formattedTimeOut = timeOut.ToString(@"hh\:mm");
 
-                    // Check if an employee with the same period exist
-                    string checkQuery = @"SELECT COUNT(*) FROM schedule WHERE employee_id = @EmployeeID AND sched_day = @Day AND sched_period = @Period And sched_timeIn = @TimeIn";
-
+                    string checkQuery = @"
+                                        SELECT COUNT(*) 
+                                        FROM schedule 
+                                        WHERE employee_id = @EmployeeID 
+                                        AND sched_day = @Day 
+                                        AND sched_period = @Period
+                                        AND sched_timeIn = @TimeIn BETWEEN sched_timeIn AND sched_timeOut
+                                        OR sched_type = @Type AND sched_period = @Period AND sched_day = @Day AND employee_id = @EmployeeID 
+                                        OR sched_timeIn = @TimeIn BETWEEN sched_timeIn AND sched_timeOut AND sched_day = @Day AND employee_id = @EmployeeID  ";
 
                     MySqlCommand checkCmd = new MySqlCommand(checkQuery, opencon.connection);
                     checkCmd.Parameters.AddWithValue("@EmployeeID", txtEmpID.Text.Trim());
                     checkCmd.Parameters.AddWithValue("@Day", cboDay.Text.Trim());
                     checkCmd.Parameters.AddWithValue("@Period", cboPeriod.Text.Trim());
                     checkCmd.Parameters.AddWithValue("@TimeIn", formattedTimeIn);
+                    checkCmd.Parameters.AddWithValue("@Type", cboType.Text.Trim());
 
+                    int count = Convert.ToInt32(checkCmd.ExecuteScalar());
 
-                    // Execute the query and get the result
-                    int employeeExists = Convert.ToInt32(checkCmd.ExecuteScalar());
-
-                    if (employeeExists > 0)
+                    if (count > 0)
                     {
-                        // Employee with the same full name already exists, show error message
-                        MessageBox.Show("An employee with the schedule already exists.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        MessageBox.Show("Time conflict detected! Employee already scheduled during this period.", "Schedule Conflict", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                     else
                     {
@@ -511,6 +519,7 @@ namespace Payroll__System
             LockBtn();
             btnSelect.Enabled = false;
             btnReset.Enabled = false;
+            dataGridViewSchedule.Enabled = false;
         }
 
         private void dataGridViewSchedule_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -757,6 +766,41 @@ private void btnEdit_Click(object sender, EventArgs e)
         private void label15_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtType_TextChanged(object sender, EventArgs e)
+        {
+            if (txtType.Text.Trim() == "Part Time")
+            {
+                cboType.Items.Clear();
+                cboType.Items.Add("Teaching Load");
+               
+
+            }
+            else
+            {
+                cboType.Items.Clear();
+                cboType.Items.Add("Teaching Load");
+                cboType.Items.Add("Regular Load");
+
+            }
+        }
+
+        private void txtDepartment_TextChanged(object sender, EventArgs e)
+        {
+            if (txtDepartment.Text == "School Staff" && txtType.Text == "Regular")
+            {
+                cboType.Items.Clear();
+                cboType.Items.Add("Regular Load");
+
+            }
+            else
+            {
+                cboType.Items.Clear();
+                cboType.Items.Add("Teaching Load");
+                cboType.Items.Add("Regular Load");
+
+            }
         }
     }
 }

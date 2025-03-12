@@ -29,7 +29,9 @@ namespace Payroll__System
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPayroll));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnGenerate = new System.Windows.Forms.Button();
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -42,6 +44,7 @@ namespace Payroll__System
             this.label21 = new System.Windows.Forms.Label();
             this.cboStatus = new System.Windows.Forms.ComboBox();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrintTeaching = new System.Windows.Forms.Button();
             this.txtSearchTeachingSalary = new System.Windows.Forms.TextBox();
             this.label38 = new System.Windows.Forms.Label();
             this.dataGridTeaching = new System.Windows.Forms.DataGridView();
@@ -118,6 +121,7 @@ namespace Payroll__System
             this.txtSalary = new System.Windows.Forms.TextBox();
             this.label36 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.btnPrintRegular = new System.Windows.Forms.Button();
             this.txtSearchRegularSalary = new System.Windows.Forms.TextBox();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
@@ -129,7 +133,10 @@ namespace Payroll__System
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label20 = new System.Windows.Forms.Label();
             this.dataGridViewEmployee = new System.Windows.Forms.DataGridView();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.printPreviewTeaching = new System.Windows.Forms.PrintPreviewDialog();
+            this.printPreviewRegular = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocumentTeaching = new System.Drawing.Printing.PrintDocument();
+            this.printDocumentRegular = new System.Drawing.Printing.PrintDocument();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridTeaching)).BeginInit();
@@ -159,6 +166,21 @@ namespace Payroll__System
             this.panel1.Padding = new System.Windows.Forms.Padding(2);
             this.panel1.Size = new System.Drawing.Size(822, 86);
             this.panel1.TabIndex = 0;
+            // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.Color.Transparent;
+            this.btnReset.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_reset_30;
+            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnReset.FlatAppearance.BorderSize = 0;
+            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(326, 10);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(27, 26);
+            this.btnReset.TabIndex = 39;
+            this.btnReset.UseVisualStyleBackColor = false;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnGenerate
             // 
@@ -281,6 +303,7 @@ namespace Payroll__System
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.btnPrintTeaching);
             this.panel2.Controls.Add(this.cboTeachingCutoff);
             this.panel2.Controls.Add(this.txtSearchTeachingSalary);
             this.panel2.Controls.Add(this.label38);
@@ -293,6 +316,21 @@ namespace Payroll__System
             this.panel2.Padding = new System.Windows.Forms.Padding(2);
             this.panel2.Size = new System.Drawing.Size(822, 221);
             this.panel2.TabIndex = 1;
+            // 
+            // btnPrintTeaching
+            // 
+            this.btnPrintTeaching.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintTeaching.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_print_26;
+            this.btnPrintTeaching.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrintTeaching.FlatAppearance.BorderSize = 0;
+            this.btnPrintTeaching.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintTeaching.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintTeaching.Location = new System.Drawing.Point(251, 12);
+            this.btnPrintTeaching.Name = "btnPrintTeaching";
+            this.btnPrintTeaching.Size = new System.Drawing.Size(27, 26);
+            this.btnPrintTeaching.TabIndex = 40;
+            this.btnPrintTeaching.UseVisualStyleBackColor = false;
+            this.btnPrintTeaching.Click += new System.EventHandler(this.btnPrintTeaching_Click);
             // 
             // txtSearchTeachingSalary
             // 
@@ -1101,6 +1139,7 @@ namespace Payroll__System
             // panel4
             // 
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel4.Controls.Add(this.btnPrintRegular);
             this.panel4.Controls.Add(this.txtSearchRegularSalary);
             this.panel4.Controls.Add(this.label39);
             this.panel4.Controls.Add(this.label40);
@@ -1113,6 +1152,21 @@ namespace Payroll__System
             this.panel4.Padding = new System.Windows.Forms.Padding(2);
             this.panel4.Size = new System.Drawing.Size(822, 202);
             this.panel4.TabIndex = 3;
+            // 
+            // btnPrintRegular
+            // 
+            this.btnPrintRegular.BackColor = System.Drawing.Color.Transparent;
+            this.btnPrintRegular.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_print_26;
+            this.btnPrintRegular.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnPrintRegular.FlatAppearance.BorderSize = 0;
+            this.btnPrintRegular.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPrintRegular.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPrintRegular.Location = new System.Drawing.Point(251, 13);
+            this.btnPrintRegular.Name = "btnPrintRegular";
+            this.btnPrintRegular.Size = new System.Drawing.Size(27, 26);
+            this.btnPrintRegular.TabIndex = 44;
+            this.btnPrintRegular.UseVisualStyleBackColor = false;
+            this.btnPrintRegular.Click += new System.EventHandler(this.btnPrintRegular_Click);
             // 
             // txtSearchRegularSalary
             // 
@@ -1245,20 +1299,33 @@ namespace Payroll__System
             this.dataGridViewEmployee.TabIndex = 2;
             this.dataGridViewEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridViewEmployee_CellContentClick);
             // 
-            // btnReset
+            // printPreviewTeaching
             // 
-            this.btnReset.BackColor = System.Drawing.Color.Transparent;
-            this.btnReset.BackgroundImage = global::Payroll__System.Properties.Resources.icons8_reset_30;
-            this.btnReset.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnReset.FlatAppearance.BorderSize = 0;
-            this.btnReset.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnReset.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnReset.Location = new System.Drawing.Point(326, 10);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(27, 26);
-            this.btnReset.TabIndex = 39;
-            this.btnReset.UseVisualStyleBackColor = false;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.printPreviewTeaching.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewTeaching.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewTeaching.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewTeaching.Enabled = true;
+            this.printPreviewTeaching.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewTeaching.Icon")));
+            this.printPreviewTeaching.Name = "printPreviewTeaching";
+            this.printPreviewTeaching.Visible = false;
+            // 
+            // printPreviewRegular
+            // 
+            this.printPreviewRegular.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewRegular.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewRegular.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewRegular.Enabled = true;
+            this.printPreviewRegular.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewRegular.Icon")));
+            this.printPreviewRegular.Name = "printPreviewRegular";
+            this.printPreviewRegular.Visible = false;
+            // 
+            // printDocumentTeaching
+            // 
+            this.printDocumentTeaching.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentTeaching_PrintPage);
+            // 
+            // printDocumentRegular
+            // 
+            this.printDocumentRegular.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocumentRegular_PrintPage);
             // 
             // frmPayroll
             // 
@@ -1400,5 +1467,11 @@ namespace Payroll__System
         private System.Windows.Forms.Label label46;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnPrintTeaching;
+        private System.Windows.Forms.Button btnPrintRegular;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewTeaching;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewRegular;
+        private System.Drawing.Printing.PrintDocument printDocumentTeaching;
+        private System.Drawing.Printing.PrintDocument printDocumentRegular;
     }
 }

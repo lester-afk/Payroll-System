@@ -144,11 +144,12 @@ namespace PayrollRfidScan
             // 
             // Timer
             // 
+            this.Timer.Interval = 1000;
             this.Timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // panel6
             // 
-            this.panel6.Location = new System.Drawing.Point(101, 318);
+            this.panel6.Location = new System.Drawing.Point(89, 416);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(225, 48);
             this.panel6.TabIndex = 37;
@@ -182,7 +183,6 @@ namespace PayrollRfidScan
             // panel1
             // 
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnTimeOut);
@@ -399,6 +399,7 @@ namespace PayrollRfidScan
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1386, 700);
             this.ControlBox = false;
+            this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.label2);

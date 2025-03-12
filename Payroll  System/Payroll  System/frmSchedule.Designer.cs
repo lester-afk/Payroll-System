@@ -209,6 +209,7 @@ namespace Payroll__System
             this.txtDepartment.Name = "txtDepartment";
             this.txtDepartment.Size = new System.Drawing.Size(279, 24);
             this.txtDepartment.TabIndex = 18;
+            this.txtDepartment.TextChanged += new System.EventHandler(this.txtDepartment_TextChanged);
             // 
             // label10
             // 
@@ -230,6 +231,7 @@ namespace Payroll__System
             this.txtType.Name = "txtType";
             this.txtType.Size = new System.Drawing.Size(279, 24);
             this.txtType.TabIndex = 16;
+            this.txtType.TextChanged += new System.EventHandler(this.txtType_TextChanged);
             // 
             // label9
             // 
@@ -456,6 +458,7 @@ namespace Payroll__System
             this.dataGridViewSchedule.AllowUserToAddRows = false;
             this.dataGridViewSchedule.AllowUserToDeleteRows = false;
             this.dataGridViewSchedule.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewSchedule.Enabled = false;
             this.dataGridViewSchedule.Location = new System.Drawing.Point(5, 252);
             this.dataGridViewSchedule.Name = "dataGridViewSchedule";
             this.dataGridViewSchedule.ReadOnly = true;

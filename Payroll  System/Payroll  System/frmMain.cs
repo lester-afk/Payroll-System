@@ -103,5 +103,29 @@ namespace Payroll__System
                 }
             }
         }
+
+        private void btnSemester_Click(object sender, EventArgs e)
+        {
+            Dashboard openDashboard = Application.OpenForms.OfType<Dashboard>().FirstOrDefault();
+
+            if (openDashboard != null)
+            {
+                // Pass the open Dashboard instance to frmSemester
+                frmSemester formSemester = new frmSemester(openDashboard);
+                formSemester.ShowDialog();
+            }
+        }
+
+        private void btnSY_Click(object sender, EventArgs e)
+        {
+            Dashboard openDashboard = Application.OpenForms.OfType<Dashboard>().FirstOrDefault();
+
+            if (openDashboard != null)
+            {
+                // Pass the open Dashboard instance to frmSemester
+                frmSchoolYear formShoolYear = new frmSchoolYear(openDashboard);
+                formShoolYear.ShowDialog();
+            }
+        }
     }
 }

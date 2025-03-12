@@ -16,11 +16,11 @@ namespace PayrollRfidScan
         public void dbconnect()
         {
             // Initialize connection parameters
-            server = "192.168.8.123"; //  MySQL server address
+            server = "localhost"; //  MySQL server address
             port = "3306";        // default MySQL port
             database = "payrollDB";
-            uid = "payroll";         //  MySQL username
-            password = "payroll";        // MySQL password
+            uid = "root";         //  MySQL username
+            password = "resuuuu";        // MySQL password
 
             string connectionString = $"SERVER={server};PORT={port};DATABASE={database};UID={uid};PASSWORD={password};";
 

@@ -45,6 +45,8 @@ namespace Payroll__System
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnSemester = new System.Windows.Forms.Button();
+            this.btnSY = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -208,6 +210,32 @@ namespace Payroll__System
             this.panel6.Size = new System.Drawing.Size(423, 68);
             this.panel6.TabIndex = 7;
             // 
+            // btnSemester
+            // 
+            this.btnSemester.BackColor = System.Drawing.Color.Teal;
+            this.btnSemester.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSemester.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSemester.Location = new System.Drawing.Point(531, 26);
+            this.btnSemester.Name = "btnSemester";
+            this.btnSemester.Size = new System.Drawing.Size(138, 68);
+            this.btnSemester.TabIndex = 8;
+            this.btnSemester.Text = "Set Active Semester";
+            this.btnSemester.UseVisualStyleBackColor = false;
+            this.btnSemester.Click += new System.EventHandler(this.btnSemester_Click);
+            // 
+            // btnSY
+            // 
+            this.btnSY.BackColor = System.Drawing.Color.Teal;
+            this.btnSY.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSY.Font = new System.Drawing.Font("Trebuchet MS", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSY.Location = new System.Drawing.Point(693, 26);
+            this.btnSY.Name = "btnSY";
+            this.btnSY.Size = new System.Drawing.Size(133, 68);
+            this.btnSY.TabIndex = 9;
+            this.btnSY.Text = "Set Active School Year";
+            this.btnSY.UseVisualStyleBackColor = false;
+            this.btnSY.Click += new System.EventHandler(this.btnSY_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +243,8 @@ namespace Payroll__System
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1231, 666);
             this.ControlBox = false;
+            this.Controls.Add(this.btnSY);
+            this.Controls.Add(this.btnSemester);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
@@ -254,5 +284,7 @@ namespace Payroll__System
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Button btnSemester;
+        private System.Windows.Forms.Button btnSY;
     }
 }

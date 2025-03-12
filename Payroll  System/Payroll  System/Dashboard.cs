@@ -31,12 +31,12 @@ namespace Payroll__System
 
         private void popUpSide()
         {
-            
+
             if (sideBarPanel.Width <= 70)
             {
-                
+
                 sideBarPanel.Width = 200;
-                
+
                 pnlAtt.Width = sideBarPanel.Width;
                 pnlCash.Width = sideBarPanel.Width;
                 pnlDash.Width = sideBarPanel.Width;
@@ -51,14 +51,14 @@ namespace Payroll__System
                 if (sideBarPanel.Width >= 200)
                 {
                     sideBarPanel.Width = 70;
-                    
-                     pnlAtt.Width = sideBarPanel.Width;
-                     pnlCash.Width = sideBarPanel.Width;
-                     pnlDash.Width = sideBarPanel.Width;
-                     pnlEmp.Width = sideBarPanel.Width;
-                     pnlPay.Width = sideBarPanel.Width;
-                     pnlSched.Width = sideBarPanel.Width;
-                     pnlSettings.Width = sideBarPanel.Width;
+
+                    pnlAtt.Width = sideBarPanel.Width;
+                    pnlCash.Width = sideBarPanel.Width;
+                    pnlDash.Width = sideBarPanel.Width;
+                    pnlEmp.Width = sideBarPanel.Width;
+                    pnlPay.Width = sideBarPanel.Width;
+                    pnlSched.Width = sideBarPanel.Width;
+                    pnlSettings.Width = sideBarPanel.Width;
                 }
             }
         }
@@ -84,12 +84,13 @@ namespace Payroll__System
         {
 
             popUpSide();
-            
+
         }
 
         private void Dashboard_Load(object sender, EventArgs e)
         {
             ActiveSY();
+            ActiveSemester();
             lblPayroll.Text = "Payroll System";
             CloseAllForms();
 
@@ -310,8 +311,8 @@ namespace Payroll__System
             {
                 Environment.Exit(0);
             }
-            
-            
+
+
             if (sideBarPanel.Width >= 200)
             {
                 sideBarPanel.Width = 70;
@@ -331,36 +332,83 @@ namespace Payroll__System
 
         }
 
-        private void ActiveSY()
+        public void ActiveSY()
         {
-            opencon.dbconnect();
+            opencon.dbconnect(); // Ensure connection setup
+
             if (opencon.OpenConnection())
             {
                 try
                 {
                     string query = @"
-                                    SELECT CONCAT(sy_start,  '-',  sy_end) AS 'Active SY'
-                                    FROM school_year";
+                SELECT CONCAT(sy_start, '-', sy_end) AS 'ActiveSY'
+                FROM school_year
+                WHERE is_active = 1";  // Ensure you have a column marking the active school year
 
-                    MySqlCommand cmd = new MySqlCommand(query, opencon.connection);
-
+                    using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
                     using (MySqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            lblYear.Text = "S.Y : " + reader["Active SY"].ToString();
+                            lblYear.Text = "S.Y: " + reader["ActiveSY"].ToString();
+                        }
+                        else
+                        {
+                            lblYear.Text = "No Active School Year Found.";
                         }
                     }
                 }
                 catch (MySqlException ex)
                 {
-                    MessageBox.Show($"Error checking attendance record: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Error fetching active school year: {ex.Message}",
+                                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    opencon.CloseConnection(); // Ensure connection is always closed
+                }
+            }
+        }
+
+
+        public void ActiveSemester()
+        {
+            opencon.dbconnect(); // Ensure the database connection is set up
+
+            if (opencon.OpenConnection())
+            {
+                try
+                {
+                    string query = @"
+                                    SELECT sem_active_semester
+                                    FROM semester
+                                    WHERE isActive = 1";  // Ensure you have an "is_active" column
+
+                    using (MySqlCommand cmd = new MySqlCommand(query, opencon.connection))
+                    using (MySqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            lblSemester.Text = "Active Semester: " + reader["sem_active_semester"].ToString();
+                        }
+                        else
+                        {
+                            lblSemester.Text = "No Active Semester Found.";
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show($"Error fetching active semester: {ex.Message}",
+                                    "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 finally
                 {
                     opencon.CloseConnection();
                 }
             }
+
         }
+
     }
 }

@@ -42,8 +42,6 @@ namespace Payroll__System
             if (result == DialogResult.Yes)
             {
                 this.Close();
-                
-
             }
             else
             {

@@ -68,3 +68,52 @@ C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\P
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.exe
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.pdb
 C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmPayroll.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.exe.config
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.exe
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.pdb
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Memory.dll
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Numerics.Vectors.dll
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Buffers.dll
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.AssemblyReference.cache
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.Dashboard.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmPayroll.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmAttendance.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmCashAdvance.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmEmployee.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmMain.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmReports.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmRfidScan.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmSchedule.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.LogIn.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.Properties.Resources.resources
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.GenerateResource.cache
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.CoreCompileInputs.cache
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.CopyComplete
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.exe
+E:\THESIS UPDATED\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.pdb
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.exe.config
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.exe
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\Payroll  System.pdb
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\MySql.Data.dll
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Memory.dll
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Numerics.Vectors.dll
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\bin\Debug\System.Buffers.dll
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.AssemblyReference.cache
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.Dashboard.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmPayroll.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmAttendance.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmCashAdvance.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmEmployee.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmMain.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmReports.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmRfidScan.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmSchedule.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.LogIn.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.Properties.Resources.resources
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.GenerateResource.cache
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.CoreCompileInputs.cache
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.csproj.CopyComplete
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.exe
+C:\Users\Resu\Downloads\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll  System.pdb
+C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmSemester.resources
+C:\Users\Resu\Desktop\Payroll_System\Payroll  System\Payroll  System\obj\Debug\Payroll__System.frmSchoolYear.resources

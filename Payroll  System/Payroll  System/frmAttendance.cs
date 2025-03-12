@@ -201,7 +201,8 @@ namespace Payroll__System
 
         private void btnReset_Click(object sender, EventArgs e)
         {
-
+            dataGridAttendance.Enabled = true;
+            dataGridViewSchedule.Enabled = true;
             ClearAll();
         }
 

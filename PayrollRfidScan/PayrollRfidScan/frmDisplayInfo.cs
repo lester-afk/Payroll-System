@@ -129,6 +129,8 @@ namespace PayrollRfidScan
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
+            autoCloseTimer.Stop();
+
         }
 
 

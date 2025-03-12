@@ -73,7 +73,6 @@
     <Compile Include="Dashboard.Designer.cs">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </Compile>
-    <Compile Include="DataGridPrinter.cs" />
     <Compile Include="DBconnection.cs" />
     <Compile Include="frmPayroll.cs">
       <SubType>Form</SubType>
@@ -123,6 +122,18 @@
     <Compile Include="frmSchedule.Designer.cs">
       <DependentUpon>frmSchedule.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSchoolYear.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSchoolYear.Designer.cs">
+      <DependentUpon>frmSchoolYear.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSemester.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSemester.Designer.cs">
+      <DependentUpon>frmSemester.cs</DependentUpon>
+    </Compile>
     <Compile Include="LogIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +169,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSchedule.resx">
       <DependentUpon>frmSchedule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSchoolYear.resx">
+      <DependentUpon>frmSchoolYear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSemester.resx">
+      <DependentUpon>frmSemester.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="LogIn.resx">
       <DependentUpon>LogIn.cs</DependentUpon>
